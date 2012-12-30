@@ -6,8 +6,15 @@ public class Tabla {
 	public static Vector<Haz> vastron = new Vector<Haz>();
 	public static Vector<Haz> kard  = new Vector<Haz>();
 	public static Vector<Haz> hollo  = new Vector<Haz>();
+	public static int vadakEreje = 0;
 	
-	public static Haz getHaz(String nev)
+	
+	//Gyuri,Áron
+	public static Haz aktHaz;
+	public static void kovHaz() { };
+	// /Gyuri,Áron
+	
+ 	public static Haz getHaz(String nev)
 	{
 		Iterator<Haz> it = vastron.iterator();
 		Haz aktHaz;

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.*;
 
 public class Haz {
 	
@@ -42,4 +43,10 @@ public class Haz {
 	
 	public String getNev() { return this.nev; }
 	public Image getKep() { return this.kep; }
+	
+	//Gyuri,Aron
+	
+	private Vector<Parancsjelzo> parancsjelzok;
+	
+	// /Gyuri,Aron
 }
