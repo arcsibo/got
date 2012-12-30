@@ -42,7 +42,7 @@ public class TronokHarca extends Applet{
 					line = bf.readLine();
 					if (line.equals("</vastron>")) break;
 					
-					Image kep = getImage(getCodeBase(), line+".png");
+					Image kep = getImage(getCodeBase(), "res/"+line+".jpg");
 					
 					Haz haz = new Haz(line,kep);
 					Tabla.vastron.add(haz);
@@ -90,7 +90,7 @@ public class TronokHarca extends Applet{
 					if (line.equals("</terulet>")) break;
 					String nev = line;
 					
-					Image kep = getImage(getCodeBase(),nev+".png");
+					Image kep = getImage(getCodeBase(),"res/"+nev+".png");
 			        
 					line = bf.readLine();
 				    int varak = Integer.parseInt(line);
@@ -111,7 +111,7 @@ public class TronokHarca extends Applet{
 				    int gyalogos = Integer.parseInt(line);
 				    for (int i= 0; i<gyalogos; i++)
 				    {
-				    	Image gyalogosKep = getImage(getCodeBase(),"Gyalogos.png");
+				    	Image gyalogosKep = getImage(getCodeBase(),"res/Gyalogos.png");
 				    	Egyseg gyalogosE = new Egyseg("Gyalogos",gyalogosKep);
 				    	terulet.addEgyseg(gyalogosE);
 				    }
@@ -120,7 +120,7 @@ public class TronokHarca extends Applet{
 				    int lovag = Integer.parseInt(line);
 				    for (int i= 0; i<lovag; i++)
 				    {
-				    	Image lovagKep = getImage(getCodeBase(),"Lovag.png");
+				    	Image lovagKep = getImage(getCodeBase(),"res/Lovag.png");
 				    	Egyseg lovagE = new Egyseg("Lovag",lovagKep);
 				    	terulet.addEgyseg(lovagE);
 				    }
@@ -148,7 +148,7 @@ public class TronokHarca extends Applet{
 					if (line.equals("</tenger>")) break;
 					String nev = line;
 					
-					Image kep = getImage(getCodeBase(),nev+".png");
+					Image kep = getImage(getCodeBase(),"res/"+nev+".png");
 			        
 					 Haz tulajdonos = Tabla.getHaz(bf.readLine());
 					
@@ -166,7 +166,7 @@ public class TronokHarca extends Applet{
 				    int hajo = Integer.parseInt(line);
 				    for (int i= 0; i<hajo; i++)
 				    {
-				    	Image hajoKep = getImage(getCodeBase(),"Hajo.png");
+				    	Image hajoKep = getImage(getCodeBase(),"res/Hajo.png");
 				    	Egyseg hajoE = new Egyseg("Hajo",hajoKep);
 				    	tenger.addEgyseg(hajoE);
 				    }
