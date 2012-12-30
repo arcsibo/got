@@ -6,12 +6,14 @@ public class Haz {
 	private String nev;
 	private Color szin;
 	private Image kep;
-	private Vector<Parancsjelzo> Haz;
+	private Vector<Parancsjelzo> parancsjelzok;
 	
 	public Haz(String nev, Image kep)
 	{
 		this.nev = nev;
 		this.kep = kep;
+		this.parancsjelzok = new Vector<Parancsjelzo>();
+		
 		
 		if (nev.equals("Lennister"))
 		{
@@ -46,8 +48,6 @@ public class Haz {
 	public Image getKep() { return this.kep; }
 	
 	//Gyuri,Aron
-	
-	private Vector<Parancsjelzo> parancsjelzok;
 	
 	// /Gyuri,Aron
 }
