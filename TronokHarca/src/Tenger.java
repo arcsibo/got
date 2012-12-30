@@ -11,6 +11,7 @@ public class Tenger {
 	
 	protected Vector<Tenger> szomszedok;
 	protected Vector<Egyseg> egysegek;
+	protected Parancsjelzo parancsjelzo;
 	protected Vector<String> szomszedNevek;
 	
 	public Tenger(String nev, Image kep, Haz tulajdonos)

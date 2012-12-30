@@ -6,6 +6,7 @@ public class Haz {
 	private String nev;
 	private Color szin;
 	private Image kep;
+	private Vector<Parancsjelzo> Haz;
 	
 	public Haz(String nev, Image kep)
 	{

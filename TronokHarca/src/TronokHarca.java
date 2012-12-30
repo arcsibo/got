@@ -209,7 +209,6 @@ public class TronokHarca extends Applet implements Runnable {
 	public void paint(Graphics g)
 	  {
 		  
-		  
 	  
 	  }
 
