@@ -15,11 +15,6 @@ public class Kartya {
 	private static void hazjelzok() {System.out.println("Hazjelzok osztasa");};
 	private static void hoki() { System.out.println("csitt-csatt"); };
 	
-	private static void vadakEroRandom(boolean b) 
-	{ 
-		/* Random, ha igaz Tabla.vadekEreje++*/
-		if(b) Tabla.vadakEreje++;
-	};
 	
 	public static void kartyaHuzas() 
 	{
@@ -27,8 +22,8 @@ public class Kartya {
 		
 		Random generator = new Random();
 		
-		boolean vadakE = generator.nextBoolean();
-		vadakEroRandom(vadakE);
+		boolean b = generator.nextBoolean();
+		if(b) Tabla.vadakEreje++;
 		
 		
 		int rand = generator.nextInt(DB)+1;
