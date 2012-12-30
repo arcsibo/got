@@ -1,25 +1,38 @@
+import java.awt.*;
+
 public class Parancsjelzo {
 	
+	private String tipus;
+	private boolean csillag;
+	private int plussz;
+	private Image kep;
 	
-	private Terulet terulet;
-	
-	private boolean jatszik;
-	
-	private void korona() {};
-	private void tamadas() {};
-	private void vedekezes() {};
-	private void portya() {};
-	private void tamogatas() {};
-	
-	
-	public void setJatszik() {};
-	
-	public boolean getJatszik() { return this.jatszik;}
-	public Terulet getTerulet() {
-		return terulet;
+	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kep)
+	{
+		this.tipus = tipus;
+		this.csillag = csillag;
+		this.plussz = plussz;
+		this.kep = kep;
 	}
-	public void setTerulet(Terulet terulet) {
-		this.terulet = terulet;
-	};
-
+	
+	public String getTipus()
+	{
+		return this.tipus;	
+	}
+	
+	public int getCsillag()
+	{
+		if(this.csillag == true) return 0;
+			else return 1;
+	}
+	
+	public int getPlussz()
+	{
+		return this.plussz;
+	}
+	
+	public Image getKep()
+	{
+		return this.kep;
+	}
 }
