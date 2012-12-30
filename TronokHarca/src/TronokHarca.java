@@ -183,19 +183,19 @@ public class TronokHarca extends Applet{
 				}
 			}
 		
-		Iterator<Tenger> teruletek = Tabla.teruletek.iterator();
-		
-		while (teruletek.hasNext())
-		{
-			teruletek.next().generateSzomszedok();
-		}
-		
 		lefutott = true;
 		}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		Iterator<Tenger> teruletek = Tabla.teruletek.iterator();
+		
+		while (teruletek.hasNext())
+		{
+			teruletek.next().generateSzomszedok();
 		}
        
       }

@@ -36,7 +36,7 @@ public class Terulet extends Tenger{
 			s += "\n";
 		}
 		
-		s += "\nSzomszedok:\n";
+		s += "\n    Szomszedok:\n";
 		
 		Iterator<Tenger> szIt = szomszedok.iterator();
 		while (szIt.hasNext())
