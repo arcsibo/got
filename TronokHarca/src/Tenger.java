@@ -101,5 +101,10 @@ public class Tenger {
 	}
 	
 	public Image getKep() { return this.kep; }
+	
+	public Haz getHaz()
+	{
+		return this.tulajdonos;
+	}
 
 }

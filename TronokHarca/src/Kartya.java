@@ -4,12 +4,11 @@ import java.util.*;
 
 public class Kartya {
 	
-	//ennyi darab kártya van
+	//ennyi darab kï¿½rtya van
 	private static final int DB=6;
 	
 	
 	private static void toborzas( ) {System.out.println("Toborzas");};
-	private static void utanpotlas() {System.out.println("Utanpotlas");};
 	private static void licitalas() {System.out.println("Licitalas");};
 	private static void vadak() {System.out.println("Vadak tamadasa");};
 	private static void hazjelzok() {System.out.println("Hazjelzok osztasa");};
@@ -58,6 +57,12 @@ public class Kartya {
 				System.out.println("DEBUG - HIBA");
 				break;
 		}
+		
+	}
+	
+	private static void utanpotlas() 
+	{
+		System.out.println("Utanpotlas");
 		
 	}
 	
