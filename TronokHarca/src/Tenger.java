@@ -98,5 +98,7 @@ public class Tenger {
 		
 		return s;
 	}
+	
+	public Image getKep() { return this.kep; }
 
 }

@@ -202,7 +202,17 @@ public class TronokHarca extends Applet{
 	
 	  public void paint(Graphics g) {
 		  
-		  if (lefutott) {System.out.println(Tabla.toString1()); lefutott=false; }
+		  Iterator<Tenger> it = Tabla.teruletek.iterator();
+		  int x = 0;
+		  while (it.hasNext())
+		  {
+			  Image kep = it.next().getKep();
+			  g.drawImage(kep,x,0,this);
+			  //x += kep.getWidth(this);
+			  
+		  }
+		  
+		  
 		  
 	  
 	  } 

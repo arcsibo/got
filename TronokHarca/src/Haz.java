@@ -41,5 +41,5 @@ public class Haz {
 	
 	
 	public String getNev() { return this.nev; }
-
+	public Image getKep() { return this.kep; }
 }
