@@ -35,6 +35,17 @@ public class Terulet extends Tenger{
 			s += "    " + egyIt.next().toString();
 			s += "\n";
 		}
+		
+		s += "\nSzomszedok:\n";
+		
+		Iterator<String> szIt = szomszedNevek.iterator();
+		while (szIt.hasNext())
+		{
+			s += "    " + szIt.next();
+			s += "\n";
+		}
+		
+		
 		return s;
 	}
 

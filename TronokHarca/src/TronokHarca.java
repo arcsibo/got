@@ -2,6 +2,7 @@ import java.io.*;
 import java.awt.*;
 import java.applet.*;
 import java.net.*;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class TronokHarca extends Applet{
@@ -126,7 +127,6 @@ public class TronokHarca extends Applet{
 				    
 				    line = bf.readLine();
 				    
-				    
 				    while (true)
 				    {
 				    	line = bf.readLine();
@@ -182,7 +182,14 @@ public class TronokHarca extends Applet{
 				    
 				}
 			}
-			
+		
+		/*Iterator<Tenger> teruletek = Tabla.teruletek.iterator();
+		
+		while (teruletek.hasNext())
+		{
+			teruletek.next().generateSzomszedok();
+		}
+		*/
 		lefutott = true;
 		}
 			
