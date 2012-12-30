@@ -1,13 +1,19 @@
 import java.io.*;
 import java.awt.*;
+import java.awt.image.*;
 import java.applet.*;
 import java.net.*;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
-public class TronokHarca extends Applet{
+public class TronokHarca extends Applet implements Runnable {
 	
-	public boolean lefutott;
+	
+  Thread kicker = null;
+
+  Image terkep[], hazak[], tokenek[] ,offScrImage;
+
+  Graphics offScrGr;
+
 	
 	public void init()
       {
@@ -183,7 +189,7 @@ public class TronokHarca extends Applet{
 				}
 			}
 		
-		lefutott = true;
+		
 		}
 			
 		} catch (IOException e) {
@@ -200,20 +206,51 @@ public class TronokHarca extends Applet{
        
       }
 	
-	  public void paint(Graphics g) {
+	public void paint(Graphics g)
+	  {
 		  
-		  Iterator<Tenger> it = Tabla.teruletek.iterator();
-		  int x = 0;
-		  while (it.hasNext())
-		  {
-			  Image kep = it.next().getKep();
-			  g.drawImage(kep,x,0,this);
-			  //x += kep.getWidth(this);
-			  
-		  }
 		  
 		  
 		  
 	  
-	  } 
+	  }
+
+	public void run()
+	{
+		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+		
+		while ( kicker != null )
+		{
+		      repaint();
+	   }
+		
+		
+	}
+
+	public void update(Graphics g) {
+
+	    paint(g);
+
+	    }
+	
+	public void scaleTerkep(Component component, float scale) {
+
+	    terkep = new Image[Tabla.teruletek.size()];
+        Iterator<Tenger> it = Tabla.teruletek.iterator();
+	    
+	    for (int i=1; i<=terkep.length; i++)
+	    {
+
+	      Image base_image = it.next().getKep();
+	      ImageFilter kicsinyit = new ReplicateScaleFilter((int)(base_image.getWidth(this)/scale*100),(int)(base_image.getHeight(this)/scale*100));
+
+	      terkep[i-1] = component.createImage(
+
+	            new FilteredImageSource(base_image.getSource(), kicsinyit));
+
+	      component.prepareImage(terkep[i-1], component);
+
+	      }
+
+	    }  
 	}
