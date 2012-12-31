@@ -187,7 +187,6 @@ public class TronokHarca extends Applet implements Runnable {
 				    
 				}
 			}
-			Tabla.setHordo();
 			//System.out.println(Tabla.teruletek.toString());
 		
 		
@@ -205,6 +204,7 @@ public class TronokHarca extends Applet implements Runnable {
 			teruletek.next().generateSzomszedok();
 		}
        
+		Tabla.setHordo();
       }
 	
 	public void paint(Graphics g)

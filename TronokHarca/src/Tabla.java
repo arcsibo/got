@@ -64,28 +64,25 @@ public class Tabla {
 		while (hazit.hasNext())
 		{
 			int hordo = 0;
-			int db = 0;
 			aktHaz = hazit.next();
 			String aktNev = aktHaz.getNev();
-			System.out.println(aktNev);
 			
-			while(terit.hasNext())
+			//while(terit.hasNext())
+			for(int i = 0; i < teruletek.size(); i ++)
 			{
-				System.out.println(db);
-				db++;
-				aktTer = terit.next();
+				aktTer = teruletek.get(i);// = terit.next();
 				if(aktTer.getHaz() != null)
 				{
 					String aktTulj = aktTer.getHaz().getNev();
 					if (aktNev.equals(aktTulj) && !aktTer.getTipus())
 					{
-						System.out.println(aktTer.getNev()+" - "+aktTulj + ": "+hordo);
 						hordo += aktTer.getHordo();
 					}
 				}
 				
 			}
-			
+			aktHaz.setHordo(hordo);
+			System.out.println(aktHaz.getNev() + ": "+hordo);
 		}
 		
 	}
