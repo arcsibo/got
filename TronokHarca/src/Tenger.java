@@ -106,5 +106,13 @@ public class Tenger {
 	{
 		return this.tulajdonos;
 	}
+	
+	//más hogy nem tudtam megcsinálni a hórdók számának lekérdezését, csak
+	//ha itt a tengerben is lelehet valahogy lekérdezni itt nullát ad vissza 
+	//tehát nincs hordós tenger terület 
+	public int getHordo()
+	{
+		return 0;
+	}
 
 }

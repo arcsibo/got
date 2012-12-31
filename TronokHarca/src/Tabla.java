@@ -9,10 +9,11 @@ public class Tabla {
 	public static int vadakEreje = 0;
 	
 	
-	//Gyuri,Áron
+	//Gyuri,ï¿½ron
 	public static Haz aktHaz;
+	public static Tenger aktTer;
 	public static void kovHaz() { };
-	// /Gyuri,Áron
+	// /Gyuri,ï¿½ron
 	
  	public static Haz getHaz(String nev)
 	{
@@ -45,7 +46,7 @@ public class Tabla {
 		s += "\n";
 		
 		Iterator<Haz> hazIt = vastron.iterator();
-		s += "Házak:\n";
+		s += "Hï¿½zak:\n";
 		while (hazIt.hasNext())
 		{
 			Haz aktHaz = hazIt.next();
@@ -54,5 +55,38 @@ public class Tabla {
 		}
 		
 		return s;
+	}
+	
+	public static void setHordo()
+	{
+		Iterator<Haz> hazit = vastron.iterator();
+		Iterator<Tenger> terit = teruletek.iterator();
+		while (hazit.hasNext())
+		{
+			int hordo = 0;
+			int db = 0;
+			aktHaz = hazit.next();
+			String aktNev = aktHaz.getNev();
+			System.out.println(aktNev);
+			
+			while(terit.hasNext())
+			{
+				System.out.println(db);
+				db++;
+				aktTer = terit.next();
+				if(aktTer.getHaz() != null)
+				{
+					String aktTulj = aktTer.getHaz().getNev();
+					if (aktNev.equals(aktTulj) && !aktTer.getTipus())
+					{
+						System.out.println(aktTer.getNev()+" - "+aktTulj + ": "+hordo);
+						hordo += aktTer.getHordo();
+					}
+				}
+				
+			}
+			
+		}
+		
 	}
 }

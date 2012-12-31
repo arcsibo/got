@@ -7,9 +7,11 @@ public class Haz {
 	private Color szin;
 	private Image kep;
 	private Vector<Parancsjelzo> parancsjelzok;
+	private int hordo;
 	
 	public Haz(String nev, Image kep)
 	{
+		this.hordo = 0;
 		this.nev = nev;
 		this.kep = kep;
 		this.parancsjelzok = new Vector<Parancsjelzo>();
@@ -46,6 +48,8 @@ public class Haz {
 	
 	public String getNev() { return this.nev; }
 	public Image getKep() { return this.kep; }
+	
+	public void setHordo(int h){ this.hordo = h; }
 	
 	//Gyuri,Aron
 	

@@ -49,7 +49,6 @@ public class TronokHarca extends Applet implements Runnable {
 					if (line.equals("</vastron>")) break;
 					
 					Image kep = getImage(getCodeBase(), "res/"+line+".jpg");
-					
 					Haz haz = new Haz(line,kep);
 					Tabla.vastron.add(haz);
 				
@@ -188,6 +187,8 @@ public class TronokHarca extends Applet implements Runnable {
 				    
 				}
 			}
+			Tabla.setHordo();
+			//System.out.println(Tabla.teruletek.toString());
 		
 		
 		}

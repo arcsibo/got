@@ -63,6 +63,7 @@ public class Kartya {
 	private static void utanpotlas() 
 	{
 		System.out.println("Utanpotlas");
+				
 		
 	}
 	
