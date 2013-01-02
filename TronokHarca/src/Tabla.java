@@ -46,7 +46,7 @@ public class Tabla {
 		s += "\n";
 		
 		Iterator<Haz> hazIt = vastron.iterator();
-		s += "Hï¿½zak:\n";
+		s += "Házak:\n";
 		while (hazIt.hasNext())
 		{
 			Haz aktHaz = hazIt.next();
