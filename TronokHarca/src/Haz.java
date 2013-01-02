@@ -16,7 +16,7 @@ public class Haz {
 		this.kep = kep;
 		this.parancsjelzok = new Vector<Parancsjelzo>();
 		
-		//ezt belerakhatjuk egy fijlba mint a területeket házakat
+		//ezt belerakhatjuk egy fájlba mint a területeket, házakat
 		parancsjelzok.add(new Parancsjelzo("támadás", false, 0, null));
 		parancsjelzok.add(new Parancsjelzo("támadás", false, -1, null));
 		parancsjelzok.add(new Parancsjelzo("támadás", true, +1, null));
@@ -67,6 +67,8 @@ public class Haz {
 	
 	
 	public String getNev() { return this.nev; }
+	public Color getColor() { return this.szin; }
+	public int getHordo() { return this.hordo; }
 	public Image getKep() { return this.kep; }
 	
 	public void setHordo(int h){ this.hordo = h; }

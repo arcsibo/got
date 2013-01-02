@@ -8,10 +8,10 @@ public class Tenger {
 	protected boolean vizi;
 	protected Image kep;
 	protected Haz tulajdonos;
+	protected Parancsjelzo parancsjelzo;
 	
 	protected Vector<Tenger> szomszedok;
 	protected Vector<Egyseg> egysegek;
-	protected Parancsjelzo parancsjelzo;
 	protected Vector<String> szomszedNevek;
 	
 	public Tenger(String nev, Image kep, Haz tulajdonos)
@@ -21,6 +21,7 @@ public class Tenger {
 		this.vizi = true;
 		this.kep = kep;
 		this.tulajdonos = tulajdonos;
+		this.parancsjelzo = null;
 		
 		szomszedok = new Vector<Tenger>();
 		egysegek = new Vector<Egyseg>();
@@ -35,6 +36,21 @@ public class Tenger {
 	public void addEgyseg(Egyseg egyseg)
 	{
 		egysegek.add(egyseg);
+	}
+	
+	public void addParancsjelzo(Parancsjelzo parancs)
+	{
+		if(this.tulajdonos != null)
+		{
+			if(this.vizi == true && parancs.getTipus().equals("korona")){
+				//kíír valamit h nem rakhat le
+			}else{
+				this.parancsjelzo = parancs;
+			}
+			
+		}else{
+			//valamit kiír
+		}
 	}
 	
 	public void generateSzomszedok()
