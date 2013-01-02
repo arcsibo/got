@@ -22,7 +22,7 @@ public class Terulet extends Tenger{
 	
 	public String toString()
 	{
-		String s = "Szï¿½razfï¿½ld: ";
+		String s = "Szárazföld: ";
 		s += this.nev;
 		s += " Tulajdonos:";
 		if (tulajdonos != null) s += this.tulajdonos.getNev();
