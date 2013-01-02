@@ -16,6 +16,26 @@ public class Haz {
 		this.kep = kep;
 		this.parancsjelzok = new Vector<Parancsjelzo>();
 		
+		//ezt belerakhatjuk egy fijlba mint a területeket házakat
+		parancsjelzok.add(new Parancsjelzo("támadás", false, 0, null));
+		parancsjelzok.add(new Parancsjelzo("támadás", false, -1, null));
+		parancsjelzok.add(new Parancsjelzo("támadás", true, +1, null));
+		
+		parancsjelzok.add(new Parancsjelzo("védekezés", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("védekezés", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("védekezés", true, +1, null));
+		
+		parancsjelzok.add(new Parancsjelzo("tamogatás", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("támogatás", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("támogatás", true, +1, null));
+		
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
+		parancsjelzok.add(new Parancsjelzo("korona", true, +1, null));
+		
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, null));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, null));
+		parancsjelzok.add(new Parancsjelzo("portya", true, +2, null));
 		
 		if (nev.equals("Lennister"))
 		{
