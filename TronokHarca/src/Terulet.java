@@ -45,7 +45,6 @@ public class Terulet extends Tenger{
 			s += "\n";
 		}
 		
-		
 		return s;
 	}
 	
