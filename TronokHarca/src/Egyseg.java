@@ -7,6 +7,7 @@ public class Egyseg {
 	private int ertek;
 	private String tipus;
 	private Image kep;
+	private Haz tulajdonos;
 	
 	public Egyseg(String tipus, Image kep)
 	{

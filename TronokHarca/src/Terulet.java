@@ -11,14 +11,27 @@ public class Terulet extends Tenger{
 	
 	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep)
 	{
-		
 		super(nev, kep,tulajdonos);
 		this.vizi = false;
 		this.varak = varak;
 		this.hordok = hordok;
 		this.korona = korona;
 		this.tulajdonos = tulajdonos;
-		
+		this.hazjelzo = null;
+	}
+	
+	public void addHazjelzo(Hazjelzo jelzo)
+	{
+		this.hazjelzo = jelzo;
+	}
+	public void removeHazjelzo()
+	{
+		this.hazjelzo = null;
+	}
+	
+	public int getHordo()
+	{
+		return this.hordok;
 	}
 	
 	public String toString()
@@ -47,11 +60,6 @@ public class Terulet extends Tenger{
 		}
 		
 		return s;
-	}
-	
-	public int getHordo()
-	{
-		return this.hordok;
 	}
 
 }

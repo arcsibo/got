@@ -54,6 +54,12 @@ public class Tenger {
 		}
 	}
 	
+	public void removeParancs()
+	{
+		this.tulajdonos.addParancs(this.parancsjelzo);
+		this.parancsjelzo = null;
+	}
+	
 	public void generateSzomszedok()
 	{
 		Iterator<String> it = szomszedNevek.iterator();
@@ -88,6 +94,13 @@ public class Tenger {
 	
 	public boolean getTipus() { return this.vizi; }
 	
+	public Image getKep() { return this.kep; }
+	
+	public Haz getHaz()
+	{
+		return this.tulajdonos;
+	}
+	
 	public String toString()
 	{
 		String s = "Tenger: ";
@@ -115,13 +128,6 @@ public class Tenger {
 		
 		
 		return s;
-	}
-	
-	public Image getKep() { return this.kep; }
-	
-	public Haz getHaz()
-	{
-		return this.tulajdonos;
 	}
 	
 	//más hogy nem tudtam megcsinálni a hórdók számának lekérdezését, csak

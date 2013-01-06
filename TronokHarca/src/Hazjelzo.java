@@ -1,7 +1,5 @@
 import java.awt.*;
 
-
-
 public class Hazjelzo {
 	
 	private Image kep;
