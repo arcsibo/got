@@ -227,7 +227,6 @@ public class TronokHarca extends Applet implements Runnable {
 		
 		
 	}
-	//anyád egy ribanc
 	public void update(Graphics g) {
 		
 	    paint(g);
