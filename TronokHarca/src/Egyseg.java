@@ -9,9 +9,10 @@ public class Egyseg {
 	private Image kep;
 	private Haz tulajdonos;
 	
-	public Egyseg(String tipus, Image kep)
+	public Egyseg(String tipus,Haz tulajdonos, Image kep)
 	{
 		this.tipus = tipus;
+		this.tulajdonos = tulajdonos;
 		this.kep = kep;
 		
 		if (tipus.equals("Hajó"))
