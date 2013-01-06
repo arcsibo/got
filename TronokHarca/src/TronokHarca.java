@@ -117,7 +117,7 @@ public class TronokHarca extends Applet implements Runnable {
 				    for (int i= 0; i<gyalogos; i++)
 				    {
 				    	Image gyalogosKep = getImage(getCodeBase(),"res/Gyalogos.png");
-				    	Egyseg gyalogosE = new Egyseg("Gyalogos",gyalogosKep);
+				    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep);
 				    	terulet.addEgyseg(gyalogosE);
 				    }
 				    
@@ -126,7 +126,7 @@ public class TronokHarca extends Applet implements Runnable {
 				    for (int i= 0; i<lovag; i++)
 				    {
 				    	Image lovagKep = getImage(getCodeBase(),"res/Lovag.png");
-				    	Egyseg lovagE = new Egyseg("Lovag",lovagKep);
+				    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep);
 				    	terulet.addEgyseg(lovagE);
 				    }
 				    
