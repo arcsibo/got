@@ -172,7 +172,7 @@ public class TronokHarca extends Applet implements Runnable {
 				    for (int i= 0; i<hajo; i++)
 				    {
 				    	Image hajoKep = getImage(getCodeBase(),"res/Hajo.png");
-				    	Egyseg hajoE = new Egyseg("Hajo",hajoKep);
+				    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep);
 				    	tenger.addEgyseg(hajoE);
 				    }
 				    

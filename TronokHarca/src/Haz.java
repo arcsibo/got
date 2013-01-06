@@ -84,7 +84,7 @@ public class Haz {
 	{
 		parancsjelzok.add(parancs);
 	}
-	
+	//hazjelzo
 	public void setHordo(int h){ this.hordo = h; }
 	
 	//Gyuri,Aron
