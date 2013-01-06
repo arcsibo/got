@@ -196,12 +196,15 @@ public class TronokHarca extends Applet implements Runnable {
 		}
 		
 		Iterator<Tenger> teruletek = Tabla.teruletek.iterator();
-		System.out.println(Tabla.teruletek.toString());
 		
 		while (teruletek.hasNext())
 		{
 			teruletek.next().generateSzomszedok();
 		}
+		
+		System.out.println(Tabla.teruletek.toString());
+		
+		
        
 		Tabla.setHordo();
       }
