@@ -70,6 +70,14 @@ public class Haz {
 	public Color getColor() { return this.szin; }
 	public int getHordo() { return this.hordo; }
 	public Image getKep() { return this.kep; }
+	public void removeParancs(Parancsjelzo parancs)
+	{
+		parancsjelzok.remove(parancs);	
+	}
+	public void addParancs(Parancsjelzo parancs)
+	{
+		parancsjelzok.add(parancs);
+	}
 	
 	public void setHordo(int h){ this.hordo = h; }
 	

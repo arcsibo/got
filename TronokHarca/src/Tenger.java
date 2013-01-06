@@ -46,6 +46,7 @@ public class Tenger {
 				//kíír valamit h nem rakhat le
 			}else{
 				this.parancsjelzo = parancs;
+				tulajdonos.
 			}
 			
 		}else{
