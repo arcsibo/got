@@ -202,16 +202,21 @@ public class TronokHarca extends Applet implements Runnable {
 			teruletek.next().generateSzomszedok();
 		}
 		
-		System.out.println(Tabla.teruletek.toString());
+		//System.out.println(Tabla.teruletek.toString());
 		
 		Tabla.setHordo();
 		
-		Iterator<Haz> hazak = Tabla.vastron.iterator();
-		while (hazak.hasNext()) System.out.println(hazak.next().toString());
+		initTerkep();
+		
       }
 	
 	public void paint(Graphics g)
 	  {
+		
+		for (int i=0;i<terkep.length;i++)
+		{
+			g.drawImage(terkep[i],0,0,this);
+		}
 		  
 	  
 	  }
@@ -233,22 +238,29 @@ public class TronokHarca extends Applet implements Runnable {
 
 	    }
 	
-	public void scaleTerkep(Component component, float scale) {
-
-	    terkep = new Image[Tabla.teruletek.size()];
+	public void initTerkep()
+	{
+		terkep = new Image[Tabla.teruletek.size()];
         Iterator<Tenger> it = Tabla.teruletek.iterator();
 	    
-	    for (int i=1; i<=terkep.length; i++)
+	    for (int i=0; i<terkep.length; i++)
+	    {
+	    	terkep[i] = it.next().getKep();
+	    }
+	}
+	
+	public void scaleImage(Component component, float scale, Image[] img) {
+	    
+	    for (int i=1; i<=img.length; i++)
 	    {
 
-	      Image base_image = it.next().getKep();
-	      ImageFilter kicsinyit = new ReplicateScaleFilter((int)(base_image.getWidth(this)/scale*100),(int)(base_image.getHeight(this)/scale*100));
+	      ImageFilter kicsinyit = new ReplicateScaleFilter((int)(img[i].getWidth(this)/scale*100),(int)(img[i].getHeight(this)/scale*100));
 
-	      terkep[i-1] = component.createImage(
+	      img[i] = component.createImage(
 
-	            new FilteredImageSource(base_image.getSource(), kicsinyit));
+	            new FilteredImageSource(img[i].getSource(), kicsinyit));
 
-	      component.prepareImage(terkep[i-1], component);
+	      component.prepareImage(img[i], component);
 
 	      }
 
