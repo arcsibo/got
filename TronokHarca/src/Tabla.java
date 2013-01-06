@@ -56,7 +56,7 @@ public class Tabla {
 				
 			}
 			aktHaz.setHordo(hordo);
-			System.out.println(aktHaz.getNev() + ": "+hordo);
+			
 		}
 		
 	}

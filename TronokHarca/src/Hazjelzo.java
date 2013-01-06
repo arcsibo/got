@@ -19,7 +19,7 @@ public class Hazjelzo {
 	public String toString()
 	{
 		String s;
-		s = tulajdonos.getNev();
+		s = "Hazjelzo: " + tulajdonos.getNev();
 		return s;
 	}
 	

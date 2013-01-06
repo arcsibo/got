@@ -10,7 +10,7 @@ public class TronokHarca extends Applet implements Runnable {
 	
   Thread kicker = null;
 
-  Image terkep[], hazak[], tokenek[] ,offScrImage;
+  Image terkep[] ,offScrImage;
 
   Graphics offScrGr;
 
@@ -205,6 +205,9 @@ public class TronokHarca extends Applet implements Runnable {
 		System.out.println(Tabla.teruletek.toString());
 		
 		Tabla.setHordo();
+		
+		Iterator<Haz> hazak = Tabla.vastron.iterator();
+		while (hazak.hasNext()) System.out.println(hazak.next().toString());
       }
 	
 	public void paint(Graphics g)

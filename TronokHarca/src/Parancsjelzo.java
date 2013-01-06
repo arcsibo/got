@@ -35,4 +35,10 @@ public class Parancsjelzo {
 	{
 		return this.kep;
 	}
+	
+	public String toString()
+	{
+		String s = this.tipus;
+		return s;
+	}
 }

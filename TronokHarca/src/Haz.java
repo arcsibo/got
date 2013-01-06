@@ -87,6 +87,18 @@ public class Haz {
 	//hazjelzo
 	public void setHordo(int h){ this.hordo = h; }
 	
+	public String toString()
+	{
+		String s = this.nev + "\n";
+		Iterator<Parancsjelzo> pIt = parancsjelzok.iterator();
+		s += "Parancsjelzok: ";
+		while (pIt.hasNext()) s+=pIt.next().toString() + " ";
+		
+		s+= "\nHazjelzok: " + hazjelzok.size() + "\n";
+		
+		s += "Hordok: " + this.hordo + "\n";
+		return s;
+	}
 	//Gyuri,Aron
 	
 	// /Gyuri,Aron
