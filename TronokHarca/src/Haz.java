@@ -7,6 +7,7 @@ public class Haz {
 	private Color szin;
 	private Image kep;
 	private Vector<Parancsjelzo> parancsjelzok;
+	private Vector<Hazjelzo> hazjelzok;
 	private int hordo;
 	
 	public Haz(String nev, Image kep)
@@ -15,6 +16,7 @@ public class Haz {
 		this.nev = nev;
 		this.kep = kep;
 		this.parancsjelzok = new Vector<Parancsjelzo>();
+		this.hazjelzok = new Vector<Hazjelzo>();
 		
 		//ezt belerakhatjuk egy fájlba mint a területeket, házakat
 		parancsjelzok.add(new Parancsjelzo("támadás", false, 0, null));
@@ -36,6 +38,10 @@ public class Haz {
 		parancsjelzok.add(new Parancsjelzo("portya", false, +1, null));
 		parancsjelzok.add(new Parancsjelzo("portya", false, +1, null));
 		parancsjelzok.add(new Parancsjelzo("portya", true, +2, null));
+		//kezdeti hazjelzok
+		for(int i=0; i<5; i++){
+			hazjelzok.add(new Hazjelzo(null,this));
+		}
 		
 		if (nev.equals("Lennister"))
 		{

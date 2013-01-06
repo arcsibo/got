@@ -7,6 +7,7 @@ public class Terulet extends Tenger{
 	private int varak;
 	private int hordok;
 	private int korona;
+	private Hazjelzo hazjelzo;
 	
 	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep)
 	{
