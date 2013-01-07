@@ -312,6 +312,8 @@ AudioClip au;
 	    if (evt.id == Event.MOUSE_DRAG) {
 
 	      sY = evt.y;
+	      if (sY<=this.WIDTH) sY = this.WIDTH;
+	      //System.out.println("DRAG");
 
 	      }
 	    
