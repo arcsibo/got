@@ -220,6 +220,8 @@ public class TronokHarca extends Applet implements Runnable {
 		{
 			System.out.println(terkep[i].getHeight(this));
 		}
+	    
+	    
 		
       }
 	

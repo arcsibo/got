@@ -10,12 +10,12 @@ public class Tabla {
 	
 	
 	//Gyuri,�ron
-	public static Haz aktHaz = vastron.firstElement();
+	public static Haz aktHaz;
 	public static Tenger aktTer;
-	public static int count = 1;
+	public static int count = 0;
 	public static void kovHaz()
 	{ 
-		if(count >= 5) count = 0;
+		if(count >= vastron.size()) count = 0;
 		aktHaz = vastron.get(count);
 		count++;
 	}
