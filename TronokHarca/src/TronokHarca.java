@@ -10,9 +10,11 @@ public class TronokHarca extends Applet implements Runnable {
 	
   Thread kicker = null;
 
-  Image terkep[] ,offScrImage;
+  Image terkep[] ,offScrImage, hatar;
 
   Graphics offScrGr;
+  
+  MediaTracker tracker = new MediaTracker(this); 
 
 	
 	public void init()
@@ -208,16 +210,32 @@ public class TronokHarca extends Applet implements Runnable {
 		
 		initTerkep();
 		
+		
+		setSize(800, 600);
+		offScrImage = createImage(800, 600);
+
+	    offScrGr = offScrImage.getGraphics();
+	    
+	    for (int i=0; i<terkep.length;i++)
+		{
+			System.out.println(terkep[i].getHeight(this));
+		}
+		
       }
 	
 	public void paint(Graphics g)
 	  {
 		
-		for (int i=0;i<terkep.length;i++)
+		
+		
+		offScrGr.drawImage(hatar,0,0,(int)hatar.getWidth(this)/2,(int)hatar.getHeight(this)/2,this);
+		/*for (int i=0; i<terkep.length;i++)
 		{
-			g.drawImage(terkep[i],0,0,this);
-		}
-		  
+			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
+		}*/
+		
+		
+		g.drawImage(offScrImage, 0, 0, this);
 	  
 	  }
 
@@ -240,29 +258,38 @@ public class TronokHarca extends Applet implements Runnable {
 	
 	public void initTerkep()
 	{
+		hatar = getImage(getCodeBase(), "res/hatar1.jpg");
+		tracker.addImage(hatar, 0);
+		
 		terkep = new Image[Tabla.teruletek.size()];
         Iterator<Tenger> it = Tabla.teruletek.iterator();
 	    
 	    for (int i=0; i<terkep.length; i++)
 	    {
 	    	terkep[i] = it.next().getKep();
+	    	tracker.addImage(terkep[i], 0);
+
+	         // Start downloading the image and wait until it finishes loading. 
+	         try { 
+	             tracker.waitForAll(); 
+	         } 
+	         catch(InterruptedException e) {}
 	    }
 	}
 	
-	public void scaleImage(Component component, float scale, Image[] img) {
-	    
-	    for (int i=1; i<=img.length; i++)
-	    {
+	public void start() {
 
-	      ImageFilter kicsinyit = new ReplicateScaleFilter((int)(img[i].getWidth(this)/scale*100),(int)(img[i].getHeight(this)/scale*100));
+	    if (kicker == null) { kicker = new Thread(this); kicker.start(); }
 
-	      img[i] = component.createImage(
+	    }
 
-	            new FilteredImageSource(img[i].getSource(), kicsinyit));
 
-	      component.prepareImage(img[i], component);
 
-	      }
+	public void stop() {
 
-	    }  
+	    kicker = null;
+
+	    }
+	
+	
 	}
