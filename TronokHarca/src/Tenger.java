@@ -76,9 +76,39 @@ public class Tenger {
 		szomszedNevek=null;
 	}
 	
-	public void portya()
+	public Vector<Tenger> portya()
 	{
+		Vector<Tenger> vissza = new Vector<Tenger>();
 		
+		if(this.parancsjelzo.getTipus().equals("portya")){
+			Iterator<Tenger> it = this.szomszedok.iterator();
+			while(it.hasNext())
+			{
+				Tenger aktTer = it.next();
+				if(aktTer.parancsjelzo.getTipus().equals("korona") || aktTer.parancsjelzo.getTipus().equals("támogatás")){
+					vissza.add(aktTer);
+				}
+			}
+		}
+		
+		return vissza;
+	}
+	
+	public Vector<Tenger> tamadas(){
+		
+		Vector<Tenger> vissza = new Vector<Tenger>();
+		Iterator<Tenger> it = this.szomszedok.iterator();
+		while(it.hasNext())
+		{
+			Tenger aktTer = it.next();
+			if(this.vizi == true && aktTer.vizi == true){//vízrõl csak vízre lehet menni
+				vissza.add(aktTer);
+			}else if(this.vizi == false && aktTer.vizi == false){//szárazföldrõl csak szárazföldre
+				vissza.add(aktTer);
+			}
+		}
+		
+		return vissza;
 	}
 	
 	public Tenger getTerulet(String nev)

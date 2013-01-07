@@ -27,7 +27,7 @@ public class Haz {
 		parancsjelzok.add(new Parancsjelzo("védekezés", false, +0, null));
 		parancsjelzok.add(new Parancsjelzo("védekezés", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("tamogatás", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("támogatás", false, +0, null));
 		parancsjelzok.add(new Parancsjelzo("támogatás", false, +0, null));
 		parancsjelzok.add(new Parancsjelzo("támogatás", true, +1, null));
 		
