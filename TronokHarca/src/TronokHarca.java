@@ -230,12 +230,12 @@ public class TronokHarca extends Applet implements Runnable {
 		
 		
 		
-		offScrGr.drawImage(hatar,0,0,(int)hatar.getWidth(this)/2,(int)hatar.getHeight(this)/2,this);
+		offScrGr.drawImage(hatar,0,0,(int)hatar.getWidth(this)/4,(int)hatar.getHeight(this)/4,this);
 		/*for (int i=0; i<terkep.length;i++)
 		{
 			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
 		}*/
-		
+		offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
 		
 		g.drawImage(offScrImage, 0, 0, this);
 	  
@@ -260,7 +260,7 @@ public class TronokHarca extends Applet implements Runnable {
 	
 	public void initTerkep()
 	{
-		hatar = getImage(getCodeBase(), "res/hatar1.jpg");
+		hatar = getImage(getCodeBase(), "res/hatar2.jpg");
 		tracker.addImage(hatar, 0);
 		
 		terkep = new Image[Tabla.teruletek.size()];
