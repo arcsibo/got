@@ -33,6 +33,7 @@ public class Tabla {
 	{
 		
 	}
+	
 	// /Gyuri,�ron
 	
  	public static Haz getHaz(String nev)

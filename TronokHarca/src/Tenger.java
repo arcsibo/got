@@ -72,6 +72,13 @@ public class Tenger {
 		    
 		    if (aktTerulet != null) szomszedok.add(aktTerulet);
 		}
+		szomszedNevek.clear();
+		szomszedNevek=null;
+	}
+	
+	public void portya()
+	{
+		
 	}
 	
 	public Tenger getTerulet(String nev)
