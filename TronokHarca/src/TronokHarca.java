@@ -1,6 +1,6 @@
 import java.io.*;
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.event.*;
 import java.applet.*;
 import java.net.*;
 import java.util.*;
@@ -8,13 +8,21 @@ import java.util.*;
 public class TronokHarca extends Applet implements Runnable {
 	
 	
-  Thread kicker = null;
+  /** Ez nem tudom hogy mi, de valamiért idekerült
+	 * 
+	 */
+private static final long serialVersionUID = 3080533471226900117L;
 
-  Image terkep[] ,offScrImage, hatar;
+Thread kicker = null;
 
-  Graphics offScrGr;
+Image terkep[] ,offScrImage, hatar;
+
+Graphics offScrGr;
   
-  MediaTracker tracker = new MediaTracker(this); 
+MediaTracker tracker = new MediaTracker(this);
+
+int sX, sY = 0;
+  
 
 	
 	public void init()
@@ -210,18 +218,11 @@ public class TronokHarca extends Applet implements Runnable {
 		
 		initTerkep();
 		
-		
 		setSize(800, 600);
-		offScrImage = createImage(800, 600);
+		offScrImage = createImage(800, 1525);
 
 	    offScrGr = offScrImage.getGraphics();
-	    
-	    for (int i=0; i<terkep.length;i++)
-		{
-			if (terkep[i].getHeight(this)==-1) System.out.println(Tabla.teruletek.get(i).getNev());
-		}
-	    
-	    
+	   
 		
       }
 	
@@ -231,13 +232,13 @@ public class TronokHarca extends Applet implements Runnable {
 		
 		
 		offScrGr.drawImage(hatar,0,0,(int)hatar.getWidth(this)/4,(int)hatar.getHeight(this)/4,this);
-		/*for (int i=0; i<terkep.length;i++)
+		for (int i=0; i<terkep.length;i++)
 		{
 			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
-		}*/
-		offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
+		}
+		//offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
 		
-		g.drawImage(offScrImage, 0, 0, this);
+		g.drawImage(offScrImage, 0-sX, 0-sY, this);
 	  
 	  }
 
@@ -292,6 +293,21 @@ public class TronokHarca extends Applet implements Runnable {
 	    kicker = null;
 
 	    }
+
+	
+	public boolean handleEvent(Event evt) {
+
+
+
+	    if (evt.id == Event.MOUSE_DRAG) {
+
+	      sY = evt.y;
+
+	      }
+	    
+	    return true;
+	}
+	
 	
 	
 	
