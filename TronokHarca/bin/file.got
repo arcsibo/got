@@ -127,7 +127,7 @@ BayOfIce
 </szomszed>
 </terulet>
 <terulet>
-FlintsFinger
+Flint'sFinger
 1
 0
 0
@@ -138,7 +138,7 @@ NULL
 GreyWater
 WidowsWatch
 BayOfIce
-IronmansBay
+Ironman'sBay
 </szomszed>
 </terulet>
 <terulet>
@@ -154,7 +154,7 @@ BayOfIce
 FlintsFinger
 MoatCailin
 Seagard
-IronmansBay
+Ironman'sBay
 </szomszed>
 </terulet>
 <terulet>
@@ -182,7 +182,7 @@ Greyjoy
 1
 1
 0
-IronmansBay
+Ironman'sBay
 </szomszed>
 </terulet>
 <terulet>
@@ -194,7 +194,7 @@ NULL
 0
 0
 0
-IronmansBay
+Ironman'sBay
 TheTwins
 MoatCailin
 RiverRun
@@ -271,8 +271,8 @@ NULL
 Lannisport
 Seagard
 Harrenhal
-StoneySpet
-IronmansBay
+StoneyStep
+Ironman'sBay
 TheGoldenSound
 </szomszed>
 </terulet>
@@ -285,7 +285,7 @@ NULL
 0
 0
 0
-StoneySpet
+StoneyStep
 RiverRun
 CrackclawPoint
 Blackwater
@@ -303,11 +303,11 @@ Lannister
 TheGoldenSound
 RiverRun
 SearoadMarches
-StoneySpet
+StoneyStep
 </szomszed>
 </terulet>
 <terulet>
-StoneySpet
+StoneyStep
 0
 0
 1
@@ -348,7 +348,7 @@ NULL
 SunsetSea
 TheGoldenSound
 Lannisport
-StoneySpet
+StoneyStep
 Blackwater
 HighGarden
 TheReach
@@ -656,7 +656,7 @@ NULL
 0
 0
 EastSummerSea
-IronmansBay
+Ironman'sBay
 TheGoldenSound
 BayOfIce
 SearoadMarches
@@ -665,7 +665,7 @@ HighGarden
 </szomszed>
 </tenger>
 <tenger>
-IronmansBay
+Ironman'sBay
 Greyjoy
 0
 0
@@ -686,7 +686,7 @@ Lannister
 0
 1
 SunsetSea
-IronmansBay
+Ironman'sBay
 Lannisport
 SearoadMarches
 </szomszed>

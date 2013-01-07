@@ -218,7 +218,7 @@ public class TronokHarca extends Applet implements Runnable {
 	    
 	    for (int i=0; i<terkep.length;i++)
 		{
-			System.out.println(terkep[i].getHeight(this));
+			if (terkep[i].getHeight(this)==-1) System.out.println(Tabla.teruletek.get(i).getNev());
 		}
 	    
 	    
@@ -292,6 +292,8 @@ public class TronokHarca extends Applet implements Runnable {
 	    kicker = null;
 
 	    }
+	
+	
 	
 	
 	}
