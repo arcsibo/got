@@ -22,12 +22,22 @@ Graphics offScrGr;
 MediaTracker tracker = new MediaTracker(this);
 
 int sX, sY = 0;
+
+AudioClip au;
   
 
 	
 	public void init()
       {
     	  URL fileGot = null;
+    	  
+    	  try{ URL u1=new URL(getCodeBase(),"res/zene.au");
+    	    au=getAudioClip(u1);
+    	    au.loop();
+    	  }
+    	  catch(Exception  e){
+    		   System.out.println(e);
+    		    }
     	  
     	  try {
 			fileGot = new URL(getCodeBase(), "file.got");
