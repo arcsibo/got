@@ -1,6 +1,9 @@
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.CropImageFilter;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
 import java.applet.*;
 import java.net.*;
 import java.util.*;
@@ -13,9 +16,11 @@ public class TronokHarca extends Applet implements Runnable {
 	 */
 private static final long serialVersionUID = 3080533471226900117L;
 
+Applet got = this;
+
 Thread kicker = null;
 
-Image terkep[] ,offScrImage, hatar;
+Image terkep[] ,offScrImage, hatar, terkepZoom = hatar;
 
 Graphics offScrGr;
   
@@ -23,11 +28,9 @@ MediaTracker tracker = new MediaTracker(this);
 
 int sX, sY = 0;
 int mX, mY = 0;
-float zoom = 4;
+float zoom = 3;
 
 AudioClip au;
-  
-
 	
 	public void init()
       {
@@ -234,6 +237,10 @@ AudioClip au;
 		offScrImage = createImage(800, 1525);
 
 	    offScrGr = offScrImage.getGraphics();
+	    
+	    this.addMouseWheelListener(wheelListener);
+	    this.addMouseListener(mouseListener);
+	    this.addMouseMotionListener(motionListener);
 	   
 		
       }
@@ -243,14 +250,16 @@ AudioClip au;
 		
 		
 		
-		offScrGr.drawImage(hatar,0,0,Math.round(hatar.getWidth(this)/zoom),Math.round(hatar.getHeight(this)/zoom),this);
+		//offScrGr.drawImage(hatar,0-sX,0-sY,Math.round(hatar.getWidth(this)/zoom),Math.round(hatar.getHeight(this)/zoom),this);
 		/*for (int i=0; i<terkep.length;i++)
 		{
 			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
 		}*/
 		//offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
 		
-		g.drawImage(offScrImage, 0-sX, 0-sY, this);
+		offScrGr.drawImage(terkepZoom,0,0,this);
+		
+		g.drawImage(offScrImage, 0, 0, this);
 	  
 	  }
 
@@ -265,6 +274,7 @@ AudioClip au;
 		
 		
 	}
+	
 	public void update(Graphics g) {
 		
 	    paint(g);
@@ -305,66 +315,133 @@ AudioClip au;
 	    kicker = null;
 
 	    }
-
 	
-	public boolean handleEvent(Event evt) {
+	MouseWheelListener wheelListener = new MouseWheelListener() {
+		
+		private static final int UP = 1;
 
+	    private static final int DOWN = 2;
+
+	    public void mouseWheelMoved(MouseWheelEvent e) {
+	      int count = e.getWheelRotation();
+	      int direction = (count > 0) ? UP : DOWN;
+	      zoom(direction,e.getX(),e.getY());
+	      
+	    }
 	    
-		/*//Zoomolas
-		if (evt.id == Event.MOUSE_DRAG && evt.modifiers==2)
-		{
-			
-			if (mY>evt.y) zoom-=0.05;
-		    else zoom+=0.05;
-		      
-		    mY = evt.y;
-		    
-		    sY = Math.round(evt.y/zoom);
-		    sX = Math.round(evt.x/zoom);
-		      
-		    if (zoom<=1) zoom = 1;
-		    else if (zoom>=4) zoom=4;
-		    
-		    System.out.println(zoom);
-		      
-		}*/
-			
-		//Térkép scrollozása
-		if (evt.id == Event.MOUSE_DRAG) {
 
-	      
-	    	  if (mY>evt.y) sY-=5;
-	    	  else if (mY<evt.y) sY+=5;
-	    	  mY = evt.y;
-	      
-	    	  /*if (mX>evt.x) sX-=5;
-	    	  else if (mX<evt.x) sX+=5;   
-	    	  mX = evt.x;*/
-	      
-	      
-	      //Térkép Teteje,Alja között mehet csak
-	      if (sY<=0) sY = 0;
-	      else if (hatar.getHeight(this)/zoom-this.getHeight() <= sY) sY = Math.round(hatar.getHeight(this)/zoom-this.getHeight());
-	      
-	      /*if (sX<=0) sX = 0;
-	      else if (hatar.getWidth(this)/zoom-this.getWidth() <= sX) sX = Math.round(hatar.getWidth(this)/zoom-this.getWidth());
-	      */
+	    private void zoom(int direction,int x, int y) {
+
+
+	      if (direction == UP) {
+	    	  
+	    	  if (zoom<=4){
+	    		  
+	    		  zoom += 0.1f;
+	    		  
+	    		  
+	    		  
+	    		  
+	    	  }
+	    	  
+	        
+	      } else {
+	    	  
+	    	  if (zoom>=1){
+	    		  
+	    		  zoom -= 0.1f;
+	    		  
+	    		  
+	    		  
+	    	  }
+	    	  
+	    	 
+	        
 	      }
-	    
-	    //Kattintás
-		else if (evt.id == Event.MOUSE_DOWN) {
 
-		  mX = evt.x;
-		  mY = evt.y;
-		  
-		  }
+	      
+	    }
+	  };
+	  
+	  MouseListener mouseListener = new MouseListener() {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}};
 		
-		
-		
-	    
-	    
-	    return true;
-	}
+		MouseMotionListener motionListener = new MouseMotionListener() {
+
+			@Override
+			public void mouseDragged(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (mY>arg0.getY()) sY+=5;
+		    	  else if (mY<arg0.getY()) sY-=5;
+		    	  mY = arg0.getY();
+		      
+		    	  if (mX>arg0.getX()) sX+=5;
+		    	  else if (mX<arg0.getX()) sX-=5;   
+		    	  mX = arg0.getX();
+		      
+		      
+		      //Térkép Teteje,Alja között mehet csak
+		      if (sY<=0) sY = 0;
+		      else if (hatar.getHeight(got)/zoom-got.getHeight() <= sY) sY = Math.round(hatar.getHeight(got)/zoom-got.getHeight());
+		      
+		      if (sX<=0) sX = 0;
+		      else if (hatar.getWidth(got)/zoom-got.getWidth() <= sX) sX = Math.round(hatar.getWidth(got)/zoom-got.getWidth());
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}};
+			
+			public void zoom(Component component) {
+				
+				  int x = Math.round(mX-component.getWidth()/zoom/2);
+				  int y = Math.round(mY-component.getHeight()/zoom/2);
+				  int w = Math.round(component.getWidth()/zoom);
+				  int h = Math.round(component.getHeight()/zoom);
+				  
+
+			      ImageFilter crop = new CropImageFilter(x, y,w,h);
+
+			      terkepZoom = component.createImage(
+
+			            new FilteredImageSource(hatar.getSource(), crop));
+
+			      component.prepareImage(terkepZoom, component);
+
+
+			    }
 	
 	
 	
