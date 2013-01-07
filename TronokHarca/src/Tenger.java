@@ -107,7 +107,7 @@ public class Tenger {
 				vissza.add(aktTer);
 			}
 		}
-		
+		///
 		return vissza;
 	}
 	
