@@ -22,6 +22,7 @@ Graphics offScrGr;
 MediaTracker tracker = new MediaTracker(this);
 
 int sX, sY = 0;
+int mX, mY = 0;
 
 AudioClip au;
   
@@ -311,11 +312,26 @@ AudioClip au;
 
 	    if (evt.id == Event.MOUSE_DRAG) {
 
-	      sY = evt.y;
-	      if (sY<=this.WIDTH) sY = this.WIDTH;
-	      //System.out.println("DRAG");
-
+	      if (mY>evt.y) sY-=10;
+	      else sY+=10;
+	      
+	      //mY = sY;
+	      
+	      if (sY<=0) sY = 0;
+	      else if ((hatar.getHeight(this)-this.getHeight())/16 <= sY) sY = (hatar.getHeight(this)-this.getHeight())/16;
+	      
+	      
 	      }
+	    
+	    else if (evt.id == Event.MOUSE_DOWN) {
+
+		  mX = evt.x;
+		  mY = evt.y;
+		  
+		  if (sY<=this.WIDTH) sY = this.WIDTH;
+		  //System.out.println("DRAG");
+
+		  }
 	    
 	    return true;
 	}
