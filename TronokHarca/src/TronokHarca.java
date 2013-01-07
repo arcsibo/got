@@ -23,6 +23,7 @@ MediaTracker tracker = new MediaTracker(this);
 
 int sX, sY = 0;
 int mX, mY = 0;
+float zoom = 4;
 
 AudioClip au;
   
@@ -242,11 +243,11 @@ AudioClip au;
 		
 		
 		
-		offScrGr.drawImage(hatar,0,0,(int)hatar.getWidth(this)/4,(int)hatar.getHeight(this)/4,this);
-		for (int i=0; i<terkep.length;i++)
+		offScrGr.drawImage(hatar,0,0,Math.round(hatar.getWidth(this)/zoom),Math.round(hatar.getHeight(this)/zoom),this);
+		/*for (int i=0; i<terkep.length;i++)
 		{
 			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
-		}
+		}*/
 		//offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
 		
 		g.drawImage(offScrImage, 0-sX, 0-sY, this);
@@ -308,30 +309,59 @@ AudioClip au;
 	
 	public boolean handleEvent(Event evt) {
 
+	    
+		/*//Zoomolas
+		if (evt.id == Event.MOUSE_DRAG && evt.modifiers==2)
+		{
+			
+			if (mY>evt.y) zoom-=0.05;
+		    else zoom+=0.05;
+		      
+		    mY = evt.y;
+		    
+		    sY = Math.round(evt.y/zoom);
+		    sX = Math.round(evt.x/zoom);
+		      
+		    if (zoom<=1) zoom = 1;
+		    else if (zoom>=4) zoom=4;
+		    
+		    System.out.println(zoom);
+		      
+		}*/
+			
+		//Térkép scrollozása
+		if (evt.id == Event.MOUSE_DRAG) {
 
-
-	    if (evt.id == Event.MOUSE_DRAG) {
-
-	      if (mY>evt.y) sY-=10;
-	      else sY+=10;
 	      
-	      //mY = sY;
+	    	  if (mY>evt.y) sY-=5;
+	    	  else if (mY<evt.y) sY+=5;
+	    	  mY = evt.y;
 	      
+	    	  /*if (mX>evt.x) sX-=5;
+	    	  else if (mX<evt.x) sX+=5;   
+	    	  mX = evt.x;*/
+	      
+	      
+	      //Térkép Teteje,Alja között mehet csak
 	      if (sY<=0) sY = 0;
-	      else if ((hatar.getHeight(this)-this.getHeight())/16 <= sY) sY = (hatar.getHeight(this)-this.getHeight())/16;
+	      else if (hatar.getHeight(this)/zoom-this.getHeight() <= sY) sY = Math.round(hatar.getHeight(this)/zoom-this.getHeight());
 	      
-	      
+	      /*if (sX<=0) sX = 0;
+	      else if (hatar.getWidth(this)/zoom-this.getWidth() <= sX) sX = Math.round(hatar.getWidth(this)/zoom-this.getWidth());
+	      */
 	      }
 	    
-	    else if (evt.id == Event.MOUSE_DOWN) {
+	    //Kattintás
+		else if (evt.id == Event.MOUSE_DOWN) {
 
 		  mX = evt.x;
 		  mY = evt.y;
 		  
-		  if (sY<=this.WIDTH) sY = this.WIDTH;
-		  //System.out.println("DRAG");
-
 		  }
+		
+		
+		
+	    
 	    
 	    return true;
 	}
