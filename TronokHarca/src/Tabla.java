@@ -10,9 +10,29 @@ public class Tabla {
 	
 	
 	//Gyuri,ï¿½ron
-	public static Haz aktHaz;
+	public static Haz aktHaz = vastron.firstElement();
 	public static Tenger aktTer;
-	public static void kovHaz() { };
+	public static int count = 1;
+	public static void kovHaz()
+	{ 
+		if(count >= 5) count = 0;
+		aktHaz = vastron.get(count);
+		count++;
+	}
+	
+	public static void tervezes(Tenger t,Parancsjelzo parancs)
+	{
+		if(t.tulajdonos.getNev() == aktHaz.getNev()){
+			t.addParancsjelzo(parancs);
+		}else{
+			//kiír valamit
+		}
+	}
+	
+	public static void akcio()
+	{
+		
+	}
 	// /Gyuri,ï¿½ron
 	
  	public static Haz getHaz(String nev)
@@ -31,6 +51,11 @@ public class Tabla {
 		return null;
 	}
 	
+ 	public void kalkHazjelzo()
+	{
+		
+	}
+ 	
 	public static void setHordo()
 	{
 		Iterator<Haz> hazit = vastron.iterator();
@@ -58,11 +83,6 @@ public class Tabla {
 			aktHaz.setHordo(hordo);
 			
 		}
-		
-	}
-	
-	public void kalkHazjelzo()
-	{
 		
 	}
 	

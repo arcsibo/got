@@ -76,6 +76,10 @@ public class Haz {
 	public Color getColor() { return this.szin; }
 	public int getHordo() { return this.hordo; }
 	public Image getKep() { return this.kep; }
+	public Parancsjelzo getParancsjelzo(int i)
+	{
+		return this.parancsjelzok.get(i);
+	}
 	public void removeParancs(Parancsjelzo parancs)
 	{
 		parancsjelzok.remove(parancs);	
