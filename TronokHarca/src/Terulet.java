@@ -61,5 +61,7 @@ public class Terulet extends Tenger{
 		
 		return s;
 	}
+	
+	
 
 }

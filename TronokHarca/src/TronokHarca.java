@@ -4,32 +4,31 @@ import java.awt.event.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
+import java.awt.image.ReplicateScaleFilter;
 import java.applet.*;
 import java.net.*;
 import java.util.*;
 
 public class TronokHarca extends Applet implements Runnable {
 	
-	
-  /** Ez nem tudom hogy mi, de valamiért idekerült
-	 * 
-	 */
+
 private static final long serialVersionUID = 3080533471226900117L;
-
 Applet got = this;
-
 Thread kicker = null;
-
-Image terkep[] ,offScrImage, hatar, terkepZoom = hatar;
-
+Image imgTeruletek[] ,offScrImage, imgDefTerkep, imgTerkep;
 Graphics offScrGr;
-  
 MediaTracker tracker = new MediaTracker(this);
 
-int sX, sY = 0;
+mousewheelListener wheelListener;
+mousemotionListener motionListener;
+//a térkép korrdinátája
+int terkepX, terkepY = 0;
+double terkepXYRatio;
+//az egér aktuális koordinátái
 int mX, mY = 0;
-float zoom = 3;
-
+//térkép zoom mértéke
+double terkepZoom = 3;
+//Zene
 AudioClip au;
 	
 	public void init()
@@ -38,14 +37,14 @@ AudioClip au;
     	  
     	  try{ URL u1=new URL(getCodeBase(),"res/zene.au");
     	    au=getAudioClip(u1);
-    	    au.loop();
+    	    //au.loop();
     	  }
     	  catch(Exception  e){
     		   System.out.println(e);
     		    }
     	  
     	  try {
-			fileGot = new URL(getCodeBase(), "file.got");
+    		  fileGot = new URL(getCodeBase(), "file.got");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -220,8 +219,8 @@ AudioClip au;
 			e.printStackTrace();
 		}
 		
-		Iterator<Tenger> teruletek = Tabla.teruletek.iterator();
-		
+		//Szomszédok legenerálása
+		Iterator<Tenger> teruletek = Tabla.teruletek.iterator();		
 		while (teruletek.hasNext())
 		{
 			teruletek.next().generateSzomszedok();
@@ -231,68 +230,55 @@ AudioClip au;
 		
 		Tabla.setHordo();
 		
-		initTerkep();
 		
 		setSize(800, 600);
-		offScrImage = createImage(800, 1525);
+		initImgTeruletek();
+		offScrImage = createImage(this.getWidth(), imgDefTerkep.getHeight(this));
 
 	    offScrGr = offScrImage.getGraphics();
 	    
+	    wheelListener = new mousewheelListener();
 	    this.addMouseWheelListener(wheelListener);
 	    this.addMouseListener(mouseListener);
+	    motionListener = new mousemotionListener();
 	    this.addMouseMotionListener(motionListener);
-	   
+	    keyListener kbListener = new keyListener();
+	    this.addKeyListener(kbListener);
+	    
 		
       }
 	
 	public void paint(Graphics g)
 	  {
 		
-		
-		
-		//offScrGr.drawImage(hatar,0-sX,0-sY,Math.round(hatar.getWidth(this)/zoom),Math.round(hatar.getHeight(this)/zoom),this);
+		//Kirajzoljuk az alaptérképet
+		offScrGr.drawImage(imgTerkep,0-terkepX,0-terkepY,this);
 		/*for (int i=0; i<terkep.length;i++)
 		{
 			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
 		}*/
 		//offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
 		
-		offScrGr.drawImage(terkepZoom,0,0,this);
+		//offScrGr.drawImage(terkepZoom,0,0,this);
 		
 		g.drawImage(offScrImage, 0, 0, this);
+		
 	  
 	  }
 
-	public void run()
-	{
-		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-		
-		while ( kicker != null )
-		{
-		      repaint();
-	   }
-		
-		
-	}
 	
-	public void update(Graphics g) {
-		
-	    paint(g);
-
-	    }
-	
-	public void initTerkep()
+	public void initImgTeruletek()
 	{
-		hatar = getImage(getCodeBase(), "res/hatar2.jpg");
-		tracker.addImage(hatar, 0);
+		imgDefTerkep = getImage(getCodeBase(), "res/hatar2.jpg");
+		tracker.addImage(imgDefTerkep, 0);
 		
-		terkep = new Image[Tabla.teruletek.size()];
+		imgTeruletek = new Image[Tabla.teruletek.size()];
         Iterator<Tenger> it = Tabla.teruletek.iterator();
 	    
-	    for (int i=0; i<terkep.length; i++)
+	    for (int i=0; i<imgTeruletek.length; i++)
 	    {
-	    	terkep[i] = it.next().getKep();
-	    	tracker.addImage(terkep[i], 0);
+	    	imgTeruletek[i] = it.next().getKep();
+	    	tracker.addImage(imgTeruletek[i], 0);
 
 	         // Start downloading the image and wait until it finishes loading. 
 	         try { 
@@ -300,70 +286,54 @@ AudioClip au;
 	         } 
 	         catch(InterruptedException e) {}
 	    }
+	    imgTerkep = imgDefTerkep;
+	    terkepZoom=1;
+	    terkepXYRatio = (double)imgDefTerkep.getWidth(this)/(double)imgDefTerkep.getHeight(this);
+	    newTerkep();
 	}
-	
-	public void start() {
-
-	    if (kicker == null) { kicker = new Thread(this); kicker.start(); }
-
-	    }
-
-
-
-	public void stop() {
-
-	    kicker = null;
-
-	    }
-	
-	MouseWheelListener wheelListener = new MouseWheelListener() {
+		
+	class mousewheelListener implements MouseWheelListener {
 		
 		private static final int UP = 1;
 
 	    private static final int DOWN = 2;
+	    
+	    private int direction;
 
 	    public void mouseWheelMoved(MouseWheelEvent e) {
 	      int count = e.getWheelRotation();
-	      int direction = (count > 0) ? UP : DOWN;
-	      zoom(direction,e.getX(),e.getY());
+	      direction = (count > 0) ? UP : DOWN;
+	      performZoom(direction);
 	      
 	    }
 	    
-
-	    private void zoom(int direction,int x, int y) {
-
+	    public void performZoom(int direction) {
 
 	      if (direction == UP) {
 	    	  
-	    	  if (zoom<=4){
+	    	  if (terkepZoom<4){
 	    		  
-	    		  zoom += 0.1f;
+	    		  terkepZoom += 0.1;
+	    		  newTerkep();
 	    		  
-	    		  
-	    		  
-	    		  
-	    	  }
-	    	  
+	    	  }  	  
 	        
 	      } else {
 	    	  
-	    	  if (zoom>=1){
+	    	  if (terkepZoom>1){
 	    		  
-	    		  zoom -= 0.1f;
-	    		  
-	    		  
-	    		  
+	    		  terkepZoom -= 0.1;
+	    		  newTerkep();
+	    		   
 	    	  }
-	    	  
-	    	 
-	        
+	    	        
 	      }
 
 	      
 	    }
 	  };
 	  
-	  MouseListener mouseListener = new MouseListener() {
+	MouseListener mouseListener = new MouseListener() {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -396,55 +366,167 @@ AudioClip au;
 			
 		}};
 		
-		MouseMotionListener motionListener = new MouseMotionListener() {
+	class mousemotionListener implements MouseMotionListener {
 
-			@Override
 			public void mouseDragged(MouseEvent arg0) {
+				
+				performDrag(arg0.getX(), arg0.getY());
 				// TODO Auto-generated method stub
-				if (mY>arg0.getY()) sY+=5;
-		    	  else if (mY<arg0.getY()) sY-=5;
-		    	  mY = arg0.getY();
+			}
+		    	  
+		    public void performDrag(int x,int y)
+		    {
+		    	if (mY>y) terkepY+=5;
+		    	  else if (mY<y) terkepY-=5;
+		    	  mY = y;
 		      
-		    	  if (mX>arg0.getX()) sX+=5;
-		    	  else if (mX<arg0.getX()) sX-=5;   
-		    	  mX = arg0.getX();
+		    	  if (mX>x) terkepX+=5;
+		    	  else if (mX<x) terkepX-=5;   
+		    	  mX = x;
+		    
 		      
 		      
 		      //Térkép Teteje,Alja között mehet csak
-		      if (sY<=0) sY = 0;
-		      else if (hatar.getHeight(got)/zoom-got.getHeight() <= sY) sY = Math.round(hatar.getHeight(got)/zoom-got.getHeight());
+		      if (terkepY<=0) terkepY = 0;
+		      else if (imgTerkep.getHeight(got)-got.getHeight() <= terkepY) terkepY = (int) Math.round(imgTerkep.getHeight(got)-got.getHeight());
+		     
 		      
-		      if (sX<=0) sX = 0;
-		      else if (hatar.getWidth(got)/zoom-got.getWidth() <= sX) sX = Math.round(hatar.getWidth(got)/zoom-got.getWidth());
-			}
+		      if (terkepX<=0) terkepX = 0;
+		      else if (imgTerkep.getWidth(got)-got.getWidth() <= terkepX) terkepX = (int) Math.round(imgTerkep.getWidth(got)-got.getWidth());
+		      
+		   
+		    }
 
-			@Override
 			public void mouseMoved(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				
+				mX = arg0.getX();
+				mY = arg0.getY();
+				
 			}};
 			
-			public void zoom(Component component) {
+	public class keyListener implements KeyListener
+	{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+			switch(e.getKeyChar())
+			{
+			
+			case '+':
+			{
+				wheelListener.performZoom(1);
+				break;
+			}
+			
+			case '-':
+			{
+				wheelListener.performZoom(2);
+				break;
+			}
+			
+			case 'w':
+			{
+				motionListener.performDrag(mX, mY+1);
+				break;
+			}
+			
+			case 'a':
+			{
+				motionListener.performDrag(mX+1, mY);
+				break;
+			}
+			
+			case 's':
+			{
+				motionListener.performDrag(mX, mY-1);
+				break;
+			}
+			
+			case 'd':
+			{
+				motionListener.performDrag(mX-1, mY);
+				break;
+			}
+			
+			
+			}
+			
+		}
+		
+	};
+	
+    public void newTerkep()
+	{
 				
-				  int x = Math.round(mX-component.getWidth()/zoom/2);
-				  int y = Math.round(mY-component.getHeight()/zoom/2);
-				  int w = Math.round(component.getWidth()/zoom);
-				  int h = Math.round(component.getHeight()/zoom);
-				  
+    	int x,y;
+		if (terkepZoom>1){
+			x = terkepX;
+			y = terkepY;
+			
+		}
+		else{
+			x = 0;
+			y = 0;
+		} 
 
-			      ImageFilter crop = new CropImageFilter(x, y,w,h);
+	    //Levágás
 
-			      terkepZoom = component.createImage(
+	    	int w =(int) Math.round((double)imgDefTerkep.getWidth(this)/terkepZoom);
+			int h = (int) Math.round((double)imgDefTerkep.getHeight(this)/terkepZoom);
+			
+			ImageFilter crop = new CropImageFilter(x, y,w,h);
+	    	imgTerkep = createImage(new FilteredImageSource(imgDefTerkep.getSource(), crop));
+	    
+	    //Átméretezés
+	    int newX = got.getWidth();
+	    int newY = (int) Math.round(newX * terkepXYRatio);
+	    ImageFilter scale = new ReplicateScaleFilter(newX,newY);
+	    imgTerkep = createImage(new FilteredImageSource(imgTerkep.getSource(),scale));
 
-			            new FilteredImageSource(hatar.getSource(), crop));
+	}
+			
+			public void run()
+			{
+				Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+				
+				while ( kicker != null )
+				{
+				      repaint();
+			   }
+						
+			}
+			
+			public void update(Graphics g) {
+				
+			    paint(g);
 
-			      component.prepareImage(terkepZoom, component);
+			}
+			
+			public void start() {
 
+			    if (kicker == null) { kicker = new Thread(this); kicker.start(); }
 
-			    }
-	
-	
-	
-	
+			}
+
+			public void stop() {
+
+			    kicker = null;
+
+			}
 	
 	}

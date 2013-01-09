@@ -1,5 +1,7 @@
 import java.util.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class Tenger {
 	
@@ -13,6 +15,22 @@ public class Tenger {
 	protected Vector<Tenger> szomszedok;
 	protected Vector<Egyseg> egysegek;
 	protected Vector<String> szomszedNevek;
+	
+	//ESEMÉNYKEZELÉS!!!!
+	MouseMotionListener mListener = new MouseMotionListener() {
+
+		@Override
+		public void mouseDragged(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}};
+
 	
 	public Tenger(String nev, Image kep, Haz tulajdonos)
 	{
@@ -174,5 +192,6 @@ public class Tenger {
 	{
 		return 0;
 	}
-
+	
+	
 }
