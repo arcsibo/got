@@ -237,13 +237,13 @@ AudioClip au;
 
 	    offScrGr = offScrImage.getGraphics();
 	    
-	    wheelListener = new mousewheelListener();
+	   /* wheelListener = new mousewheelListener();
 	    this.addMouseWheelListener(wheelListener);
 	    this.addMouseListener(mouseListener);
 	    motionListener = new mousemotionListener();
 	    this.addMouseMotionListener(motionListener);
 	    keyListener kbListener = new keyListener();
-	    this.addKeyListener(kbListener);
+	    this.addKeyListener(kbListener);*/
 	    
 		
       }
@@ -253,13 +253,11 @@ AudioClip au;
 		
 		//Kirajzoljuk az alaptérképet
 		offScrGr.drawImage(imgTerkep,0-terkepX,0-terkepY,this);
-		/*for (int i=0; i<terkep.length;i++)
-		{
-			offScrGr.drawImage(terkep[i],0, 0, 100, 100,this);
-		}*/
-		//offScrGr.drawImage(terkep[0],0, 0,(int)terkep[0].getWidth(this)/4,(int)terkep[0].getHeight(this)/4,this);
 		
-		//offScrGr.drawImage(terkepZoom,0,0,this);
+		//for (int i=0; i<imgTeruletek.length;i++)
+		//{
+			Tabla.teruletek.firstElement().paintComponent(offScrGr);
+		//}
 		
 		g.drawImage(offScrImage, 0, 0, this);
 		
