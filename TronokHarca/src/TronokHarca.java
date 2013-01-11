@@ -17,11 +17,18 @@ Applet got = this;
 Thread kicker = null;
 //Zene
 AudioClip zene;
+Graphics gr;
+
+//Akkor indul csak el a progi ha minden betöltõdött
+MediaTracker tracker;
 	
 	
 //res mappa behúzása, file.got feldolgozása
 public void initRes()
 {
+	
+    tracker = new MediaTracker(this);
+    
 	URL fileGot = null;
 	  
 	  try{ URL u1=new URL(getCodeBase(),"res/zene.au");
@@ -31,6 +38,17 @@ public void initRes()
 	  catch(Exception  e){
 		   System.out.println(e);
 		    }
+	  
+	  
+	  Tabla.kep = getImage(getCodeBase(), "res/hatar.png");
+	  tracker.addImage(Tabla.kep, 0);
+	  
+	  Image gyalogosKep = getImage(getCodeBase(), "res/gyalog.png");
+	  tracker.addImage(gyalogosKep, 0);
+	  Image lovagKep = getImage(getCodeBase(), "res/lovag.png");
+	  tracker.addImage(lovagKep, 0);
+	  Image hajoKep = getImage(getCodeBase(), "res/hajo.png");
+	  tracker.addImage(hajoKep, 0);
 	  
 	  try {
 		  fileGot = new URL(getCodeBase(), "file.got");
@@ -62,6 +80,7 @@ public void initRes()
 				if (line.equals("</vastron>")) break;
 				
 				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");
+			    tracker.addImage(kep, 0);
 				Haz haz = new Haz(line,kep);
 				Tabla.vastron.add(haz);
 			
@@ -109,6 +128,7 @@ public void initRes()
 				String nev = line;
 				
 				Image kep = getImage(getCodeBase(),"res/"+nev+".png");
+				tracker.addImage(kep, 0);
 		        
 				line = bf.readLine();
 			    int varak = Integer.parseInt(line);
@@ -129,7 +149,7 @@ public void initRes()
 			    int gyalogos = Integer.parseInt(line);
 			    for (int i= 0; i<gyalogos; i++)
 			    {
-			    	Image gyalogosKep = getImage(getCodeBase(),"res/Gyalogos.png");
+		
 			    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep);
 			    	terulet.addEgyseg(gyalogosE);
 			    }
@@ -138,7 +158,7 @@ public void initRes()
 			    int lovag = Integer.parseInt(line);
 			    for (int i= 0; i<lovag; i++)
 			    {
-			    	Image lovagKep = getImage(getCodeBase(),"res/Lovag.png");
+	
 			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep);
 			    	terulet.addEgyseg(lovagE);
 			    }
@@ -167,6 +187,7 @@ public void initRes()
 				String nev = line;
 				
 				Image kep = getImage(getCodeBase(),"res/"+nev+".png");
+				tracker.addImage(kep, 0);
 		        
 				 Haz tulajdonos = Tabla.getHaz(bf.readLine());
 				
@@ -184,7 +205,6 @@ public void initRes()
 			    int hajo = Integer.parseInt(line);
 			    for (int i= 0; i<hajo; i++)
 			    {
-			    	Image hajoKep = getImage(getCodeBase(),"res/Hajo.png");
 			    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep);
 			    	tenger.addEgyseg(hajoE);
 			    }
@@ -216,6 +236,16 @@ public void initRes()
 	}
 	
 	Tabla.setHordo();
+	
+	try {
+		tracker.waitForAll();
+		
+	} catch ( InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	if (tracker.isErrorAny()) System.out.println("Hiba a képek betöltésekor!");
+	
 }
 
 
@@ -224,19 +254,20 @@ public void init()
      {
 
 	   initRes();
+	   setPreferredSize(new Dimension(800,600));
 	   setSize(800,600);
+	   
+	   gr = this.getGraphics();
 
       }
 	
 public void paint(Graphics g)
 	  {
 		
-		
+		gr.drawString("Trónok Harca", this.getWidth()/2, this.getHeight()/2);
 		
 	  
 	  }
-
-
 
 
 public void run()

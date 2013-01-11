@@ -1,6 +1,9 @@
+import java.awt.Image;
 import java.util.*;
 
 public class Tabla {
+	
+	public static Image kep;
 	
 	public static Vector<Tenger> teruletek = new Vector<Tenger>();
 	public static Vector<Haz> vastron = new Vector<Haz>();
