@@ -1,7 +1,11 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.*;
 
-public class Tabla {
+import javax.swing.JPanel;
+
+public class Tabla extends JPanel{
 	
 	public static Image kep;
 	
@@ -16,6 +20,19 @@ public class Tabla {
 	public static Haz aktHaz;
 	public static Tenger aktTer;
 	public static int count = 0;
+	
+	
+	public void paint(Graphics g)
+	{
+		
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(kep, 0, 0, null); 
+        
+	}
+	
+	
+	
+	
 	public static void kovHaz()
 	{ 
 		if(count >= vastron.size()) count = 0;

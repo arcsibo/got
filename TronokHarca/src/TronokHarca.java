@@ -9,15 +9,18 @@ import java.applet.*;
 import java.net.*;
 import java.util.*;
 
+import javax.swing.JFrame;
+
 public class TronokHarca extends Applet implements Runnable {
 	
 
-private static final long serialVersionUID = 3080533471226900117L;
 Applet got = this;
 Thread kicker = null;
 //Zene
 AudioClip zene;
-Graphics gr;
+Graphics2D gr;
+
+Tabla tabla;
 
 //Akkor indul csak el a progi ha minden betöltõdött
 MediaTracker tracker;
@@ -253,18 +256,21 @@ public void initRes()
 public void init()
      {
 
+	   tabla = new Tabla();
+	
 	   initRes();
 	   setPreferredSize(new Dimension(800,600));
 	   setSize(800,600);
 	   
-	   gr = this.getGraphics();
+	   gr = (Graphics2D) this.getGraphics();
+	   
+	   add(tabla);
+
 
       }
 	
 public void paint(Graphics g)
 	  {
-		
-		gr.drawString("Trónok Harca", this.getWidth()/2, this.getHeight()/2);
 		
 	  
 	  }
