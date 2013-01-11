@@ -1,15 +1,9 @@
 import java.util.*;
 import java.awt.*;
-import java.awt.event.*;
 
-import javax.swing.JComponent;
+public class Tenger{
+	
 
-public class Tenger extends JComponent{
-	
-	//Esemény kezelés miatt!!
-	private Tenger jomagam;
-	
-	private static final long serialVersionUID = -4137477411587312039L;
 	protected String nev;
 	protected boolean vizi;
 	protected Image kep;
@@ -20,62 +14,10 @@ public class Tenger extends JComponent{
 	protected Vector<Egyseg> egysegek;
 	protected Vector<String> szomszedNevek;
 	
-	//ESEMÉNYKEZELÉS!!!!
-	MouseMotionListener mListener = new MouseMotionListener() {
-
-		@Override
-		public void mouseDragged(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-		}
-
-		@Override
-		public void mouseMoved(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}};
-		
-	MouseListener m1Listener = new MouseListener() 
-	{
-
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			System.out.println("Klikk erre: " + jomagam.nev);
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			System.out.println("Klikk erre: " + jomagam.nev);
-		}
-
-		@Override
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			System.out.println("Klikk erre: " + jomagam.nev);
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	};
-	
-	//ESEMÉNYKEZELÉS VÉGE
-
 	
 	public Tenger(String nev, Image kep, Haz tulajdonos)
 	{
 		
-		jomagam = this;
 		
 		this.nev = nev;
 		this.vizi = true;
@@ -87,8 +29,6 @@ public class Tenger extends JComponent{
 		egysegek = new Vector<Egyseg>();
 		szomszedNevek = new Vector<String>();
 		
-		this.addMouseMotionListener(mListener);
-		this.addMouseListener(m1Listener);
 		
 	}
 	
@@ -239,15 +179,6 @@ public class Tenger extends JComponent{
 		return 0;
 	}
 	
-	//Ez a JLabel miatt van itt, kell az eseménykezeléshez
-	public void paintComponent(Graphics g) {
-	    g.drawImage(kep, 0, 0, null);
-	  }
-
-	//Ugyanez a helyzet 
-	public Dimension getPreferredSize() {
-	    return new Dimension(kep.getWidth(this), kep.getHeight(this));
-	  }
 	
 	
 }
