@@ -1,12 +1,27 @@
 import java.util.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageFilter;
+import java.awt.image.ImageObserver;
+import java.awt.image.RescaleOp;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
-public class Tenger{
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class Tenger extends JButton{
 	
 
+	private Tenger jomagam = this;
 	protected String nev;
 	protected boolean vizi;
-	protected Image kep;
+	protected BufferedImage kep;
+	protected ImageObserver imageObserver;
+
 	protected Haz tulajdonos;
 	protected Parancsjelzo parancsjelzo;
 	
@@ -14,20 +29,90 @@ public class Tenger{
 	protected Vector<Egyseg> egysegek;
 	protected Vector<String> szomszedNevek;
 	
+	public void paint( Graphics g )
+	{
+		
+		   //super.paint( g ) ;
+		
+		   g.drawImage(kep,  0 , 0 , getWidth() , getHeight() , imageObserver);
 	
-	public Tenger(String nev, Image kep, Haz tulajdonos)
+	}
+	
+	public void setSize(Dimension d)
+	{
+		super.setSize(d);
+
+		BufferedImage resized = new BufferedImage(d.width, d.height, kep.getType());
+	    Graphics2D g = resized.createGraphics();
+	    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+	    g.drawImage(kep, 0, 0, d.width, d.height, 0, 0, kep.getWidth(), kep.getHeight(), null);
+	    g.dispose();
+	}
+	
+	private MouseListener mL = new MouseListener()
+	{
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+			
+			if (kep.getRGB(arg0.getX(),arg0.getY())<=0)
+			{
+				System.out.println(jomagam.nev);
+			}
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
+	
+	
+	
+	public Tenger(String nev, BufferedImage kep, Haz tulajdonos)
 	{
 		
 		
 		this.nev = nev;
 		this.vizi = true;
+		
+		ImageIcon icon = new ImageIcon(kep);
+		this.imageObserver = icon.getImageObserver();
 		this.kep = kep;
+		
+		
 		this.tulajdonos = tulajdonos;
 		this.parancsjelzo = null;
 		
 		szomszedok = new Vector<Tenger>();
 		egysegek = new Vector<Egyseg>();
 		szomszedNevek = new Vector<String>();
+		
+		this.addMouseListener(mL);
+		this.setSize(icon.getIconWidth(),icon.getIconHeight());
 		
 		
 	}

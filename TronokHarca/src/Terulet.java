@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Iterator;
 
 public class Terulet extends Tenger{
@@ -9,7 +10,7 @@ public class Terulet extends Tenger{
 	private int korona;
 	private Hazjelzo hazjelzo;
 	
-	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep)
+	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, BufferedImage kep)
 	{
 		super(nev, kep,tulajdonos);
 		this.vizi = false;

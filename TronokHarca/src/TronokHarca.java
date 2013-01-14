@@ -1,24 +1,19 @@
 import java.io.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
-import java.awt.image.ReplicateScaleFilter;
+import java.awt.image.BufferedImage;
 import java.applet.*;
 import java.net.*;
 import java.util.*;
 
-import javax.swing.JFrame;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class TronokHarca extends Applet implements Runnable {
 	
 
-Applet got = this;
 Thread kicker = null;
 //Zene
 AudioClip zene;
-Graphics2D gr;
 
 Tabla tabla;
 
@@ -30,7 +25,8 @@ MediaTracker tracker;
 public void initRes()
 {
 	
-    tracker = new MediaTracker(this);
+    int locX=0,locY=0;
+	tracker = new MediaTracker(this);
     
 	URL fileGot = null;
 	  
@@ -130,7 +126,8 @@ public void initRes()
 				if (line.equals("</terulet>")) break;
 				String nev = line;
 				
-				Image kep = getImage(getCodeBase(),"res/"+nev+".png");
+				URL url = new URL(getCodeBase(),"res/"+nev+".png");
+				BufferedImage kep = ImageIO.read(url);
 				tracker.addImage(kep, 0);
 		        
 				line = bf.readLine();
@@ -147,6 +144,7 @@ public void initRes()
 			    
 			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep);
 			    Tabla.teruletek.add(terulet);
+			    //add(terulet);
 			    
 			    line = bf.readLine();
 			    int gyalogos = Integer.parseInt(line);
@@ -189,14 +187,21 @@ public void initRes()
 				if (line.equals("</tenger>")) break;
 				String nev = line;
 				
-				Image kep = getImage(getCodeBase(),"res/"+nev+".png");
+				URL url = new URL(getCodeBase(),"res/"+nev+".png");
+				BufferedImage kep = ImageIO.read(url);
 				tracker.addImage(kep, 0);
-		        
-				 Haz tulajdonos = Tabla.getHaz(bf.readLine());
 				
+		        
+				Haz tulajdonos = Tabla.getHaz(bf.readLine());
 				
 			    Tenger tenger = new Tenger(nev, kep, tulajdonos);
-			    Tabla.teruletek.add(tenger);			  
+			    Tabla.teruletek.add(tenger);	
+			    add(tenger);
+			    tenger.setSize(new Dimension(100,100));
+			    tenger.setLocation(locX, locY);
+			    locX += tenger.getSize().width;
+			    locY += tenger.getSize().height;
+			    
 			    
 			    line = bf.readLine();
 			   
@@ -249,6 +254,13 @@ public void initRes()
 	}
 	if (tracker.isErrorAny()) System.out.println("Hiba a képek betöltésekor!");
 	
+	//Egy kis takarítás
+	tracker = null;
+	fileGot = null;
+	in = null;
+	teruletek = null;
+	System.gc();
+	
 }
 
 
@@ -256,29 +268,32 @@ public void initRes()
 public void init()
      {
 
-	   tabla = new Tabla();
+	   setLayout(null);
+	   
+		tabla = new Tabla();
 	
 	   initRes();
 	   setPreferredSize(new Dimension(800,600));
 	   setSize(800,600);
 	   
-	   gr = (Graphics2D) this.getGraphics();
 	   
-	   add(tabla);
 
-
+	   
+	   
+	  
+	   
       }
 	
 public void paint(Graphics g)
 	  {
 		
-	  
+	  	//g.drawImage(Tabla.kep, 0, 0, this);
 	  }
 
 
 public void run()
 	{
-				Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+				//Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 				
 				while ( kicker != null )
 				{
