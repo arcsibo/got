@@ -112,7 +112,7 @@ public class Haz {
 	//szal eltávolítja a bekapott házjelző, elvileg azt fogja dobni amit bekér
 	public void removeHazjelzo(Hazjelzo h)
 	{
-		this.hazjelzok.remove(h);
+		hazjelzok.remove(h);
 	}
 	
 	//hazjelzo ~= pénz
@@ -124,7 +124,19 @@ public class Haz {
 	
 	public int DBHazjelzo()
 	{
-		return this.hazjelzok.size();
+		return hazjelzok.size();
+	}
+	
+	//ha sikerült eldobnia azt a bizonyos mennyiségű házjelzőt
+	public boolean dropHazjelzo(int h)
+	{
+		if(h<0) return false;
+		if(h> hazjelzok.size()) return false;
+		for(int i = hazjelzok.size(); i > hazjelzok.size()-h; i--)
+		{
+			hazjelzok.remove(i);
+		}
+		return true;
 	}
 	
 	// /Gyuri,Aron
