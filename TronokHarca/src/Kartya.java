@@ -4,16 +4,27 @@ import java.util.*;
 
 public class Kartya {
 	
-	//ennyi darab k�rtya van
+	//ennyi darab k���rtya van
 	private static final int DB=6;
 	
 	
 	private static void toborzas( ) {System.out.println("Toborzas");};
 	private static void licitalas() {System.out.println("Licitalas");};
 	private static void vadak() {System.out.println("Vadak tamadasa");};
-	private static void hazjelzok() {System.out.println("Hazjelzok osztasa");};
 	private static void hoki() { System.out.println("csitt-csatt"); };
 	
+	private static void hazjelzok() 
+	{
+		System.out.println("Hazjelzok osztasa");
+		
+	}
+	
+	private static void utanpotlas() 
+	{
+		System.out.println("Utanpotlas");
+		Tabla.setHordo();
+		
+	}
 	
 	public static void kartyaHuzas() 
 	{
@@ -60,12 +71,7 @@ public class Kartya {
 		
 	}
 	
-	private static void utanpotlas() 
-	{
-		System.out.println("Utanpotlas");
-		Tabla.setHordo();
-		
-	}
+	
 	
 }
 

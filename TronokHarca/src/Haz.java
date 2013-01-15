@@ -18,18 +18,18 @@ public class Haz {
 		this.parancsjelzok = new Vector<Parancsjelzo>();
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
-		//ezt belerakhatjuk egy f·jlba mint a ter¸leteket, h·zakat
-		parancsjelzok.add(new Parancsjelzo("t·mad·s", false, 0, null));
-		parancsjelzok.add(new Parancsjelzo("t·mad·s", false, -1, null));
-		parancsjelzok.add(new Parancsjelzo("t·mad·s", true, +1, null));
+		//ezt belerakhatjuk egy fÔøΩjlba mint a terÔøΩleteket, hÔøΩzakat
+		parancsjelzok.add(new Parancsjelzo("t√°mad√°s", false, 0, null));
+		parancsjelzok.add(new Parancsjelzo("t√°mad√°s", false, -1, null));
+		parancsjelzok.add(new Parancsjelzo("t√°mad√°s", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("vÈdekezÈs", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("vÈdekezÈs", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("vÈdekezÈs", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("v√©dekez√©s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("v√©dekez√©s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("v√©dekez√©s", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("t·mogat·s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("t·mogat·s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("t·mogat·s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("t√°mogat√°s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("t√°mogat√°s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("t√°mogat√°s", true, +1, null));
 		
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
@@ -104,6 +104,28 @@ public class Haz {
 		return s;
 	}
 	//Gyuri,Aron
+	
+	
+	//unatkoztam ugyhogy kivertem, √©s megfogant az √∂tlet:
+	
+	
+	//szal elt√°vol√≠tja a bekapott h√°zjelz≈ë, elvileg azt fogja dobni amit bek√©r
+	public void removeHazjelzo(Hazjelzo h)
+	{
+		this.hazjelzok.remove(h);
+	}
+	
+	//hazjelzo ~= p√©nz
+	public void addHazjelzo()
+	{
+		//nekem itt rossz √©rz√©sem van
+		hazjelzok.add(new Hazjelzo(this.kep, this));
+	}
+	
+	public int DBHazjelzo()
+	{
+		return this.hazjelzok.size();
+	}
 	
 	// /Gyuri,Aron
 }
