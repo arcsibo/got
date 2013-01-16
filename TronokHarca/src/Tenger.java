@@ -13,7 +13,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Tenger{
+public class Tenger extends JLabel{
 	
 	private Tenger jomagam = this;
 	protected String nev;
@@ -29,7 +29,7 @@ public class Tenger{
 	
 	public Tenger(String nev, Image kep, Haz tulajdonos)
 	{
-		
+		super(new ImageIcon(kep));
 		
 		this.nev = nev;
 		this.vizi = true;

@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 import javax.swing.*;
 
-public class Tabla{
+public class Tabla extends JLabel{
 	
 	public static Image kep;
 	
@@ -18,6 +18,13 @@ public class Tabla{
 	public static Haz aktHaz;
 	public static Tenger aktTer;
 	public static int count = 0;
+	
+	
+	public Tabla(Image kep)
+	{
+		super(new ImageIcon(kep));
+		this.kep = kep;
+	}
 	
 	
 	public static void kovHaz()

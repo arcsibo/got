@@ -1,12 +1,16 @@
 import java.awt.*;
 
-public class Hazjelzo {
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Hazjelzo extends JLabel{
 	
 	private Image kep;
 	private Haz tulajdonos;
 	
 	public Hazjelzo(Image kep,Haz haz)
 	{
+		super(new ImageIcon(kep));
 		this.kep = kep;
 		this.tulajdonos = haz;
 	}

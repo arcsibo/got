@@ -1,7 +1,10 @@
 import java.awt.*;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-public class Egyseg {
+
+public class Egyseg extends JLabel{
 	
 	private boolean vizi;
 	private int ertek;
@@ -11,6 +14,8 @@ public class Egyseg {
 	
 	public Egyseg(String tipus,Haz tulajdonos, Image kep)
 	{
+		super(new ImageIcon(kep));
+		
 		this.tipus = tipus;
 		this.tulajdonos = tulajdonos;
 		this.kep = kep;

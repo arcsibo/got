@@ -1,6 +1,9 @@
 import java.awt.*;
 
-public class Parancsjelzo {
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Parancsjelzo extends JLabel{
 	
 	private String tipus;
 	private boolean csillag;
@@ -9,6 +12,8 @@ public class Parancsjelzo {
 	
 	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kep)
 	{
+		super(new ImageIcon(kep));
+		
 		this.tipus = tipus;
 		this.csillag = csillag;
 		this.plussz = plussz;
