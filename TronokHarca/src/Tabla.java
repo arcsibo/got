@@ -12,7 +12,6 @@ public class Tabla extends JLabel{
 	public static Vector<Haz> kard  = new Vector<Haz>();
 	public static Vector<Haz> hollo  = new Vector<Haz>();
 	public static int vadakEreje = 0;
-	//anyámmmm
 	
 	//Gyuri,ï¿½ï¿½ï¿½ron
 	public static Haz aktHaz;
