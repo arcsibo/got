@@ -27,7 +27,7 @@ public class Tenger{
 	protected Vector<Egyseg> egysegek;
 	protected Vector<String> szomszedNevek;
 	
-	public Tenger(String nev, BufferedImage kep, Haz tulajdonos)
+	public Tenger(String nev, Image kep, Haz tulajdonos)
 	{
 		
 		
