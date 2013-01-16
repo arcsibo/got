@@ -196,11 +196,6 @@ public void initRes()
 				
 			    Tenger tenger = new Tenger(nev, kep, tulajdonos);
 			    Tabla.teruletek.add(tenger);	
-			    add(tenger);
-			    tenger.setSize(new Dimension(100,100));
-			    tenger.setLocation(locX, locY);
-			    locX += tenger.getSize().width;
-			    locY += tenger.getSize().height;
 			    
 			    
 			    line = bf.readLine();
@@ -275,11 +270,6 @@ public void init()
 	   initRes();
 	   setPreferredSize(new Dimension(800,600));
 	   setSize(800,600);
-	   
-	   
-
-	   
-	   
 	  
 	   
       }
