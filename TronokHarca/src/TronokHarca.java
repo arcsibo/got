@@ -26,6 +26,7 @@ final double cuccosR = W/20;
 //3 panelre osztható a játék képernyõje
 JPanel aktHazPanel, terkepPanel, jatekPanel;	
 	
+//Lógeci 
 //Zene
 AudioClip zene;
 
