@@ -20,17 +20,17 @@ public class Haz {
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
 		//ezt belerakhatjuk egy f���jlba mint a ter���leteket, h���zakat
-		parancsjelzok.add(new Parancsjelzo("T�mad�s", false, 0, null));
-		parancsjelzok.add(new Parancsjelzo("T�mad�s", false, -1, null));
-		parancsjelzok.add(new Parancsjelzo("T�mad�s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, null));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, null));
+		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("v�dekez�s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("v�dekez�s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("v�dekez�s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("t�mogat�s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("t�mogat�s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("t�mogat�s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, null));
 		
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));

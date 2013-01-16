@@ -81,38 +81,49 @@ public class Tenger{
 	}
 	// portya,l�p�s t�mad�s, t�mogat�s v�dekez�s korona
 	public void tamadas(Tenger tamad){
-		if(this.parancsjelzo.getTipus().equals("t�mad�s")){
+		if(this.parancsjelzo.getTipus().equals("tamadas")){
 			int tamadero = 0;
 			int vedero = 0;
-			tamadero += this.getTamadoEro();
+			tamadero += this.getEro();
+			tamadero += this.parancsjelzo.getPlussz();
 			
 			Iterator<Tenger> it1 = this.szomszedok.iterator();
 			while(it1.hasNext()){
 				Tenger aktTer1 = it1.next();
 				if(this.vizi == true)
 				{
-					if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("t�mogat�s"))//v�zi harvan sz�razf�ld nem t�mogathatja
+					if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("tamogatas"))//v�zi harvan sz�razf�ld nem t�mogathatja
 					{
-						tamadero += aktTer1.getTamadoEro();
+						tamadero += aktTer1.getEro();
+						tamadero += aktTer1.parancsjelzo.getPlussz();
 					}
 				}else{
-					if(aktTer1.parancsjelzo.getTipus().equals("t�mogat�s")){// sz�razf�ldi csata vizi egys�g t�mogathatja
-						tamadero += aktTer1.getTamadoEro();
+					if(aktTer1.parancsjelzo.getTipus().equals("tamogatas")){// sz�razf�ldi csata vizi egys�g t�mogathatja
+						tamadero += aktTer1.getEro();
+						tamadero += aktTer1.parancsjelzo.getPlussz();
 					}
 				}
 			}//elvileg meg van a t�mad� er�
+			
+			vedero += tamad.getEro();
+			if(tamad.parancsjelzo.getTipus().equals("vedekezes"))
+			{
+				vedero += tamad.parancsjelzo.getPlussz();
+			}
 			Iterator<Tenger> it2 = tamad.szomszedok.iterator();
 			while(it2.hasNext()){
 				Tenger aktTer2 = it2.next();
 				if(tamad.vizi == true)
 				{
-					if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("t�mogat�s"))//v�zi harvan sz�razf�ld nem t�mogathatja
+					if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("tamogatas"))//v�zi harvan sz�razf�ld nem t�mogathatja
 					{
-						vedero += aktTer2.getTamadoEro();
+						vedero += aktTer2.getEro();
+						vedero += aktTer2.parancsjelzo.getPlussz();
 					}
 				}else{
-					if(aktTer2.parancsjelzo.getTipus().equals("t�mogat�s")){// sz�razf�ldi csata vizi egys�g t�mogathatja
-						vedero += aktTer2.getTamadoEro();
+					if(aktTer2.parancsjelzo.getTipus().equals("tamogatas")){// sz�razf�ldi csata vizi egys�g t�mogathatja
+						vedero += aktTer2.getEro();
+						vedero += aktTer2.parancsjelzo.getPlussz();
 					}
 					//cpp/mx/3/5
 				}
@@ -147,7 +158,7 @@ public class Tenger{
 			}
 		}
 	}
-	public int getTamadoEro(){
+	public int getEro(){
 		int ero = 0;
 		Iterator<Egyseg> ite = this.egysegek.iterator();
 		while(ite.hasNext()){
