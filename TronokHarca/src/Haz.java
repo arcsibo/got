@@ -9,6 +9,7 @@ public class Haz {
 	private Vector<Parancsjelzo> parancsjelzok;
 	private Vector<Hazjelzo> hazjelzok;
 	private int hordo;
+	private int hjelzo;
 	
 	public Haz(String nev, Image kep)
 	{
@@ -18,18 +19,18 @@ public class Haz {
 		this.parancsjelzok = new Vector<Parancsjelzo>();
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
-		//ezt belerakhatjuk egy fï¿½jlba mint a terï¿½leteket, hï¿½zakat
-		parancsjelzok.add(new Parancsjelzo("Támadás", false, 0, null));
-		parancsjelzok.add(new Parancsjelzo("Támadás", false, -1, null));
-		parancsjelzok.add(new Parancsjelzo("Támadás", true, +1, null));
+		//ezt belerakhatjuk egy fï¿½ï¿½ï¿½jlba mint a terï¿½ï¿½ï¿½leteket, hï¿½ï¿½ï¿½zakat
+		parancsjelzok.add(new Parancsjelzo("Tï¿½madï¿½s", false, 0, null));
+		parancsjelzok.add(new Parancsjelzo("Tï¿½madï¿½s", false, -1, null));
+		parancsjelzok.add(new Parancsjelzo("Tï¿½madï¿½s", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("védekezés", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("védekezés", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("védekezés", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("vï¿½dekezï¿½s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("vï¿½dekezï¿½s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("vï¿½dekezï¿½s", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("támogatás", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("támogatás", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("támogatás", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("tï¿½mogatï¿½s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("tï¿½mogatï¿½s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("tï¿½mogatï¿½s", true, +1, null));
 		
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
@@ -72,6 +73,16 @@ public class Haz {
 	}
 	
 	
+	public void setHjelzo(int i)
+	{
+		hjelzo = i;
+	}
+	
+	public int getHjelzo()
+	{
+		return hjelzo;
+	}
+	
 	public String getNev() { return this.nev; }
 	public Color getColor() { return this.szin; }
 	public int getHordo() { return this.hordo; }
@@ -106,24 +117,24 @@ public class Haz {
 	//Gyuri,Aron
 	
 	
-	//unatkoztam ugyhogy kivertem, Ã©s megfogant az Ã¶tlet:
+	//unatkoztam ugyhogy kivertem, ï¿½ï¿½s megfogant az ï¿½ï¿½tlet:
 	
 	
-	//szal eltÃ¡volÃ­tja a bekapott hÃ¡zjelzÅ‘, elvileg azt fogja dobni amit bekÃ©r
+	//szal eltï¿½ï¿½volï¿½ï¿½tja a bekapott hï¿½ï¿½zjelzï¿½ï¿½, elvileg azt fogja dobni amit bekï¿½ï¿½r
 	public void removeHazjelzo(Hazjelzo h)
 	{
 		hazjelzok.remove(h);
 	}
 	
-	//hazjelzo ~= pÃ©nz
+	//hazjelzo ~= pï¿½ï¿½nz
 	public void addHazjelzo()
 	{
-		//nekem itt rossz Ã©rzÃ©sem van
+		//nekem itt rossz ï¿½ï¿½rzï¿½ï¿½sem van
 		if(hazjelzok.size()<20)
 		{
 			hazjelzok.add(new Hazjelzo(this.kep, this));
 		}else{
-			//nem lehet több
+			//nem lehet tï¿½bb
 		}
 	}
 	
@@ -132,7 +143,7 @@ public class Haz {
 		return hazjelzok.size();
 	}
 	
-	//ha sikerÃ¼lt eldobnia azt a bizonyos mennyisÃ©gÅ± hÃ¡zjelzÅ‘t
+	//ha sikerï¿½ï¿½lt eldobnia azt a bizonyos mennyisï¿½ï¿½gï¿½ï¿½ hï¿½ï¿½zjelzï¿½ï¿½t
 	public boolean dropHazjelzo(int h)
 	{
 		if(h<0) return false;
