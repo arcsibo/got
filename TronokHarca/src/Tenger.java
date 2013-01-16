@@ -46,6 +46,11 @@ public class Tenger{
 		
 	}
 	
+	public int getHordo(){return 0; }
+	public int getVarak(){ return 0; }
+	public int Korona(){ return 0; }
+	public Hazjelzo getHazjelzo(){ return null; }
+	
 	public void addSzomszed(String szomszed)
 	{
 		szomszedNevek.add(szomszed);
@@ -281,11 +286,6 @@ public class Tenger{
 	//más hogy nem tudtam megcsinálni a hórdók számának lekérdezését, csak
 	//ha itt a tengerben is lelehet valahogy lekérdezni itt nullát ad vissza 
 	//tehát nincs hordós tenger terület 
-	public int getHordo()
-	{
-		return 0;
-	}
-	
 	
 	
 }
