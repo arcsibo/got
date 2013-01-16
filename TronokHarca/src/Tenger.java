@@ -117,6 +117,8 @@ public class Tenger{
 				}
 			}//elvileg meg van a védekezõ erõ
 			
+			this.parancsjelzo = null;
+			
 			if(tamadero>vedero){
 				tamad.egysegek.clear();
 				tamad.egysegek = this.egysegek;
@@ -127,7 +129,10 @@ public class Tenger{
 			}else if(tamadero<vedero){
 				//nemfoglaltad el
 			}else{//egyenlõ
-				
+				int hazT, hazV;
+				hazT = Tabla.kard.indexOf(this.tulajdonos);
+				hazV = Tabla.kard.indexOf(tamad.tulajdonos);
+				if
 			}
 		}
 	}
@@ -140,9 +145,13 @@ public class Tenger{
 		}
 		return ero;
 	}
+	
+	
 	public Tenger getTenger(){
 		return this;
 	}
+	
+	
 	public void setTulaj(){
 		if(this.egysegek != null){
 			this.tulajdonos = this.egysegek.get(0).getHaz();
