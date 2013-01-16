@@ -118,9 +118,14 @@ public class Tenger{
 			}//elvileg meg van a védekezõ erõ
 			
 			if(tamadero>vedero){
-				
+				tamad.egysegek.clear();
+				tamad.egysegek = this.egysegek;
+				this.egysegek.clear();
+				this. egysegek = null;
+				this.setTulaj();
+				tamad.setTulaj();
 			}else if(tamadero<vedero){
-				
+				//nemfoglaltad el
 			}else{//egyenlõ
 				
 			}

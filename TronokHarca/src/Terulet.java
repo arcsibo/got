@@ -34,6 +34,15 @@ public class Terulet extends Tenger{
 	{
 		return this.hordok;
 	}
+	public void setTulaj(){
+		if(this.hazjelzo != null){
+			this.tulajdonos = this.hazjelzo.getHaz();
+		}else if(this.egysegek != null){
+			this.tulajdonos = this.egysegek.get(0).getHaz();
+		}else {
+			this.tulajdonos = null;
+		}
+	}
 	
 	public String toString()
 	{
