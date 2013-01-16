@@ -117,6 +117,13 @@ public class Tenger{
 				}
 			}//elvileg meg van a védekezõ erõ
 			
+			if(tamadero>vedero){
+				
+			}else if(tamadero<vedero){
+				
+			}else{//egyenlõ
+				
+			}
 		}
 	}
 	public int getTamadoEro(){
@@ -128,6 +135,18 @@ public class Tenger{
 		}
 		return ero;
 	}
+	public Tenger getTenger(){
+		return this;
+	}
+	public void setTulaj(){
+		if(this.egysegek != null){
+			this.tulajdonos = this.egysegek.get(0).getHaz();
+		}else {
+			this.tulajdonos = null;
+		}
+	}
+	
+	
 	public void generateSzomszedok()
 	{
 		Iterator<String> it = szomszedNevek.iterator();

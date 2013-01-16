@@ -46,6 +46,9 @@ public class Egyseg {
 	{
 		return this.ertek;
 	}
+	public Haz getHaz(){
+		return this.tulajdonos;
+	}
 	
 	public String toString()
 	{
