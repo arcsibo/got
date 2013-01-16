@@ -132,7 +132,17 @@ public class Tenger{
 				int hazT, hazV;
 				hazT = Tabla.kard.indexOf(this.tulajdonos);
 				hazV = Tabla.kard.indexOf(tamad.tulajdonos);
-				if
+				if(hazT> hazV)
+				{
+					tamad.egysegek.clear();
+					tamad.egysegek = this.egysegek;
+					this.egysegek.clear();
+					this. egysegek = null;
+					this.setTulaj();
+					tamad.setTulaj();
+				}else{
+					
+				}
 			}
 		}
 	}
