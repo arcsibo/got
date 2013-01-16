@@ -113,6 +113,7 @@ public class Tenger{
 					if(aktTer2.parancsjelzo.getTipus().equals("támogatás")){// szárazföldi csata vizi egység támogathatja
 						vedero += aktTer2.getTamadoEro();
 					}
+					//cpp/mx/3/5
 				}
 			}//elvileg meg van a védekezõ erõ
 			
