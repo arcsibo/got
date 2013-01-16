@@ -27,20 +27,6 @@ public class Tabla{
 		count++;
 	}
 	
-	public static void tervezes(Tenger t,Parancsjelzo parancs)
-	{
-		if(t.tulajdonos.getNev() == aktHaz.getNev()){
-			t.addParancsjelzo(parancs);
-		}else{
-			//kiír valamit
-		}
-	}
-	
-	public static void akcio()
-	{
-		
-	}
-	
 	// /Gyuri,ï¿½ron
 	
  	public static Haz getHaz(String nev)
@@ -57,11 +43,6 @@ public class Tabla{
 		}
 		
 		return null;
-	}
- 	
- 	public void kalkHazjelzo()
-	{
-		
 	}
  	
 	public static void setHordo()

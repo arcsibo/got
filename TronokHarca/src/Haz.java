@@ -19,17 +19,17 @@ public class Haz {
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
 		//ezt belerakhatjuk egy fÔøΩjlba mint a terÔøΩleteket, hÔøΩzakat
-		parancsjelzok.add(new Parancsjelzo("t√°mad√°s", false, 0, null));
-		parancsjelzok.add(new Parancsjelzo("t√°mad√°s", false, -1, null));
-		parancsjelzok.add(new Parancsjelzo("t√°mad√°s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("T·mad·s", false, 0, null));
+		parancsjelzok.add(new Parancsjelzo("T·mad·s", false, -1, null));
+		parancsjelzok.add(new Parancsjelzo("T·mad·s", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("v√©dekez√©s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("v√©dekez√©s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("v√©dekez√©s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("vÈdekezÈs", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("vÈdekezÈs", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("vÈdekezÈs", true, +1, null));
 		
-		parancsjelzok.add(new Parancsjelzo("t√°mogat√°s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("t√°mogat√°s", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("t√°mogat√°s", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("t·mogat·s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("t·mogat·s", false, +0, null));
+		parancsjelzok.add(new Parancsjelzo("t·mogat·s", true, +1, null));
 		
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
 		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
@@ -119,7 +119,12 @@ public class Haz {
 	public void addHazjelzo()
 	{
 		//nekem itt rossz √©rz√©sem van
-		hazjelzok.add(new Hazjelzo(this.kep, this));
+		if(hazjelzok.size()<20)
+		{
+			hazjelzok.add(new Hazjelzo(this.kep, this));
+		}else{
+			//nem lehet tˆbb
+		}
 	}
 	
 	public int DBHazjelzo()
