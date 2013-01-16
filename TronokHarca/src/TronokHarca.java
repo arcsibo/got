@@ -127,7 +127,7 @@ public void initRes()
 				String nev = line;
 				
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
-				BufferedImage kep = ImageIO.read(url);
+			    Image kep = getImage(url);
 				tracker.addImage(kep, 0);
 		        
 				line = bf.readLine();
@@ -188,7 +188,7 @@ public void initRes()
 				String nev = line;
 				
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
-				BufferedImage kep = ImageIO.read(url);
+				Image kep = getImage(url);
 				tracker.addImage(kep, 0);
 				
 		        
