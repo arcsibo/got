@@ -1,17 +1,18 @@
 import java.io.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.applet.*;
+import java.awt.*;
 import java.net.*;
 import java.util.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class TronokHarca extends Applet implements Runnable {
+public class TronokHarca extends Applet{
 	
 
-Thread kicker = null;
+final int W = 800;
+final int H = 600;
+	
+JPanel aktHazPanel, terkepPanel, jatekPanel;	
+	
 //Zene
 AudioClip zene;
 
@@ -19,8 +20,7 @@ Tabla tabla;
 
 //Akkor indul csak el a progi ha minden betöltõdött
 MediaTracker tracker;
-	
-	
+
 //res mappa behúzása, file.got feldolgozása
 public void initRes()
 {
@@ -259,55 +259,28 @@ public void initRes()
 }
 
 
-//az applet elõkészítése	  
 public void init()
-     {
-
-	   setLayout(null);
-	   
-		tabla = new Tabla();
+{
 	
-	   initRes();
-	   setPreferredSize(new Dimension(800,600));
-	   setSize(800,600);
-	  
-	   
-      }
+	initRes();
 	
-public void paint(Graphics g)
-	  {
-		
-	  	//g.drawImage(Tabla.kep, 0, 0, this);
-	  }
-
-
-public void run()
-	{
-				//Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-				
-				while ( kicker != null )
-				{
-				      repaint();
-			   }
-						
-	}
-			
-public void update(Graphics g) {
-				
-			    paint(g);
-
-	}
-			
-public void start() {
-
-			    if (kicker == null) { kicker = new Thread(this); kicker.start(); }
-
-	}
-
-public void stop() {
-
-			    kicker = null;
-
-	}
+	setSize(new Dimension(W,H));
+	setPreferredSize(new Dimension(W,H));
+	setLayout(new BorderLayout());
 	
+	aktHazPanel = new JPanel();
+	aktHazPanel.setLayout(new BorderLayout());
+	terkepPanel = new JPanel();
+	terkepPanel.setLayout(new BorderLayout());
+	jatekPanel = new JPanel();
+	jatekPanel.setLayout(new BorderLayout());
+	
+	
+	
+	add(aktHazPanel,"West");
+	add(terkepPanel,"Center");
+	add(aktHazPanel,"East");
+	
+}
+
 }
