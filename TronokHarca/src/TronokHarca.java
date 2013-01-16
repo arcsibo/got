@@ -1,6 +1,7 @@
 import java.io.*;
 import java.applet.*;
 import java.awt.*;
+import java.awt.image.*;
 import java.net.*;
 import java.util.*;
 import javax.swing.*;
@@ -22,6 +23,8 @@ Tabla tabla;
 MediaTracker tracker;
 
 //res mappa behúzása, file.got feldolgozása
+
+
 public void initRes()
 {
 	
@@ -39,8 +42,11 @@ public void initRes()
 		    }
 	  
 	  
-	  Tabla.kep = getImage(getCodeBase(), "res/hatar.png");
+	  Image tablakep = getImage(getCodeBase(), "res/hatar.png");
 	  tracker.addImage(Tabla.kep, 0);
+	  tabla = new Tabla(tablakep);
+	  
+	  Tabla.dummyKep = tablakep.getScaledInstance(1, 1, Image.SCALE_SMOOTH);
 	  
 	  Image gyalogosKep = getImage(getCodeBase(), "res/gyalog.png");
 	  tracker.addImage(gyalogosKep, 0);
@@ -270,17 +276,40 @@ public void init()
 	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(new BorderLayout());
+	
+	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep().getScaledInstance(W/10, H/10, Image.SCALE_SMOOTH)));
+	aktHazPanel.add(aktHazKep,"North");
+	
+	
 	terkepPanel = new JPanel();
 	terkepPanel.setLayout(new BorderLayout());
+	
+	JLabel terkep = new JLabel(new ImageIcon(Tabla.kep.getScaledInstance(W, H, Image.SCALE_SMOOTH)));
+	terkepPanel.add(terkep,"Center");
+	
+	
 	jatekPanel = new JPanel();
-	jatekPanel.setLayout(new BorderLayout());
+	jatekPanel.setLayout(new FlowLayout());
 	
+	Iterator<Haz> it = Tabla.vastron.iterator();
 	
+	//Az aktuális ház ide nem kell
+	
+	while (it.hasNext())
+	{	
+		Image aktKep = it.next().getKep();
+		ImageIcon aktIkon = new ImageIcon(aktKep.getScaledInstance(W/20, H/20, Image.SCALE_SMOOTH));
+		
+		
+		JLabel aktLabel = new JLabel(aktIkon);
+		jatekPanel.add(aktLabel,"West");
+	}
+		
 	
 	add(aktHazPanel,"West");
 	add(terkepPanel,"Center");
-	add(aktHazPanel,"East");
-	
+	add(jatekPanel,"East");
+
 }
 
 }

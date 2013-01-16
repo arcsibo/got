@@ -20,28 +20,28 @@ public class Haz {
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
 		//ezt belerakhatjuk egy f���jlba mint a ter���leteket, h���zakat
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, null));
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, null));
-		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, Tabla.dummyKep));
 		
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, Tabla.dummyKep));
 		
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, null));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, Tabla.dummyKep));
 		
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, null));
-		parancsjelzok.add(new Parancsjelzo("korona", true, +1, null));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("korona", true, +1, Tabla.dummyKep));
 		
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, null));
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, null));
-		parancsjelzok.add(new Parancsjelzo("portya", true, +2, null));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("portya", true, +2, Tabla.dummyKep));
 		//kezdeti hazjelzok
 		for(int i=0; i<5; i++){
-			hazjelzok.add(new Hazjelzo(null,this));
+			hazjelzok.add(new Hazjelzo(Tabla.dummyKep,this));
 		}
 		
 		if (nev.equals("Lennister"))
