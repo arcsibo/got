@@ -9,22 +9,34 @@ import javax.swing.*;
 public class TronokHarca extends Applet{
 	
 
+//Az alkalmazás méretei
 final int W = 800;
 final int H = 600;
+
+//Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
+final double hazR = W/20;
+final double parancsjR = W/20;
+final double hazjR = W/20;
+final double terkepR = W/2;
+double teruletR = W/20;
+final double egysegR = W/20;
+final double cuccosR = W/20;
 	
+
+//3 panelre osztható a játék képernyõje
 JPanel aktHazPanel, terkepPanel, jatekPanel;	
 	
 //Zene
 AudioClip zene;
 
+Image kardKep, holloKep, vastronKep;
+
 Tabla tabla;
 
-//Akkor indul csak el a progi ha minden betöltõdött
+//A képek betöltõdését figyelhetjük vele
 MediaTracker tracker;
 
-//res mappa behúzása, file.got feldolgozása
-
-
+//res mappa behúzása, file.got feldolgozásam, etc
 public void initRes()
 {
 	
@@ -43,17 +55,49 @@ public void initRes()
 	  
 	  
 	  Image tablakep = getImage(getCodeBase(), "res/hatar.png");
-	  tracker.addImage(Tabla.kep, 0);
+	  tracker.addImage(tablakep, 0);
+	  loading();
+	  double origW = tablakep.getWidth(null);  
+	  tablakep = scaledImage(tablakep,terkepR);
+	  tracker.addImage(tablakep, 0);
+	  loading();
+	  teruletR = terkepR*(double)tablakep.getWidth(null)/origW;
+	  System.out.println(teruletR);
+	  
+
 	  tabla = new Tabla(tablakep);
 	  
 	  Tabla.dummyKep = tablakep.getScaledInstance(1, 1, Image.SCALE_SMOOTH);
 	  
 	  Image gyalogosKep = getImage(getCodeBase(), "res/gyalog.png");
 	  tracker.addImage(gyalogosKep, 0);
+	  loading();
+	  gyalogosKep = scaledImage(gyalogosKep,egysegR);
+	  
 	  Image lovagKep = getImage(getCodeBase(), "res/lovag.png");
 	  tracker.addImage(lovagKep, 0);
+	  loading();
+	  lovagKep = scaledImage(lovagKep,egysegR);
+	  
 	  Image hajoKep = getImage(getCodeBase(), "res/hajo.png");
 	  tracker.addImage(hajoKep, 0);
+	  loading();
+	  hajoKep = scaledImage(hajoKep,egysegR);
+	  
+	  kardKep = getImage(getCodeBase(), "res/gyalog.png");
+	  tracker.addImage(kardKep, 0);
+	  loading();
+	  kardKep = scaledImage(kardKep,egysegR);
+	  
+	  holloKep = getImage(getCodeBase(), "res/gyalog.png");
+	  tracker.addImage(holloKep, 0);
+	  loading();
+	  holloKep = scaledImage(holloKep,egysegR);
+	  
+	  vastronKep = getImage(getCodeBase(), "res/gyalog.png");
+	  tracker.addImage(vastronKep, 0);
+	  loading();
+	  vastronKep = scaledImage(vastronKep,egysegR);
 	  
 	  try {
 		  fileGot = new URL(getCodeBase(), "file.got");
@@ -85,8 +129,11 @@ public void initRes()
 				if (line.equals("</vastron>")) break;
 				
 				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");
+				
 			    tracker.addImage(kep, 0);
-				Haz haz = new Haz(line,kep);
+			    loading();
+			    kep = scaledImage(kep,hazR);
+			    Haz haz = new Haz(line,kep);
 				Tabla.vastron.add(haz);
 			
 			}
@@ -135,6 +182,8 @@ public void initRes()
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
 				Image kep = getImage(url);
 				tracker.addImage(kep, 0);
+				loading();
+				kep = scaledImage(kep,teruletR);
 		        
 				line = bf.readLine();
 			    int varak = Integer.parseInt(line);
@@ -196,6 +245,8 @@ public void initRes()
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
 				Image kep = getImage(url);
 				tracker.addImage(kep, 0);
+				loading();
+				kep = scaledImage(kep,teruletR);
 				
 		        
 				Haz tulajdonos = Tabla.getHaz(bf.readLine());
@@ -264,7 +315,7 @@ public void initRes()
 	
 }
 
-
+//beállítjuk az appletet, elhelyezzük a grafikai elemeket
 public void init()
 {
 	
@@ -277,31 +328,39 @@ public void init()
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(new BorderLayout());
 	
-	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep().getScaledInstance(W/10, H/10, Image.SCALE_SMOOTH)));
+	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
 	aktHazPanel.add(aktHazKep,"North");
 	
 	
 	terkepPanel = new JPanel();
 	terkepPanel.setLayout(new BorderLayout());
 	
-	JLabel terkep = new JLabel(new ImageIcon(Tabla.kep.getScaledInstance(W, H, Image.SCALE_SMOOTH)));
-	terkepPanel.add(terkep,"Center");
+	JLabel terkep = new JLabel(new ImageIcon(Tabla.kep));
+	terkepPanel.add(terkep,"South");
+	
+	JPanel teruletek = new JPanel();
+	teruletek.setLayout(new FlowLayout());
+	
+	Iterator<Tenger> itTer = Tabla.teruletek.iterator();
+	
+	while (itTer.hasNext()) {
+		teruletek.add(itTer.next());
+	}
+	
+	terkepPanel.add(teruletek,"North");
 	
 	
 	jatekPanel = new JPanel();
 	jatekPanel.setLayout(new FlowLayout());
 	
-	Iterator<Haz> it = Tabla.vastron.iterator();
+	Iterator<Haz> itHaz = Tabla.vastron.iterator();
 	
 	//Az aktuális ház ide nem kell
 	
-	while (it.hasNext())
+	while (itHaz.hasNext())
 	{	
-		Image aktKep = it.next().getKep();
-		ImageIcon aktIkon = new ImageIcon(aktKep.getScaledInstance(W/20, H/20, Image.SCALE_SMOOTH));
 		
-		
-		JLabel aktLabel = new JLabel(aktIkon);
+		JLabel aktLabel = new JLabel(new ImageIcon(itHaz.next().getKep()));
 		jatekPanel.add(aktLabel,"West");
 	}
 		
@@ -311,5 +370,27 @@ public void init()
 	add(jatekPanel,"East");
 
 }
+
+public Image scaledImage(Image img,double ratio) {
+	
+	
+	double WHratio = (double)img.getWidth(null)/(double)img.getHeight(null);
+	
+	Image newImage = img.getScaledInstance((int)Math.round(ratio), (int)Math.round(ratio/WHratio), Image.SCALE_SMOOTH);
+	
+	return newImage;
+}
+
+//Megvárjuk, amíg betöltõdik a kép
+public void loading() {
+	try {
+		tracker.waitForAll();
+		
+	} catch ( InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
 
 }
