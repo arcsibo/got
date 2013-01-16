@@ -42,14 +42,19 @@ public class Egyseg {
 		else return;
 		
 	}
-		public String toString()
-		{
-			String s = "";
+	public int getEro()
+	{
+		return this.ertek;
+	}
+	
+	public String toString()
+	{
+		String s = "";
 			
-			s += this.tipus;
+		s += this.tipus;
 			
-			return s;
-		}
+		return s;
+	}
 		
 		
 	

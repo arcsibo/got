@@ -15,7 +15,6 @@ import javax.swing.*;
 
 public class Tenger{
 	
-
 	private Tenger jomagam = this;
 	protected String nev;
 	protected boolean vizi;
@@ -57,6 +56,7 @@ public class Tenger{
 		egysegek.add(egyseg);
 	}
 	
+	//parancsjelzõk felrakása leszedése
 	public void addParancsjelzo(Parancsjelzo parancs)
 	{
 		if(this.tulajdonos != null)
@@ -78,7 +78,55 @@ public class Tenger{
 		this.tulajdonos.addParancs(this.parancsjelzo);
 		this.parancsjelzo = null;
 	}
-	
+	// portya,lépés támadás, támogatás védekezés korona
+	public void tamadas(Tenger tamad){
+		if(this.parancsjelzo.getTipus().equals("támadás")){
+			int tamadero = 0;
+			int vedero = 0;
+			tamadero += this.getTamadoEro();
+			
+			Iterator<Tenger> it1 = this.szomszedok.iterator();
+			while(it1.hasNext()){
+				Tenger aktTer1 = it1.next();
+				if(this.vizi == true)
+				{
+					if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("támogatás"))//vízi harvan szárazföld nem támogathatja
+					{
+						tamadero += aktTer1.getTamadoEro();
+					}
+				}else{
+					if(aktTer1.parancsjelzo.getTipus().equals("támogatás")){// szárazföldi csata vizi egység támogathatja
+						tamadero += aktTer1.getTamadoEro();
+					}
+				}
+			}//elvileg meg van a támadó erõ
+			Iterator<Tenger> it2 = tamad.szomszedok.iterator();
+			while(it2.hasNext()){
+				Tenger aktTer2 = it2.next();
+				if(tamad.vizi == true)
+				{
+					if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("támogatás"))//vízi harvan szárazföld nem támogathatja
+					{
+						vedero += aktTer2.getTamadoEro();
+					}
+				}else{
+					if(aktTer2.parancsjelzo.getTipus().equals("támogatás")){// szárazföldi csata vizi egység támogathatja
+						vedero += aktTer2.getTamadoEro();
+					}
+				}
+			}//elvileg meg van a védekezõ erõ
+			
+		}
+	}
+	public int getTamadoEro(){
+		int ero = 0;
+		Iterator<Egyseg> ite = this.egysegek.iterator();
+		while(ite.hasNext()){
+			Egyseg aktEgyseg = ite.next();
+			ero += aktEgyseg.getEro();	
+		}
+		return ero;
+	}
 	public void generateSzomszedok()
 	{
 		Iterator<String> it = szomszedNevek.iterator();
@@ -104,7 +152,7 @@ public class Tenger{
 			while(it.hasNext())
 			{
 				Tenger aktTer = it.next();
-				if(aktTer.parancsjelzo.getTipus().equals("korona") || aktTer.parancsjelzo.getTipus().equals("támogatás")){
+				if(aktTer.parancsjelzo.getTipus().equals("korona") || aktTer.parancsjelzo.getTipus().equals("támogatás") ||  aktTer.parancsjelzo.getTipus().equals("portya")){
 					vissza.add(aktTer);
 				}
 			}
