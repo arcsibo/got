@@ -46,10 +46,6 @@ public class Tenger{
 		
 	}
 	
-	public int getHordo(){return 0; }
-	public int getVarak(){ return 0; }
-	public int Korona(){ return 0; }
-	public Hazjelzo getHazjelzo(){ return null; }
 	
 	public void addSzomszed(String szomszed)
 	{
@@ -61,20 +57,20 @@ public class Tenger{
 		egysegek.add(egyseg);
 	}
 	
-	//parancsjelzõk felrakása leszedése
+	//parancsjelzï¿½k felrakï¿½sa leszedï¿½se
 	public void addParancsjelzo(Parancsjelzo parancs)
 	{
 		if(this.tulajdonos != null)
 		{
 			if(this.vizi == true && parancs.getTipus().equals("korona")){
-				//kíír valamit h nem rakhat le
+				//kï¿½ï¿½r valamit h nem rakhat le
 			}else{
 				this.parancsjelzo = parancs;
 				tulajdonos.removeParancs(parancs);
 			}
 			
 		}else{
-			//valamit kiír
+			//valamit kiï¿½r
 		}
 	}
 	
@@ -83,9 +79,9 @@ public class Tenger{
 		this.tulajdonos.addParancs(this.parancsjelzo);
 		this.parancsjelzo = null;
 	}
-	// portya,lépés támadás, támogatás védekezés korona
+	// portya,lï¿½pï¿½s tï¿½madï¿½s, tï¿½mogatï¿½s vï¿½dekezï¿½s korona
 	public void tamadas(Tenger tamad){
-		if(this.parancsjelzo.getTipus().equals("támadás")){
+		if(this.parancsjelzo.getTipus().equals("tï¿½madï¿½s")){
 			int tamadero = 0;
 			int vedero = 0;
 			tamadero += this.getTamadoEro();
@@ -95,32 +91,32 @@ public class Tenger{
 				Tenger aktTer1 = it1.next();
 				if(this.vizi == true)
 				{
-					if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("támogatás"))//vízi harvan szárazföld nem támogathatja
+					if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("tï¿½mogatï¿½s"))//vï¿½zi harvan szï¿½razfï¿½ld nem tï¿½mogathatja
 					{
 						tamadero += aktTer1.getTamadoEro();
 					}
 				}else{
-					if(aktTer1.parancsjelzo.getTipus().equals("támogatás")){// szárazföldi csata vizi egység támogathatja
+					if(aktTer1.parancsjelzo.getTipus().equals("tï¿½mogatï¿½s")){// szï¿½razfï¿½ldi csata vizi egysï¿½g tï¿½mogathatja
 						tamadero += aktTer1.getTamadoEro();
 					}
 				}
-			}//elvileg meg van a támadó erõ
+			}//elvileg meg van a tï¿½madï¿½ erï¿½
 			Iterator<Tenger> it2 = tamad.szomszedok.iterator();
 			while(it2.hasNext()){
 				Tenger aktTer2 = it2.next();
 				if(tamad.vizi == true)
 				{
-					if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("támogatás"))//vízi harvan szárazföld nem támogathatja
+					if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("tï¿½mogatï¿½s"))//vï¿½zi harvan szï¿½razfï¿½ld nem tï¿½mogathatja
 					{
 						vedero += aktTer2.getTamadoEro();
 					}
 				}else{
-					if(aktTer2.parancsjelzo.getTipus().equals("támogatás")){// szárazföldi csata vizi egység támogathatja
+					if(aktTer2.parancsjelzo.getTipus().equals("tï¿½mogatï¿½s")){// szï¿½razfï¿½ldi csata vizi egysï¿½g tï¿½mogathatja
 						vedero += aktTer2.getTamadoEro();
 					}
 					//cpp/mx/3/5
 				}
-			}//elvileg meg van a védekezõ erõ
+			}//elvileg meg van a vï¿½dekezï¿½ erï¿½
 			
 			this.parancsjelzo = null;
 			
@@ -133,7 +129,7 @@ public class Tenger{
 				tamad.setTulaj();
 			}else if(tamadero<vedero){
 				//nemfoglaltad el
-			}else{//egyenlõ
+			}else{//egyenlï¿½
 				int hazT, hazV;
 				hazT = Tabla.kard.indexOf(this.tulajdonos);
 				hazV = Tabla.kard.indexOf(tamad.tulajdonos);
@@ -201,7 +197,7 @@ public class Tenger{
 			while(it.hasNext())
 			{
 				Tenger aktTer = it.next();
-				if(aktTer.parancsjelzo.getTipus().equals("korona") || aktTer.parancsjelzo.getTipus().equals("támogatás") ||  aktTer.parancsjelzo.getTipus().equals("portya")){
+				if(aktTer.parancsjelzo.getTipus().equals("korona") || aktTer.parancsjelzo.getTipus().equals("tï¿½mogatï¿½s") ||  aktTer.parancsjelzo.getTipus().equals("portya")){
 					vissza.add(aktTer);
 				}
 			}
@@ -217,9 +213,9 @@ public class Tenger{
 		while(it.hasNext())
 		{
 			Tenger aktTer = it.next();
-			if(this.vizi == true && aktTer.vizi == true){//vízrõl csak vízre lehet menni
+			if(this.vizi == true && aktTer.vizi == true){//vï¿½zrï¿½l csak vï¿½zre lehet menni
 				vissza.add(aktTer);
-			}else if(this.vizi == false && aktTer.vizi == false){//szárazföldrõl csak szárazföldre
+			}else if(this.vizi == false && aktTer.vizi == false){//szï¿½razfï¿½ldrï¿½l csak szï¿½razfï¿½ldre
 				vissza.add(aktTer);
 			}
 		}
@@ -283,9 +279,6 @@ public class Tenger{
 		return s;
 	}
 	
-	//mÃ¡s hogy nem tudtam megcsinÃ¡lni a hÃ³rdÃ³k szÃ¡mÃ¡nak lekÃ©rdezÃ©sÃ©t, csak
-	//ha itt a tengerben is lelehet valahogy lekÃ©rdezni itt nullÃ¡t ad vissza 
-	//tehÃ¡t nincs hordÃ³s tenger terÃ¼let 
 	
 	
 }

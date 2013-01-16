@@ -14,7 +14,7 @@ public class Tabla{
 	public static int vadakEreje = 0;
 	
 	
-	//Gyuri,ï¿½ron
+	//Gyuri,ï¿½ï¿½ï¿½ron
 	public static Haz aktHaz;
 	public static Tenger aktTer;
 	public static int count = 0;
@@ -27,7 +27,7 @@ public class Tabla{
 		count++;
 	}
 	
-	// /Gyuri,ï¿½ron
+	// /Gyuri,ï¿½ï¿½ï¿½ron
 	
  	public static Haz getHaz(String nev)
 	{
@@ -48,7 +48,6 @@ public class Tabla{
 	public static void setHordo()
 	{
 		Iterator<Haz> hazit = vastron.iterator();
-		Iterator<Tenger> terit = teruletek.iterator();
 		while (hazit.hasNext())
 		{
 			int hordo = 0;
@@ -64,12 +63,48 @@ public class Tabla{
 					String aktTulj = aktTer.getHaz().getNev();
 					if (aktNev.equals(aktTulj) && !aktTer.getTipus())
 					{
-						hordo += aktTer.getHordo();
+						if(aktTer instanceof Terulet)
+						{
+							hordo += ((Terulet) aktTer).getHordo();
+						}
 					}
 				}
 				
 			}
 			aktHaz.setHordo(hordo);
+			
+		}
+		
+	}
+	
+	public static void setHjelzo()
+	{
+		Iterator<Haz> hazit = vastron.iterator();
+		while (hazit.hasNext())
+		{
+			int hazjelzo = 0;
+			aktHaz = hazit.next();
+			String aktNev = aktHaz.getNev();
+			
+			//while(terit.hasNext())
+			for(int i = 0; i < teruletek.size(); i ++)
+			{
+				aktTer = teruletek.get(i);// = terit.next();
+				if(aktTer.getHaz() != null)
+				{
+					String aktTulj = aktTer.getHaz().getNev();
+					if (aktNev.equals(aktTulj) && !aktTer.getTipus())
+					{
+						if(aktTer instanceof Terulet)
+						{
+							hazjelzo += ((Terulet) aktTer).Korona();
+						}
+						
+					}
+				}
+				
+			}
+			aktHaz.setHjelzo(hazjelzo);
 			
 		}
 		
@@ -90,7 +125,7 @@ public class Tabla{
 		s += "\n";
 		
 		Iterator<Haz> hazIt = vastron.iterator();
-		s += "Házak:\n";
+		s += "Hï¿½zak:\n";
 		while (hazIt.hasNext())
 		{
 			Haz aktHaz = hazIt.next();
