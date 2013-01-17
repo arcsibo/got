@@ -305,6 +305,8 @@ public class Tenger extends JLabel{
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			System.out.println("Klikk erre:"+jomagam.nev);
+			Tabla.kovHaz();
+			System.out.println(Tabla.aktHaz.getNev());
 		}
 
 		@Override

@@ -10,21 +10,22 @@ public class TronokHarca extends Applet{
 	
 
 //Az alkalmazás méretei
-final int W = 800;
+final int W = 1024;
 final int H = 600;
 final int korrigálás = 626;
 
 //Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
-final double hazR = W/20;
+final double hazR = W/12;
 final double parancsjR = W/20;
 final double hazjR = W/20;
-final double terkepR = W/2;
 double teruletR1, teruletR2;
 final double egysegR = W/20;
 final double cuccosR = W/20;
 
-final double aktHazPanelR = W/6;
-final double jatekPanelR = W/3;
+final double aktHazPanelR = hazR;
+final double jatekPanelR = W/4;
+
+final double terkepR = W - (aktHazPanelR + jatekPanelR);
 
 
 //3 panelre osztható a játék képernyõje
@@ -336,6 +337,7 @@ public void init()
 {
 	
 	initRes();
+	Tabla.kovHaz();
 	
 	setSize(new Dimension(W,H));
 	setPreferredSize(new Dimension(W,H));
@@ -358,9 +360,9 @@ public void init()
 	
 	while (itHaz.hasNext())
 	{	
-		
-		JLabel aktLabel = new JLabel(new ImageIcon(itHaz.next().getKep()));
-		jatekPanel.add(aktLabel,"West");
+		Haz aktHaz = itHaz.next();
+		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
+		if (aktHaz != Tabla.aktHaz) jatekPanel.add(aktLabel,"West");
 	}
 		
 	
