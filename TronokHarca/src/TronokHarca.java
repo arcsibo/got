@@ -21,7 +21,10 @@ final double terkepR = W/1.2;
 double teruletR1, teruletR2;
 final double egysegR = W/20;
 final double cuccosR = W/20;
-	
+
+final double aktHazPanelR = W/6;
+final double jatekPanelR = W/3;
+
 
 //3 panelre osztható a játék képernyõje
 JPanel aktHazPanel, jatekPanel;	
@@ -334,8 +337,8 @@ public void init()
 	
 	setSize(new Dimension(W,H));
 	setPreferredSize(new Dimension(W,H));
-	setLayout(new BorderLayout());
-	//setLayout(null);
+	//setLayout(new BorderLayout());
+	setLayout(null);
 	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(new BorderLayout());
@@ -359,13 +362,17 @@ public void init()
 	}
 		
 	
-	add(aktHazPanel,"West");
+	aktHazPanel.setBounds(0,0,(int) Math.round(aktHazPanelR),H);
+	tabla.setBounds((int) Math.round(aktHazPanelR), 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
+	jatekPanel.setBounds((int)Math.round(aktHazPanelR)+tabla.kep.getWidth(null),0,(int)Math.round(jatekPanelR), H);
+	
+	
 	tabla.placeTeruletek();
 	
-	//tabla.setBounds(0, 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
-	//add(tabla);
-	add(tabla,"Center");
-	add(jatekPanel,"East");
+
+	add(aktHazPanel);
+	add(tabla);
+	add(jatekPanel);
 
 }
 
