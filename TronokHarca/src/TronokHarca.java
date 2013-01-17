@@ -53,7 +53,7 @@ public void initRes()
 	  
 	  try{ URL u1=new URL(getCodeBase(),"res/zene.au");
 	    zene=getAudioClip(u1);
-	    //zene.loop();
+	    zene.loop();
 	  }
 	  catch(Exception  e){
 		   System.out.println(e);
