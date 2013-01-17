@@ -2,10 +2,7 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageFilter;
-import java.awt.image.ImageObserver;
-import java.awt.image.RescaleOp;
+import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -53,6 +50,7 @@ public class Tenger extends JLabel{
 		
 		this.addMouseListener(ml);
 		
+		szinez();
 	}
 	
 	
@@ -178,11 +176,6 @@ public class Tenger extends JLabel{
 	}
 	
 	
-	public Tenger getTenger(){
-		return this;
-	}
-	
-	
 	public void setTulaj(){
 		if(this.egysegek != null){
 			this.tulajdonos = this.egysegek.get(0).getHaz();
@@ -304,9 +297,12 @@ public class Tenger extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println("Klikk erre:"+jomagam.nev);
-			Tabla.kovHaz();
-			System.out.println(Tabla.aktHaz.getNev());
+			int x = arg0.getX();
+			int y = arg0.getY();
+		
+			
+			System.out.println("Klikk erre:"+jomagam.nev + " : " + jomagam.tulajdonos.getNev() + x + ":"+ y);
+			
 		}
 
 		@Override
@@ -335,6 +331,22 @@ public class Tenger extends JLabel{
 		
 	};
 	
+	
+	
+	public void szinez()
+	{
+		
+		Image resultImage;
+		
+		RGBImageFilter filter = new Filter(this);
+        ImageProducer producer = new FilteredImageSource(
+                                        kep.getSource(),
+                                        filter);
+        resultImage = createImage(producer);
+        
+        this.setIcon(new ImageIcon(resultImage));
+		
+	}
 	
 	
 }

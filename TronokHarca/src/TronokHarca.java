@@ -69,7 +69,7 @@ public void initRes()
 	  tracker.addImage(tablakep, 0);
 	  loading();
 
-	  tabla = new Tabla(tablakep);
+	  tabla = new Tabla(tablakep,(int) Math.round(aktHazPanelR));
 	  
 	  teruletR1 = (double)Tabla.kep.getWidth(null)/origW;
 	  teruletR2 = (double)Tabla.kep.getHeight(null)/origH;

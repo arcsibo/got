@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.util.*;
 import javax.swing.*;
@@ -20,14 +22,22 @@ public class Tabla extends JLabel{
 	public static Tenger aktTer;
 	public static int count = 0;
 	
+	private int yScroll = 0;
+	private int x;
 	
-	public Tabla(Image kep)
+	private Tabla jomagam = this;
+	
+	
+	public Tabla(Image kep, int x)
 	{
 		//super(new ImageIcon(kep));
 		super();
 		this.kep = kep;
 		
 		this.setLayout(null);
+		this.addMouseWheelListener(wl);
+		this.x = x;
+		
 	}
 	
 	public void placeTeruletek()
@@ -207,4 +217,27 @@ public class Tabla extends JLabel{
 		
 		return s;
 	}
+	
+	
+	MouseWheelListener wl = new MouseWheelListener() {
+
+		@Override
+		public void mouseWheelMoved(MouseWheelEvent e) {
+			// TODO Auto-generated method stub
+			int notches = e.getWheelRotation();
+		       if (notches < 0) {
+		           
+		    	   yScroll+=15;
+		    	   
+		       } else {
+		    	   
+		    	   yScroll-=15;
+		           
+		       }
+		       jomagam.setBounds(x, yScroll, jomagam.kep.getWidth(null), jomagam.kep.getHeight(null));
+			
+		}
+		
+		
+	};
 }
