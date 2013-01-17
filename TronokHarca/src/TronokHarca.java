@@ -17,7 +17,7 @@ final int H = 600;
 final double hazR = W/20;
 final double parancsjR = W/20;
 final double hazjR = W/20;
-final double terkepR = W/2;
+final double terkepR = W/1.2;
 double teruletR1, teruletR2;
 final double egysegR = W/20;
 final double cuccosR = W/20;
@@ -334,8 +334,8 @@ public void init()
 	
 	setSize(new Dimension(W,H));
 	setPreferredSize(new Dimension(W,H));
-	//setLayout(new BorderLayout());
-	setLayout(null);
+	setLayout(new BorderLayout());
+	//setLayout(null);
 	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(new BorderLayout());
@@ -359,13 +359,13 @@ public void init()
 	}
 		
 	
-	//add(aktHazPanel,"West");
+	add(aktHazPanel,"West");
 	tabla.placeTeruletek();
 	
-	tabla.setBounds(0, 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
-	add(tabla);
-	//add(tabla,"East");
-	//add(jatekPanel,"East");
+	//tabla.setBounds(0, 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
+	//add(tabla);
+	add(tabla,"Center");
+	add(jatekPanel,"East");
 
 }
 
