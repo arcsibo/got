@@ -21,6 +21,8 @@ Greyjoy
 </hollo>
 <terulet>
 CastleBlack
+1356
+230
 0
 0
 1
@@ -35,6 +37,8 @@ Winterfell
 </terulet>
 <terulet>
 Karhold
+1711
+435
 0
 0
 1
@@ -49,6 +53,8 @@ CastleBlack
 </terulet>
 <terulet>
 Winterfell
+1095
+332
 2
 1
 1
@@ -67,6 +73,8 @@ MoatCailin
 </terulet>
 <terulet>
 TheStonyShore
+733
+525
 0
 1
 0
@@ -80,6 +88,8 @@ BayOfIce
 </terulet>
 <terulet>
 WhiteHarbor
+1418
+859
 1
 0
 0
@@ -97,6 +107,8 @@ TheShiveringSea
 </terulet>
 <terulet>
 MoatCailin
+1220
+1045
 1
 0
 0
@@ -115,6 +127,8 @@ BayOfIce
 </terulet>
 <terulet>
 Flint'sFinger
+756
+1173
 1
 0
 0
@@ -130,6 +144,8 @@ Ironman'sBay
 </terulet>
 <terulet>
 GreyWaterWatch
+1007
+1133
 0
 1
 0
@@ -146,6 +162,8 @@ Ironman'sBay
 </terulet>
 <terulet>
 WidowsWatch
+1640
+918
 0
 1
 0
@@ -162,6 +180,8 @@ TheShiveringSea
 </terulet>
 <terulet>
 Pyke
+767
+1438
 2
 1
 1
@@ -174,6 +194,8 @@ Ironman'sBay
 </terulet>
 <terulet>
 Seagard
+1100
+1277
 2
 1
 1
@@ -189,6 +211,8 @@ RiverRun
 </terulet>
 <terulet>
 TheTwins
+1260
+1275
 0
 0
 1
@@ -205,6 +229,8 @@ TheNarrowSea
 </terulet>
 <terulet>
 TheFingers
+1497
+1304
 0
 1
 0
@@ -219,6 +245,8 @@ TheMountainsOfTheMoon
 </terulet>
 <terulet>
 TheMountainsOfTheMoon
+1376
+1416
 0
 1
 0
@@ -235,6 +263,8 @@ TheNarrowSea
 </terulet>
 <terulet>
 TheEyrie
+1652
+1582
 1
 1
 1
@@ -248,6 +278,8 @@ TheNarrowSea
 </terulet>
 <terulet>
 RiverRun
+1159
+1592
 2
 1
 1
@@ -265,6 +297,8 @@ TheGoldenSound
 </terulet>
 <terulet>
 Harrenhal
+1287
+1754
 1
 0
 1
@@ -280,6 +314,8 @@ Blackwater
 </terulet>
 <terulet>
 Lannisport
+767
+1657
 2
 2
 0
@@ -295,6 +331,8 @@ StoneyStep
 </terulet>
 <terulet>
 StoneyStep
+1070
+1812
 0
 0
 1
@@ -310,6 +348,8 @@ SearoadMarches
 </terulet>
 <terulet>
 Blackwater
+1068
+1957
 0
 0
 1
@@ -325,6 +365,8 @@ SearoadMarches
 </terulet>
 <terulet>
 SearoadMarches
+810
+2098
 0
 1
 0
@@ -343,6 +385,8 @@ TheReach
 </terulet>
 <terulet>
 CrackclawPoint
+1554
+1753
 1
 0
 0
@@ -361,6 +405,8 @@ Blackwater
 </terulet>
 <terulet>
 KingsLanding
+1492
+1994
 2
 0
 2
@@ -377,6 +423,8 @@ TheReach
 </terulet>
 <terulet>
 HighGarden
+889
+2324
 2
 2
 0
@@ -394,6 +442,8 @@ WestSummerSea
 </terulet>
 <terulet>
 TheReach
+1050
+2175
 1
 0
 0
@@ -411,6 +461,8 @@ HighGarden
 </terulet>
 <terulet>
 Kingswood
+1337
+2006
 0
 1
 1
@@ -428,6 +480,8 @@ DornishMarches
 </terulet>
 <terulet>
 DragonStone
+1859
+1798
 2
 1
 1
@@ -440,6 +494,8 @@ ShipbreakerBay
 </terulet>
 <terulet>
 StormsEnd
+1472
+2280
 1
 0
 0
@@ -455,6 +511,8 @@ DornishMarches
 </terulet>
 <terulet>
 DornishMarches
+1013
+2474
 0
 1
 0
@@ -474,6 +532,8 @@ Oldtown
 </terulet>
 <terulet>
 Oldtown
+764
+2456
 1
 0
 0
@@ -489,6 +549,8 @@ WestSummerSea
 </terulet>
 <terulet>
 Starfall
+1078
+2681
 0
 1
 0
@@ -504,6 +566,8 @@ Yronwood
 </terulet>
 <terulet>
 Yronwood
+1270
+2684
 0
 0
 1
@@ -521,6 +585,8 @@ EastSummerSea
 </terulet>
 <terulet>
 Sunspear
+1696
+2727
 1
 1
 1
@@ -535,6 +601,8 @@ Yronwood
 </terulet>
 <terulet>
 TheArbor
+723
+2869
 0
 0
 1
@@ -547,6 +615,8 @@ WestSummerSea
 </terulet>
 <tenger>
 TheShiveringSea
+1473
+0
 Stark
 0
 0
@@ -562,6 +632,8 @@ MoatCailin
 </tenger>
 <tenger>
 BayOfIce
+623
+0
 NULL
 0
 0
@@ -577,6 +649,8 @@ SunsetSea
 </tenger>
 <tenger>
 TheNarrowSea
+1421
+990
 NULL
 0
 0
@@ -594,6 +668,8 @@ TheShiveringSea
 </tenger>
 <tenger>
 ShipbreakerBay
+1789
+1733
 Baratheon
 0
 0
@@ -610,6 +686,8 @@ EastSummerSea
 </tenger>
 <tenger>
 EastSummerSea
+1497
+2570
 NULL
 0
 0
@@ -623,6 +701,8 @@ WestSummerSea
 </tenger>
 <tenger>
 WestSummerSea
+623
+2424
 Tyrell
 0
 0
@@ -638,6 +718,8 @@ EastSummerSea
 </tenger>
 <tenger>
 SunsetSea
+620
+1316
 NULL
 0
 0
@@ -653,6 +735,8 @@ HighGarden
 </tenger>
 <tenger>
 Ironman'sBay
+664
+1333
 Greyjoy
 0
 0
@@ -668,6 +752,8 @@ Pyke
 </tenger>
 <tenger>
 TheGoldenSound
+705
+1621
 Lannister
 0
 0
@@ -680,6 +766,8 @@ SearoadMarches
 </tenger>
 <tenger>
 BlackwaterBay
+1638
+1904
 NULL
 0
 0
@@ -692,6 +780,8 @@ KingsLanding
 </tenger>
 <tenger>
 SeaOfDorne
+1468
+2508
 NULL
 0
 0

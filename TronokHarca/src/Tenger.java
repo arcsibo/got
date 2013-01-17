@@ -21,8 +21,8 @@ public class Tenger extends JLabel{
 	protected Image kep;
 	
 	//Térképen való elhelyezkedés
-	public double X = 0.5;
-	public double Y = 0.5;
+	public double X ;
+	public double Y ;
 
 	protected Haz tulajdonos;
 	protected Parancsjelzo parancsjelzo;
@@ -31,7 +31,7 @@ public class Tenger extends JLabel{
 	protected Vector<Egyseg> egysegek;
 	protected Vector<String> szomszedNevek;
 	
-	public Tenger(String nev, Image kep, Haz tulajdonos)
+	public Tenger(String nev, Image kep, Haz tulajdonos, double X, double Y)
 	{
 		super(new ImageIcon(kep));
 		
@@ -47,6 +47,9 @@ public class Tenger extends JLabel{
 		szomszedok = new Vector<Tenger>();
 		egysegek = new Vector<Egyseg>();
 		szomszedNevek = new Vector<String>();
+		
+		this.X = X;
+		this.Y = Y;
 		
 	}
 	

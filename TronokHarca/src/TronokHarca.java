@@ -17,8 +17,8 @@ final int H = 600;
 final double hazR = W/20;
 final double parancsjR = W/20;
 final double hazjR = W/20;
-final double terkepR = W/2;
-double teruletR = W/20;
+final double terkepR = W;
+double teruletR;
 final double egysegR = W/20;
 final double cuccosR = W/20;
 	
@@ -55,10 +55,11 @@ public void initRes()
 		    }
 	  
 	  
-	  Image tablakep = getImage(getCodeBase(), "res/hatar.png");
+	  Image tablakep = getImage(getCodeBase(), "res/hatar2.png");
 	  tracker.addImage(tablakep, 0);
 	  loading();
-	  double origW = tablakep.getWidth(null);  
+	  double origW = tablakep.getWidth(null);
+	  double origH = tablakep.getHeight(null); 
 	  tablakep = scaledImage(tablakep,terkepR);
 	  tracker.addImage(tablakep, 0);
 	  loading();
@@ -84,17 +85,17 @@ public void initRes()
 	  loading();
 	  hajoKep = scaledImage(hajoKep,egysegR);
 	  
-	  kardKep = getImage(getCodeBase(), "res/gyalog.png");
+	  kardKep = getImage(getCodeBase(), "res/kard.png");
 	  tracker.addImage(kardKep, 0);
 	  loading();
 	  kardKep = scaledImage(kardKep,egysegR);
 	  
-	  holloKep = getImage(getCodeBase(), "res/gyalog.png");
+	  holloKep = getImage(getCodeBase(), "res/hollo.png");
 	  tracker.addImage(holloKep, 0);
 	  loading();
 	  holloKep = scaledImage(holloKep,egysegR);
 	  
-	  vastronKep = getImage(getCodeBase(), "res/gyalog.png");
+	  vastronKep = getImage(getCodeBase(), "res/tron.png");
 	  tracker.addImage(vastronKep, 0);
 	  loading();
 	  vastronKep = scaledImage(vastronKep,egysegR);
@@ -178,6 +179,9 @@ public void initRes()
 				line = bf.readLine();
 				if (line.equals("</terulet>")) break;
 				String nev = line;
+					
+				double X = Integer.parseInt(bf.readLine()) / origW;
+				double Y = Integer.parseInt(bf.readLine()) / origH;
 				
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
 				Image kep = getImage(url);
@@ -197,9 +201,8 @@ public void initRes()
 			    
 			    Haz tulajdonos = Tabla.getHaz(bf.readLine());
 			    
-			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep);
+			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep,X,Y);
 			    Tabla.teruletek.add(terulet);
-			    //add(terulet);
 			    
 			    line = bf.readLine();
 			    int gyalogos = Integer.parseInt(line);
@@ -242,6 +245,9 @@ public void initRes()
 				if (line.equals("</tenger>")) break;
 				String nev = line;
 				
+				double X = Integer.parseInt(bf.readLine()) / origW;
+				double Y = Integer.parseInt(bf.readLine()) / origH;
+				
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
 				Image kep = getImage(url);
 				tracker.addImage(kep, 0);
@@ -251,7 +257,7 @@ public void initRes()
 		        
 				Haz tulajdonos = Tabla.getHaz(bf.readLine());
 				
-			    Tenger tenger = new Tenger(nev, kep, tulajdonos);
+			    Tenger tenger = new Tenger(nev, kep, tulajdonos,X,Y);
 			    Tabla.teruletek.add(tenger);	
 			    
 			    
@@ -323,7 +329,8 @@ public void init()
 	
 	setSize(new Dimension(W,H));
 	setPreferredSize(new Dimension(W,H));
-	setLayout(new BorderLayout());
+	//setLayout(new BorderLayout());
+	setLayout(null);
 	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(new BorderLayout());
@@ -334,6 +341,7 @@ public void init()
 	jatekPanel = new JPanel();
 	jatekPanel.setLayout(new FlowLayout());
 	
+	jatekPanel.add(new JLabel(new ImageIcon(vastronKep)));
 	Iterator<Haz> itHaz = Tabla.vastron.iterator();
 	
 	//Az aktuális ház ide nem kell
@@ -346,10 +354,13 @@ public void init()
 	}
 		
 	
-	add(aktHazPanel,"West");
+	//add(aktHazPanel,"West");
 	tabla.placeTeruletek();
-	add(tabla,"Center");
-	add(jatekPanel,"East");
+	
+	tabla.setBounds(0, 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
+	add(tabla);
+	//add(tabla,"East");
+	//add(jatekPanel,"East");
 
 }
 

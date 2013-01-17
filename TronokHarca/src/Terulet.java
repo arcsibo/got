@@ -10,9 +10,9 @@ public class Terulet extends Tenger{
 	private int korona;
 	private Hazjelzo hazjelzo;
 	
-	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep)
+	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep, double X, double Y)
 	{
-		super(nev, kep,tulajdonos);
+		super(nev, kep,tulajdonos,X,Y);
 		this.vizi = false;
 		this.varak = varak;
 		this.hordok = hordok;
