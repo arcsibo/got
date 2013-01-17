@@ -12,6 +12,7 @@ public class TronokHarca extends Applet{
 //Az alkalmazás méretei
 final int W = 800;
 final int H = 600;
+final int korrigálás = 626;
 
 //Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
 final double hazR = W/20;
@@ -58,7 +59,7 @@ public void initRes()
 		    }
 	  
 	  
-	  Image tablakep = getImage(getCodeBase(), "res/hatar.png");
+	  Image tablakep = getImage(getCodeBase(), "res/hatar2.png");
 	  tracker.addImage(tablakep, 0);
 	  loading();
 	  double origW = tablakep.getWidth(null);
@@ -183,8 +184,10 @@ public void initRes()
 				line = bf.readLine();
 				if (line.equals("</terulet>")) break;
 				String nev = line;
-					
-				double X = Integer.parseInt(bf.readLine()) / origW;
+				
+				int x = Integer.parseInt(bf.readLine()) - korrigálás;
+				
+				double X = x / origW;
 				double Y = Integer.parseInt(bf.readLine()) / origH;
 				
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
@@ -250,7 +253,8 @@ public void initRes()
 				if (line.equals("</tenger>")) break;
 				String nev = line;
 				
-				double X = Integer.parseInt(bf.readLine()) / origW;
+				int x =  Integer.parseInt(bf.readLine()) - korrigálás;
+				double X = x / origW;
 				double Y = Integer.parseInt(bf.readLine()) / origH;
 				
 				URL url = new URL(getCodeBase(),"res/"+nev+".png");
@@ -362,7 +366,7 @@ public void init()
 	
 	aktHazPanel.setBounds(0,0,(int) Math.round(aktHazPanelR),H);
 	tabla.setBounds((int) Math.round(aktHazPanelR), 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
-	jatekPanel.setBounds((int)Math.round(aktHazPanelR)+tabla.kep.getWidth(null),0,(int)Math.round(jatekPanelR), H);
+	jatekPanel.setBounds((int) Math.round(aktHazPanelR)+tabla.kep.getWidth(null),0,(int)Math.round(jatekPanelR), H);
 	
 	
 	tabla.placeTeruletek();
