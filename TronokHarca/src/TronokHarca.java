@@ -17,8 +17,8 @@ final int H = 600;
 final double hazR = W/20;
 final double parancsjR = W/20;
 final double hazjR = W/20;
-final double terkepR = W;
-double teruletR;
+final double terkepR = W/2;
+double teruletR1, teruletR2;
 final double egysegR = W/20;
 final double cuccosR = W/20;
 	
@@ -55,7 +55,7 @@ public void initRes()
 		    }
 	  
 	  
-	  Image tablakep = getImage(getCodeBase(), "res/hatar2.png");
+	  Image tablakep = getImage(getCodeBase(), "res/hatar.png");
 	  tracker.addImage(tablakep, 0);
 	  loading();
 	  double origW = tablakep.getWidth(null);
@@ -63,10 +63,13 @@ public void initRes()
 	  tablakep = scaledImage(tablakep,terkepR);
 	  tracker.addImage(tablakep, 0);
 	  loading();
-	  teruletR = terkepR*(double)tablakep.getWidth(null)/origW;
-	  
 
 	  tabla = new Tabla(tablakep);
+	  
+	  teruletR1 = (double)Tabla.kep.getWidth(null)/origW;
+	  teruletR2 = (double)Tabla.kep.getHeight(null)/origH;
+	  
+	  System.out.println((double)Tabla.kep.getWidth(null)/origW);
 	  
 	  Tabla.dummyKep = tablakep.getScaledInstance(1, 1, Image.SCALE_SMOOTH);
 	  
@@ -187,7 +190,8 @@ public void initRes()
 				Image kep = getImage(url);
 				tracker.addImage(kep, 0);
 				loading();
-				kep = scaledImage(kep,teruletR);
+				if (tracker.isErrorAny()) System.out.println(nev);
+				kep = scaledImage2(kep,teruletR1, teruletR2);
 		        
 				line = bf.readLine();
 			    int varak = Integer.parseInt(line);
@@ -252,7 +256,8 @@ public void initRes()
 				Image kep = getImage(url);
 				tracker.addImage(kep, 0);
 				loading();
-				kep = scaledImage(kep,teruletR);
+				if (tracker.isErrorAny()) System.out.println(nev);
+				kep = scaledImage2(kep,teruletR1, teruletR2);
 				
 		        
 				Haz tulajdonos = Tabla.getHaz(bf.readLine());
@@ -373,6 +378,15 @@ public Image scaledImage(Image img,double ratio) {
 	
 	return newImage;
 }
+
+public Image scaledImage2(Image img,double ratio1, double ratio2) {
+	
+	
+	Image newImage = img.getScaledInstance((int)Math.round(ratio1*img.getWidth(this)), (int)Math.round(ratio2*img.getHeight(this)), Image.SCALE_SMOOTH);
+	
+	return newImage;
+}
+
 
 //Megvárjuk, amíg betöltõdik a kép
 public void loading() {

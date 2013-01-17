@@ -23,8 +23,8 @@ public class Tabla extends JLabel{
 	
 	public Tabla(Image kep)
 	{
-		//super(new ImageIcon(kep));
-		super();
+		super(new ImageIcon(kep));
+		//super();
 		this.kep = kep;
 		
 		this.setLayout(null);
@@ -34,15 +34,11 @@ public class Tabla extends JLabel{
 	{
 		Iterator<Tenger> it = teruletek.iterator();
 		
-		JLabel hatar = new JLabel(new ImageIcon(kep));
-		hatar.setBounds(0, 0, kep.getWidth(null), kep.getHeight(null));
-		this.add(hatar);
-		
 		while (it.hasNext())
 		{
 			Tenger aktTer = it.next();
 			aktTer.setBounds((int)Math.round(aktTer.X*this.kep.getWidth(null)), (int)Math.round(aktTer.Y*this.kep.getHeight(null)), aktTer.getKep().getWidth(null), aktTer.getKep().getHeight(null));
-			//aktTer.setBounds((int)Math.round(aktTer.X), (int)Math.round(aktTer.Y), aktTer.getKep().getWidth(null), aktTer.getKep().getHeight(null));
+			
 			this.add(aktTer);
 			
 		}
