@@ -132,6 +132,49 @@ public class Tabla extends JLabel{
 		
 	}
 	
+	//licitálás 
+	public static void licit()
+	{
+		Iterator<Haz> hazit = vastron.iterator();
+		while (hazit.hasNext())
+		{
+			aktHaz = hazit.next();
+			
+			//////////////////////////////////////////////
+			//ide kene beszurni a GUI-s licitalas kodjat// 
+
+			int licit = 0;
+			
+			aktHaz.setLicit(licit);
+			//////////////////////////////////////////////
+		}
+	}
+	
+	public static void zeroLicit()
+	{
+		Iterator<Haz> hazit = vastron.iterator();
+		while (hazit.hasNext())
+		{
+			aktHaz = hazit.next();
+			aktHaz.zeroLicit();
+		}		
+	}
+	
+	//a licit testeleshez kell
+	public static void randomLicit()
+	{
+		Iterator<Haz> hazit = vastron.iterator();
+		while (hazit.hasNext())
+		{
+			aktHaz = hazit.next();
+			Random generator = new Random();
+			
+			int licit = generator.nextInt(100);
+			
+			aktHaz.setLicit(licit);
+		}
+	}
+	//licitálás vége
 	public static String toString1()
 	{
 		String s = "";

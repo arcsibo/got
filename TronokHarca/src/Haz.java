@@ -10,6 +10,7 @@ public class Haz {
 	private Vector<Hazjelzo> hazjelzok;
 	private int hordo;
 	private int hjelzo;
+	private int licit;
 	
 	public Haz(String nev, Image kep)
 	{
@@ -87,6 +88,10 @@ public class Haz {
 	public Color getColor() { return this.szin; }
 	public int getHordo() { return this.hordo; }
 	public Image getKep() { return this.kep; }
+	public int getLicit() { return this.licit; }
+	public void setLicit(int l) { this.licit = l; }
+	public void zeroLicit(){ this.licit = 0; }
+	
 	public Parancsjelzo getParancsjelzo(int i)
 	{
 		return this.parancsjelzok.get(i);
