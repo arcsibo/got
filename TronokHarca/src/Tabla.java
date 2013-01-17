@@ -25,8 +25,22 @@ public class Tabla extends JLabel{
 	{
 		super(new ImageIcon(kep));
 		this.kep = kep;
+		
+		this.setLayout(null);
 	}
 	
+	public void placeTeruletek()
+	{
+		Iterator<Tenger> it = teruletek.iterator();
+		
+		while (it.hasNext())
+		{
+			Tenger aktTer = it.next();
+			aktTer.setBounds((int)Math.round(aktTer.X*this.getWidth()), (int)Math.round(aktTer.Y*this.getHeight()), aktTer.getKep().getWidth(null), aktTer.getKep().getHeight(null));
+			this.add(aktTer);
+			
+		}
+	}
 	
 	public static void kovHaz()
 	{ 

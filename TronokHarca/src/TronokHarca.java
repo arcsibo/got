@@ -24,7 +24,7 @@ final double cuccosR = W/20;
 	
 
 //3 panelre osztható a játék képernyõje
-JPanel aktHazPanel, terkepPanel, jatekPanel;	
+JPanel aktHazPanel, jatekPanel;	
 	
 //Lógeci 
 //Zene
@@ -63,7 +63,6 @@ public void initRes()
 	  tracker.addImage(tablakep, 0);
 	  loading();
 	  teruletR = terkepR*(double)tablakep.getWidth(null)/origW;
-	  System.out.println(teruletR);
 	  
 
 	  tabla = new Tabla(tablakep);
@@ -332,25 +331,6 @@ public void init()
 	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
 	aktHazPanel.add(aktHazKep,"North");
 	
-	
-	terkepPanel = new JPanel();
-	terkepPanel.setLayout(new BorderLayout());
-	
-	JLabel terkep = new JLabel(new ImageIcon(Tabla.kep));
-	terkepPanel.add(terkep,"South");
-	
-	JPanel teruletek = new JPanel();
-	teruletek.setLayout(new FlowLayout());
-	
-	Iterator<Tenger> itTer = Tabla.teruletek.iterator();
-	
-	while (itTer.hasNext()) {
-		teruletek.add(itTer.next());
-	}
-	
-	terkepPanel.add(teruletek,"North");
-	
-	
 	jatekPanel = new JPanel();
 	jatekPanel.setLayout(new FlowLayout());
 	
@@ -367,7 +347,8 @@ public void init()
 		
 	
 	add(aktHazPanel,"West");
-	add(terkepPanel,"Center");
+	tabla.placeTeruletek();
+	add(tabla,"Center");
 	add(jatekPanel,"East");
 
 }

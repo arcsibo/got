@@ -19,6 +19,10 @@ public class Tenger extends JLabel{
 	protected String nev;
 	protected boolean vizi;
 	protected Image kep;
+	
+	//Térképen való elhelyezkedés
+	public double X = 0.5;
+	public double Y = 0.5;
 
 	protected Haz tulajdonos;
 	protected Parancsjelzo parancsjelzo;
