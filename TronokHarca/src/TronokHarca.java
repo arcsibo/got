@@ -17,7 +17,7 @@ final int H = 600;
 final double hazR = W/20;
 final double parancsjR = W/20;
 final double hazjR = W/20;
-final double terkepR = W/1.2;
+final double terkepR = W/2;
 double teruletR1, teruletR2;
 final double egysegR = W/20;
 final double cuccosR = W/20;
@@ -71,8 +71,6 @@ public void initRes()
 	  
 	  teruletR1 = (double)Tabla.kep.getWidth(null)/origW;
 	  teruletR2 = (double)Tabla.kep.getHeight(null)/origH;
-	  
-	  System.out.println((double)Tabla.kep.getWidth(null)/origW);
 	  
 	  Tabla.dummyKep = tablakep.getScaledInstance(1, 1, Image.SCALE_SMOOTH);
 	  
