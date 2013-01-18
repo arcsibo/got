@@ -20,7 +20,8 @@ public class Hazjelzo extends JLabel{
 		return this.tulajdonos;
 	}
 	
-	public Image getLekep(){
+	public Image getKep()
+	{
 		return this.lekep;
 	}
 	

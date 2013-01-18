@@ -350,10 +350,16 @@ public void init()
 	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
 	aktHazPanel.add(aktHazKep,"North");
 	
-	Vector<Hazjelzo> vectorJelzok = new Vector<Hazjelzo>();
-	vectorJelzok = Tabla.aktHaz.getJezok();
+	Vector<Hazjelzo> vectorJelzok = Tabla.aktHaz.getJezok();
 	Iterator<Hazjelzo> itJelzo = vectorJelzok.iterator();
-
+	while(itJelzo.hasNext())
+	{
+		Hazjelzo aktJelzo = itJelzo.next();
+		aktJelzo.setBounds(50, 200, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktHazPanel.add(aktJelzo);
+	}
+	
+	
 	jatekPanel = new JPanel();
 	jatekPanel.setLayout(new FlowLayout());
 	
