@@ -12,7 +12,7 @@ public class Haz {
 	private int hjelzo;
 	private int licit;
 	
-	public Haz(String nev, Image kep)
+	public Haz(String nev, Image kep, Image kepp)
 	{
 		this.hordo = 0;
 		this.nev = nev;
@@ -21,28 +21,28 @@ public class Haz {
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
 		//ezt belerakhatjuk egy f���jlba mint a ter���leteket, h���zakat
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, kepp));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, kepp));
+		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, kepp));
 		
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, kepp));
 		
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, kepp));
 		
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("korona", true, +1, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("korona", true, +1, kepp));
 		
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, Tabla.dummyKep));
-		parancsjelzok.add(new Parancsjelzo("portya", true, +2, Tabla.dummyKep));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("portya", true, +2, kepp));
 		//kezdeti hazjelzok
 		for(int i=0; i<5; i++){
-			hazjelzok.add(new Hazjelzo(Tabla.dummyKep,this));
+			hazjelzok.add(new Hazjelzo(null,this));
 		}
 		
 		if (nev.equals("Lannister"))

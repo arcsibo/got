@@ -9,8 +9,6 @@ public class Tabla extends JLabel{
 	
 	public static Image kep;
 	
-	public static Image dummyKep;
-	
 	public static Vector<Tenger> teruletek = new Vector<Tenger>();
 	public static Vector<Haz> vastron = new Vector<Haz>();
 	public static Vector<Haz> kard  = new Vector<Haz>();

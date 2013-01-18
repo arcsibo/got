@@ -74,8 +74,6 @@ public void initRes()
 	  teruletR1 = (double)Tabla.kep.getWidth(null)/origW;
 	  teruletR2 = (double)Tabla.kep.getHeight(null)/origH;
 	  
-	  Tabla.dummyKep = tablakep.getScaledInstance(1, 1, Image.SCALE_SMOOTH);
-	  
 	  Image gyalogosKep = getImage(getCodeBase(), "res/gyalog.png");
 	  tracker.addImage(gyalogosKep, 0);
 	  loading();
@@ -136,11 +134,12 @@ public void initRes()
 				if (line.equals("</vastron>")) break;
 				
 				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");
+				Image kepp = getImage(getCodeBase(), "res/"+line+"p.jpg");
 				
 			    tracker.addImage(kep, 0);
 			    loading();
 			    kep = scaledImage(kep,hazR);
-			    Haz haz = new Haz(line,kep);
+			    Haz haz = new Haz(line,kep,kepp);
 				Tabla.vastron.add(haz);
 			
 			}
