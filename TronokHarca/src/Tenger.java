@@ -53,7 +53,20 @@ public class Tenger extends JLabel{
 		szinez();
 	}
 	
+	//alap getterek
+	public String getNev() { return this.nev; }
 	
+	public boolean getTipus() { return this.vizi; }
+	
+	public Image getKep() { return this.kep; }
+	
+	public Haz getHaz()
+	{
+		return this.tulajdonos;
+	}
+	
+	
+	//szomszéd hozzáadása
 	public void addSzomszed(String szomszed)
 	{
 		szomszedNevek.add(szomszed);
@@ -89,7 +102,29 @@ public class Tenger extends JLabel{
 	
 	// portya,lï¿½pï¿½s tï¿½madï¿½s, tï¿½mogatï¿½s vï¿½dekezï¿½s korona
 	
+	public void korona()
+	{
+		System.out.println("Tenger");
+	}
 	
+	public void portya(Tenger levesz)
+	{
+		if(levesz.parancsjelzo.getName().equals("tamogatas"))
+		{
+			
+			levesz.tulajdonos.addParancs(levesz.parancsjelzo);
+			levesz.parancsjelzo = null;
+			
+		}else if(levesz.parancsjelzo.getName().equals("korona"))
+		{
+			this.tulajdonos.addHazjelzo();
+			levesz.tulajdonos.addParancs(levesz.parancsjelzo);
+			levesz.parancsjelzo = null;
+			
+		}else{
+			System.out.println("nincs/nemtudod levenni a parancsjelzo");
+		}
+	}
 	
 	public void tamadas(Tenger tamad){
 		if(this.parancsjelzo.getTipus().equals("tamadas")){
@@ -140,8 +175,6 @@ public class Tenger extends JLabel{
 				}
 			}//elvileg meg van a vï¿½dekezï¿½ erï¿½
 			
-			this.parancsjelzo = null;
-			
 			if(tamadero>vedero){
 				tamad.egysegek.clear();
 				tamad.egysegek = this.egysegek;
@@ -168,6 +201,16 @@ public class Tenger extends JLabel{
 				}
 			}
 		}
+		
+		this.tulajdonos.addParancs(this.parancsjelzo);
+		this.parancsjelzo = null;
+		
+		if(tamad.parancsjelzo.getName().equals("tamadas"))
+		{
+			tamad.tulajdonos.addParancs(tamad.parancsjelzo);
+			tamad.parancsjelzo = null;
+		}
+		
 	}
 	public int getEro(){
 		int ero = 0;
@@ -178,6 +221,7 @@ public class Tenger extends JLabel{
 		}
 		return ero;
 	}
+	
 	public void menetel(Tenger megy,Vector<Egyseg> egyseg)
 	{
 		if(megy == null)
@@ -196,6 +240,7 @@ public class Tenger extends JLabel{
 			System.out.println("ide nem mehetsz");
 		}
 		this.setTulaj();
+		megy.setTulaj();
 	}
 	
 	
@@ -224,6 +269,9 @@ public class Tenger extends JLabel{
 		szomszedNevek=null;
 	}
 	
+	
+	
+	// ezek kiíratások
 	public Vector<Tenger> portya()
 	{
 		Vector<Tenger> vissza = new Vector<Tenger>();
@@ -275,16 +323,6 @@ public class Tenger extends JLabel{
 		return null;
 	}
 	
-	public String getNev() { return this.nev; }
-	
-	public boolean getTipus() { return this.vizi; }
-	
-	public Image getKep() { return this.kep; }
-	
-	public Haz getHaz()
-	{
-		return this.tulajdonos;
-	}
 	
 	public String toString()
 	{

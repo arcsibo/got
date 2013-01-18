@@ -45,6 +45,18 @@ public class Terulet extends Tenger{
 		}
 	}
 	
+	public void korona()
+	{
+		this.tulajdonos.addHazjelzo();
+		for(int i = 0; i < this.korona; i++)
+		{
+			this.tulajdonos.addHazjelzo();
+		}
+		this.tulajdonos.addParancs(this.parancsjelzo);
+		this.parancsjelzo = null;
+	}
+	
+	
 	public String toString()
 	{
 		String s = "Szárazföld: ";
