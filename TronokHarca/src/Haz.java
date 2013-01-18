@@ -45,7 +45,7 @@ public class Haz {
 			hazjelzok.add(new Hazjelzo(Tabla.dummyKep,this));
 		}
 		
-		if (nev.equals("Lennister"))
+		if (nev.equals("Lannister"))
 		{
 			this.szin = Color.red;
 		}

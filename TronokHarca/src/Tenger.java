@@ -300,8 +300,13 @@ public class Tenger extends JLabel{
 			int x = arg0.getX();
 			int y = arg0.getY();
 		
-			
-			System.out.println("Klikk erre:"+jomagam.nev + " : " + jomagam.tulajdonos.getNev() + x + ":"+ y);
+			if(jomagam.tulajdonos == null)
+			{
+				System.out.println(jomagam.nev+" : nincs tulajdonos");
+			}else 
+			{
+				System.out.println("Klikk erre:"+jomagam.nev + " : " + jomagam.tulajdonos.getNev() + x + ":"+ y);
+			}
 			
 		}
 
