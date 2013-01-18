@@ -165,7 +165,7 @@ public class Tabla extends JLabel{
 		}
 	}
 	
-	public static void zeroLicit()
+	public static void zeroLicit()// miez
 	{
 		Iterator<Haz> hazit = vastron.iterator();
 		while (hazit.hasNext())
@@ -176,7 +176,7 @@ public class Tabla extends JLabel{
 	}
 	
 	//a licit testeleshez kell
-	public static void randomLicit()
+	public static void randomLicit() // meg ez
 	{
 		Iterator<Haz> hazit = vastron.iterator();
 		while (hazit.hasNext())

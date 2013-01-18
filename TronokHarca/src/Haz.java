@@ -6,10 +6,12 @@ public class Haz {
 	private String nev;
 	private Color szin;
 	private Image kep;
+	private Image kepp;
+	private Image keph;
 	private Vector<Parancsjelzo> parancsjelzok;
 	private Vector<Hazjelzo> hazjelzok;
 	private int hordo;
-	private int hjelzo;
+	private int hjelzo; //ez mi a fasz 2 vel feletted ember, vektorral van megcsinálva odakell hozzáadni illettve elvonni
 	private int licit;
 	
 	public Haz(String nev, Image kep, Image kepp, Image keph)
@@ -17,6 +19,8 @@ public class Haz {
 		this.hordo = 0;
 		this.nev = nev;
 		this.kep = kep;
+		this.kepp = kepp;
+		this.keph = keph;
 		this.parancsjelzok = new Vector<Parancsjelzo>();
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
@@ -81,7 +85,7 @@ public class Haz {
 	
 	public int getHjelzo()
 	{
-		return hjelzo;
+		return this.hazjelzok.size();
 	}
 	
 	public String getNev() { return this.nev; }
@@ -105,27 +109,7 @@ public class Haz {
 		parancsjelzok.add(parancs);
 	}
 	//hazjelzo
-	public void setHordo(int h){ this.hordo = h; }
-	
-	public String toString()
-	{
-		String s = this.nev + "\n";
-		Iterator<Parancsjelzo> pIt = parancsjelzok.iterator();
-		s += "Parancsjelzok: ";
-		while (pIt.hasNext()) s+=pIt.next().toString() + " ";
-		
-		s+= "\nHazjelzok: " + hazjelzok.size() + "\n";
-		
-		s += "Hordok: " + this.hordo + "\n";
-		return s;
-	}
-	//Gyuri,Aron
-	
-	
-	//unatkoztam ugyhogy kivertem, ï¿½ï¿½s megfogant az ï¿½ï¿½tlet:
-	
-	
-	//szal eltï¿½ï¿½volï¿½ï¿½tja a bekapott hï¿½ï¿½zjelzï¿½ï¿½, elvileg azt fogja dobni amit bekï¿½ï¿½r
+	//ezeket meg légyszi to string meg az eseménykezelõk elõtt pls igen már átraktam
 	public void removeHazjelzo(Hazjelzo h)
 	{
 		hazjelzok.remove(h);
@@ -137,13 +121,13 @@ public class Haz {
 		//nekem itt rossz ï¿½ï¿½rzï¿½ï¿½sem van
 		if(hazjelzok.size()<20)
 		{
-			hazjelzok.add(new Hazjelzo(this.kep, this));
+			hazjelzok.add(new Hazjelzo(this.keph, this));
 		}else{
 			//nem lehet tï¿½bb
 		}
 	}
 	
-	public int DBHazjelzo()
+	public int DBHazjelzo()//váááááááááááááááááááááá
 	{
 		return hazjelzok.size();
 	}
@@ -159,6 +143,32 @@ public class Haz {
 		}
 		return true;
 	}
+	
+	public Vector<Hazjelzo> getJezok()
+	{
+		return this.hazjelzok;
+	}
+	
+	public void setHordo(int h){ this.hordo = h; }
+	
+	public String toString()
+	{
+		String s = this.nev + "\n";
+		Iterator<Parancsjelzo> pIt = parancsjelzok.iterator();
+		s += "Parancsjelzok: ";
+		while (pIt.hasNext()) s+=pIt.next().toString() + " ";
+		
+		s+= "\nHazjelzok: " + hazjelzok.size() + "\n";
+		
+		s += "Hordok: " + this.hordo + "\n";
+		return s;
+	}
+	//Gyuri,Aron
+
+	//unatkoztam ugyhogy kivertem, ï¿½ï¿½s megfogant az ï¿½ï¿½tlet:
+	
+	
+	//szal eltï¿½ï¿½volï¿½ï¿½tja a bekapott hï¿½ï¿½zjelzï¿½ï¿½, elvileg azt fogja dobni amit bekï¿½ï¿½
 	
 	// /Gyuri,Aron
 }
