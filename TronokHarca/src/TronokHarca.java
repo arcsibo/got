@@ -133,13 +133,14 @@ public void initRes()
 				line = bf.readLine();
 				if (line.equals("</vastron>")) break;
 				
-				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");
-				Image kepp = getImage(getCodeBase(), "res/"+line+"p.jpg");
+				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");//ház icon
+				Image kepp = getImage(getCodeBase(), "res/"+line+"p.jpg");//parancsjelzõ lefele fordított
+				Image keph = getImage(getCodeBase(),"res/"+line+"h.jpg");
 				
 			    tracker.addImage(kep, 0);
 			    loading();
 			    kep = scaledImage(kep,hazR);
-			    Haz haz = new Haz(line,kep,kepp);
+			    Haz haz = new Haz(line,kep,kepp,keph);
 				Tabla.vastron.add(haz);
 			
 			}
@@ -348,6 +349,7 @@ public void init()
 	
 	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
 	aktHazPanel.add(aktHazKep,"North");
+	
 	
 	jatekPanel = new JPanel();
 	jatekPanel.setLayout(new FlowLayout());

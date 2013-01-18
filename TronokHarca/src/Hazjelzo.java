@@ -5,13 +5,13 @@ import javax.swing.JLabel;
 
 public class Hazjelzo extends JLabel{
 	
-	private Image kep;
+	private Image lekep;
 	private Haz tulajdonos;
 	
 	public Hazjelzo(Image kep,Haz haz)
 	{
 		super(new ImageIcon(kep));
-		this.kep = kep;
+		this.lekep = kep;
 		this.tulajdonos = haz;
 	}
 	

@@ -12,7 +12,7 @@ public class Haz {
 	private int hjelzo;
 	private int licit;
 	
-	public Haz(String nev, Image kep, Image kepp)
+	public Haz(String nev, Image kep, Image kepp, Image keph)
 	{
 		this.hordo = 0;
 		this.nev = nev;
@@ -42,7 +42,7 @@ public class Haz {
 		parancsjelzok.add(new Parancsjelzo("portya", true, +2, kepp));
 		//kezdeti hazjelzok
 		for(int i=0; i<5; i++){
-			hazjelzok.add(new Hazjelzo(null,this));
+			hazjelzok.add(new Hazjelzo(keph,this));
 		}
 		
 		if (nev.equals("Lannister"))
