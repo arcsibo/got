@@ -355,8 +355,9 @@ public void init()
 	while(itJelzo.hasNext())
 	{
 		Hazjelzo aktJelzo = itJelzo.next();
-		aktJelzo.setBounds(50, 200, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
 		aktHazPanel.add(aktJelzo);
+		aktJelzo.setBounds(0, 0, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+
 	}
 	
 	
