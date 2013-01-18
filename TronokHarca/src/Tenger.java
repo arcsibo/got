@@ -86,7 +86,11 @@ public class Tenger extends JLabel{
 		this.tulajdonos.addParancs(this.parancsjelzo);
 		this.parancsjelzo = null;
 	}
+	
 	// portya,l�p�s t�mad�s, t�mogat�s v�dekez�s korona
+	
+	
+	
 	public void tamadas(Tenger tamad){
 		if(this.parancsjelzo.getTipus().equals("tamadas")){
 			int tamadero = 0;
@@ -173,6 +177,25 @@ public class Tenger extends JLabel{
 			ero += aktEgyseg.getEro();	
 		}
 		return ero;
+	}
+	public void menetel(Tenger megy,Vector<Egyseg> egyseg)
+	{
+		if(megy == null)
+		{
+			if(this.vizi == true && megy.vizi == true){
+				megy.egysegek = egyseg;
+				this.egysegek.remove(egyseg);
+			}else if(this.vizi==false && megy.vizi == false){
+				megy.egysegek = egyseg;
+				this.egysegek.remove(egyseg);
+			}else{
+				System.out.println();
+			}
+			
+		}else{
+			System.out.println("ide nem mehetsz");
+		}
+		this.setTulaj();
 	}
 	
 	
@@ -293,10 +316,10 @@ public class Tenger extends JLabel{
 	}
 	
 	MouseListener ml = new MouseListener() {
-
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
+			
 			int x = arg0.getX();
 			int y = arg0.getY();
 		
@@ -335,8 +358,6 @@ public class Tenger extends JLabel{
 		}
 		
 	};
-	
-	
 	
 	public void szinez()
 	{

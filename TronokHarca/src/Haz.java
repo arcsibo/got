@@ -144,9 +144,9 @@ public class Haz {
 		return true;
 	}
 	
-	public Vector<Hazjelzo> getJezok()
+	public Vector<Parancsjelzo> getPjezok()
 	{
-		return this.hazjelzok;
+		return this.parancsjelzok;
 	}
 	
 	public void setHordo(int h){ this.hordo = h; }

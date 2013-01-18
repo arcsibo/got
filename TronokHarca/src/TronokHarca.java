@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.*;
 import java.net.*;
 import java.util.*;
+
 import javax.swing.*;
 
 public class TronokHarca extends Applet{
@@ -350,13 +351,13 @@ public void init()
 	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
 	aktHazPanel.add(aktHazKep,"North");
 	
-	Vector<Hazjelzo> vectorJelzok = Tabla.aktHaz.getJezok();
-	Iterator<Hazjelzo> itJelzo = vectorJelzok.iterator();
-	while(itJelzo.hasNext())
+	Vector<Parancsjelzo> vectorPJelzok = Tabla.aktHaz.getPjezok();
+	Iterator<Parancsjelzo> itPJelzo = vectorPJelzok.iterator();
+	while(itPJelzo.hasNext())
 	{
-		Hazjelzo aktJelzo = itJelzo.next();
-		aktHazPanel.add(aktJelzo);
+		Parancsjelzo aktJelzo = itPJelzo.next();
 		aktJelzo.setBounds(0, 0, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktHazPanel.add(aktJelzo);
 
 	}
 	
