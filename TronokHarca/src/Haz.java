@@ -144,10 +144,16 @@ public class Haz {
 		return true;
 	}
 	
-	public Vector<Parancsjelzo> getPjezok()
+	public Vector<Parancsjelzo> getPjelzok()
 	{
 		return this.parancsjelzok;
 	}
+	
+	public Vector<Hazjelzo> getHjelzok()
+	{
+		return this.hazjelzok;
+	}
+	
 	
 	public void setHordo(int h){ this.hordo = h; }
 	
