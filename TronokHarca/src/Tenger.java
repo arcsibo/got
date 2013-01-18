@@ -364,7 +364,12 @@ public class Tenger extends JLabel{
 			int y = arg0.getY();
 		
 			if (!checkClick(x,y)) {
-				System.out.println(jomagam.getNev() + " is out of area");
+				Iterator<Tenger> szomszedok = jomagam.szomszedok.iterator();
+				
+				while (szomszedok.hasNext())
+				{
+					szomszedok.next().szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y);
+				}
 				return;
 			}
 			
@@ -439,11 +444,23 @@ public class Tenger extends JLabel{
         }
         
         else return false;
-        
-        
-        
 	}
+        
+        public void szomszedClick(int x, int y)
+        {
+           int relX;
+           relX = x - this.getLocation().x;
+           int relY;
+           relY = y - this.getLocation().y;
+           
+           if (checkClick(relX,relY))
+           {
+        	   System.out.println("Igazi klikk: " + this.nev);
+           }
+        }
+        
+        
+        
+}
 	
 		
-	
-}
