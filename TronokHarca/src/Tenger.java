@@ -17,6 +17,8 @@ public class Tenger extends JLabel{
 	protected boolean vizi;
 	protected Image kep;
 	
+	public boolean katt = false;
+	
 	//Térképen való elhelyezkedés
 	public double X ;
 	public double Y ;
@@ -357,10 +359,15 @@ public class Tenger extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+		
 			int x = arg0.getX();
 			int y = arg0.getY();
 		
+			if (!checkClick(x,y)) {
+				System.out.println(jomagam.getNev() + " is out of area");
+				return;
+			}
+			
 			if(jomagam.tulajdonos == null)
 			{
 				System.out.println(jomagam.nev+" : nincs tulajdonos");
@@ -368,6 +375,7 @@ public class Tenger extends JLabel{
 			{
 				System.out.println("Klikk erre:"+jomagam.nev + " : " + jomagam.tulajdonos.getNev() + x + ":"+ y);
 			}
+			
 			
 		}
 
@@ -402,7 +410,7 @@ public class Tenger extends JLabel{
 		
 		Image resultImage;
 		
-		RGBImageFilter filter = new Filter(this);
+		Filter filter = new Filter(this);
         ImageProducer producer = new FilteredImageSource(
                                         kep.getSource(),
                                         filter);
@@ -412,5 +420,30 @@ public class Tenger extends JLabel{
 		
 	}
 	
+	public boolean checkClick(int x, int y)
+	{
+		
+		Image resultImage;
+		Filter filter = new Filter(this,x,y);
+	
+        ImageProducer producer = new FilteredImageSource(
+                                        kep.getSource(),
+                                        filter);
+        resultImage = createImage(producer);
+        ImageIcon dump = new ImageIcon(resultImage);
+        
+        
+        if (this.katt) {
+        	katt = false;
+        	return true;
+        }
+        
+        else return false;
+        
+        
+        
+	}
+	
+		
 	
 }

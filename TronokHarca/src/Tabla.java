@@ -50,6 +50,7 @@ public class Tabla extends JLabel{
 		while (it.hasNext())
 		{
 			Tenger aktTer = it.next();
+			//aktTer.setLocation((int)Math.round(aktTer.X*this.kep.getWidth(null)), (int)Math.round(aktTer.Y*this.kep.getHeight(null)));
 			aktTer.setBounds((int)Math.round(aktTer.X*this.kep.getWidth(null)), (int)Math.round(aktTer.Y*this.kep.getHeight(null)), aktTer.getKep().getWidth(null), aktTer.getKep().getHeight(null));
 			
 			this.add(aktTer);
