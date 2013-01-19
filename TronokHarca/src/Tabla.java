@@ -23,7 +23,10 @@ public class Tabla extends JLabel{
 	private int yScroll = 0;
 	private int x;
 	
+	public static int H;
+	
 	private Tabla jomagam = this;
+	private JLabel terkep;
 	
 	
 	public Tabla(Image kep, int x)
@@ -42,11 +45,6 @@ public class Tabla extends JLabel{
 	{
 		Iterator<Tenger> it = teruletek.iterator();
 		
-		JLabel terkep = new JLabel(new ImageIcon(kep));
-		terkep.setBounds(0,0,kep.getWidth(null),kep.getHeight(null));
-		this.add(terkep);
-		
-		
 		while (it.hasNext())
 		{
 			Tenger aktTer = it.next();
@@ -56,17 +54,11 @@ public class Tabla extends JLabel{
 			
 		}
 		
-		placeEgysegek();
-	}
-	
-	private void placeEgysegek()
-	{
-		Iterator<Tenger> it = this.teruletek.iterator();
+		terkep = new JLabel(new ImageIcon(kep));
+		terkep.setBounds(0,0,kep.getWidth(null),kep.getHeight(null));
+		this.add(terkep);
 		
-		while (it.hasNext())
-		{
-			it.next().placeEgysegek();
-		}
+		
 	}
 	
 	public static void kovHaz()
@@ -237,14 +229,18 @@ public class Tabla extends JLabel{
 			int notches = e.getWheelRotation();
 		       if (notches < 0) {
 		           
-		    	   yScroll+=15;
+		    	    yScroll+=30;
 		    	   
 		       } else {
 		    	   
-		    	   yScroll-=15;
+		    	    yScroll-=30;
 		           
 		       }
+		       
+		       if (yScroll>0) yScroll = 0;
+		       if (yScroll < H-terkep.getHeight()) yScroll =H-terkep.getHeight();
 		       jomagam.setBounds(x, yScroll, jomagam.kep.getWidth(null), jomagam.kep.getHeight(null));
+		       //System.out.println(terkep.getHeight());
 			
 		}
 		

@@ -24,7 +24,7 @@ public class Terulet extends Tenger{
 		this.hazjelzo = null;
 		
 		this.vhk = vhk;
-		placeVHK();
+		//placeVHK();
 	}
 	
 	

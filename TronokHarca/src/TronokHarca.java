@@ -8,8 +8,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class TronokHarca extends Applet{
-	
-
+		
 //Az alkalmazás méretei
 final int W = 1300;
 final int H = 600;
@@ -20,7 +19,7 @@ final double hazR = W/12;
 final double parancsjR = W/25;
 final double hazjR = W/20;
 double teruletR1, teruletR2;
-final double egysegR = W/20;
+final double egysegR = W/45;
 final double cuccosR = W/20;
 final double vhkR = W/45;
 
@@ -234,15 +233,15 @@ public void initRes()
 			    
 			    if (varak==1)
 			    {
-			    	double varX = 0;//Double.parseDouble(bf.readLine());
-			    	double varY = 0;//Double.parseDouble(bf.readLine());
+			    	double varX = Double.parseDouble(bf.readLine());
+			    	double varY = Double.parseDouble(bf.readLine());
 			    	vhk.add(new VHK(varX,varY,var1Kep));
 			    }
 			    
 			    else if (varak==2)
 			    {
-			    	double varX = 0;//Double.parseDouble(bf.readLine());
-			    	double varY = 0;//Double.parseDouble(bf.readLine());
+			    	double varX = Double.parseDouble(bf.readLine());
+			    	double varY = Double.parseDouble(bf.readLine());
 			    	vhk.add(new VHK(varX,varY,var2Kep));
 			    }
 			    	
@@ -252,8 +251,8 @@ public void initRes()
 			    for (int i= 0; i<hordok; i++)
 			    {
 			    	
-			    	double hordoX = 0;//Double.parseDouble(bf.readLine());
-			    	double hordoY = 0;//Double.parseDouble(bf.readLine());
+			    	double hordoX = Double.parseDouble(bf.readLine());
+			    	double hordoY = Double.parseDouble(bf.readLine());
 			    	vhk.add(new VHK(hordoX,hordoY,hordoKep));
 			    	
 			    }
@@ -264,8 +263,8 @@ public void initRes()
 			    for (int i= 0; i<korona; i++)
 			    {
 			    	
-			    	double koronaX = 0;//Double.parseDouble(bf.readLine());
-			    	double koronaY = 0;//Double.parseDouble(bf.readLine());
+			    	double koronaX = Double.parseDouble(bf.readLine());
+			    	double koronaY = Double.parseDouble(bf.readLine());
 			    	vhk.add(new VHK(koronaX,koronaY,koronaKep));
 			    	
 			    }
@@ -276,12 +275,13 @@ public void initRes()
 			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep,X,Y,vhk);
 			    Tabla.teruletek.add(terulet);
 			    
+			    
 			    line = bf.readLine();
 			    int gyalogos = Integer.parseInt(line);
 			    for (int i= 0; i<gyalogos; i++)
 			    {
-			    	double gyalogosX = 0;//Double.parseDouble(bf.readLine());
-			    	double gyalogosY = 0;//Double.parseDouble(bf.readLine());
+			    	double gyalogosX = Double.parseDouble(bf.readLine());
+			    	double gyalogosY = Double.parseDouble(bf.readLine());
 			    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep,gyalogosX,gyalogosY);
 			    	terulet.addEgyseg(gyalogosE);
 			    }
@@ -290,13 +290,16 @@ public void initRes()
 			    int lovag = Integer.parseInt(line);
 			    for (int i= 0; i<lovag; i++)
 			    {    	
-			    	double lovagX = 0;//Double.parseDouble(bf.readLine());
-			    	double lovagY = 0;//Double.parseDouble(bf.readLine());
+			    	double lovagX = Double.parseDouble(bf.readLine());
+			    	double lovagY = Double.parseDouble(bf.readLine());
 			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep,lovagX,lovagY);
 			    	terulet.addEgyseg(lovagE);
 			    }
 			    
 			    line = bf.readLine();
+			    
+			    terulet.placeEgysegek();
+			    terulet.placeVHK();
 			    
 			    while (true)
 			    {
@@ -336,7 +339,6 @@ public void initRes()
 			    Tenger tenger = new Tenger(nev, kep, tulajdonos,X,Y);
 			    Tabla.teruletek.add(tenger);	
 			    
-			    
 			    line = bf.readLine();
 			   
 			    
@@ -347,11 +349,13 @@ public void initRes()
 			    int hajo = Integer.parseInt(line);
 			    for (int i= 0; i<hajo; i++)
 			    {
-			    	double hajoX = 0;//Double.parseDouble(bf.readLine());
-			    	double hajoY = 0;//Double.parseDouble(bf.readLine());
+			    	double hajoX = Double.parseDouble(bf.readLine());
+			    	double hajoY = Double.parseDouble(bf.readLine());
 			    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep,hajoX,hajoY);
 			    	tenger.addEgyseg(hajoE);
 			    }
+			    
+			    tenger.placeEgysegek();
 			    
 			    while (true)
 			    {
@@ -403,6 +407,7 @@ public void initRes()
 public void init()
 {
 	
+	Tabla.H = H;
 	initRes();
 	Tabla.kovHaz();
 	

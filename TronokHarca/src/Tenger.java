@@ -59,6 +59,7 @@ public class Tenger extends JLabel{
 		//this.setContentAreaFilled(false);
 		
 		change.szinez(this);
+		
 	}
 	
 	//alap getterek
