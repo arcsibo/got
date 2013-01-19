@@ -82,6 +82,7 @@ public class Tenger extends JLabel{
 	
 	public void addEgyseg(Egyseg egyseg)
 	{
+		
 		egysegek.add(egyseg);
 	}
 	
@@ -92,7 +93,7 @@ public class Tenger extends JLabel{
 		while (it.hasNext())
 		{
 			Egyseg egyseg = it.next();
-			egyseg.setBounds(egyseg.x, egyseg.y, egyseg.getKep().getWidth(null), egyseg.getKep().getHeight(null));
+			egyseg.setBounds((int)Math.round(egyseg.x*this.kep.getWidth(null))-egyseg.kep.getWidth(null)/2, (int)Math.round(egyseg.y*this.kep.getHeight(null))-egyseg.kep.getHeight(null)/2, egyseg.kep.getWidth(null), egyseg.kep.getHeight(null));
 			this.add(egyseg);
 			
 		}

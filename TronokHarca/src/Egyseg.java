@@ -11,22 +11,26 @@ public class Egyseg extends JLabel{
 	private boolean vizi;
 	private int ertek;
 	private String tipus;
-	private Image kep;
+	public Image kep;
 	private Haz tulajdonos;
 	
-	public int x=0, y=0;
+	//Területen való elhelyezkedés
+	public double x=0, y=0;
 	
 	private Egyseg jomagam = this;
 	
 	public boolean katt;
 	
-	public Egyseg(String tipus,Haz tulajdonos, Image kep)
+	public Egyseg(String tipus,Haz tulajdonos, Image kep,double x, double y)
 	{
 		super(new ImageIcon(kep));
 		
 		this.tipus = tipus;
 		this.tulajdonos = tulajdonos;
-		this.setKep(kep);
+		this.kep = kep;
+		
+		this.x = x;
+		this.y = y;
 		
 		if (tipus.equals("Hajó"))
 		{
@@ -75,12 +79,6 @@ public class Egyseg extends JLabel{
 		return s;
 	}
 		
-	public Image getKep() {
-		return kep;
-	}
-	public void setKep(Image kep) {
-		this.kep = kep;
-	}
 
 	MouseListener mL = new MouseListener() {
 

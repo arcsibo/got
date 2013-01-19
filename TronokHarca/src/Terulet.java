@@ -13,7 +13,7 @@ public class Terulet extends Tenger{
 	
 	private Vector<VHK> vhk;
 	
-	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep, double X, double Y)
+	public Terulet(String nev, int varak, int hordok,int korona, Haz tulajdonos, Image kep, double X, double Y,Vector<VHK> vhk)
 	{
 		super(nev, kep,tulajdonos,X,Y);
 		this.vizi = false;
@@ -22,8 +22,23 @@ public class Terulet extends Tenger{
 		this.korona = korona;
 		this.tulajdonos = tulajdonos;
 		this.hazjelzo = null;
+		
+		this.vhk = vhk;
+		placeVHK();
 	}
 	
+	
+	public void placeVHK()
+	{
+		Iterator<VHK> it = vhk.iterator();
+		
+		while(it.hasNext())
+		{
+			VHK aktVHK = it.next();
+			aktVHK.setBounds((int)Math.round(aktVHK.x*this.kep.getWidth(null))-aktVHK.kep.getWidth(null)/2, (int)Math.round(aktVHK.y*this.kep.getHeight(null))-aktVHK.kep.getHeight(null)/2, aktVHK.kep.getWidth(null), aktVHK.kep.getHeight(null));
+			this.add(aktVHK);
+		}
+	}
 	
 	public int getHordo(){return this.hordok; }
 	public int getVarak(){ return this.varak; }

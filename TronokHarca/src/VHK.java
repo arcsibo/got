@@ -7,18 +7,18 @@ import javax.swing.JLabel;
 
 public class VHK extends JLabel{
 	
-	public String tipus;
-	public int x;
-	public int y;
-	private Image kep;
+	public double x=0;
+	public double y=0;
+	public Image kep;
 	
-	public VHK(String tipus, int x, int y, Image kep)
+	public VHK(double x, double y, Image kep)
 	{
 		super( new ImageIcon(kep));
 		
-		this.tipus = tipus;
+		this.x = x;
+		this.y = y;
+		this.kep = kep;
 		
-		this.setBounds(x, y, kep.getWidth(null), kep.getHeight(null));
 	}
 
 }

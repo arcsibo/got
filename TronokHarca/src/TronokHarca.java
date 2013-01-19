@@ -22,6 +22,7 @@ final double hazjR = W/20;
 double teruletR1, teruletR2;
 final double egysegR = W/20;
 final double cuccosR = W/20;
+final double vhkR = W/45;
 
 final double aktHazPanelR = hazR;
 final double jatekPanelR = W/4;
@@ -104,6 +105,26 @@ public void initRes()
 	  tracker.addImage(vastronKep, 0);
 	  loading();
 	  vastronKep = scaledImage(vastronKep,egysegR);
+	  
+	  Image var1Kep = getImage(getCodeBase(), "res/var1.png");
+	  tracker.addImage(var1Kep, 0);
+	  loading();
+	  var1Kep = scaledImage(var1Kep,vhkR);
+	  
+	  Image var2Kep = getImage(getCodeBase(), "res/var2.png");
+	  tracker.addImage(var2Kep, 0);
+	  loading();
+	  var2Kep = scaledImage(var2Kep,vhkR);
+	  
+	  Image hordoKep = getImage(getCodeBase(), "res/hordo.png");
+	  tracker.addImage(hordoKep, 0);
+	  loading();
+	  hordoKep = scaledImage(hordoKep,vhkR);
+	  
+	  Image koronaKep = getImage(getCodeBase(), "res/korona.png");
+	  tracker.addImage(koronaKep, 0);
+	  loading();
+	  koronaKep = scaledImage(koronaKep,vhkR);
 	  
 	  try {
 		  fileGot = new URL(getCodeBase(), "file.got");
@@ -205,23 +226,35 @@ public void initRes()
 				if (tracker.isErrorAny()) System.out.println(nev);
 				kep = scaledImage2(kep,teruletR1, teruletR2);
 		        
+				
+				Vector<VHK> vhk = new Vector<VHK>();
+				
 				line = bf.readLine();
 			    int varak = Integer.parseInt(line);
 			    
-			    for (int i= 0; i<varak; i++)
+			    if (varak==1)
 			    {
-			    	//double varX = Double.parseDouble(bf.readLine());
-			    	//double varY = Double.parseDouble(bf.readLine());
+			    	double varX = 0;//Double.parseDouble(bf.readLine());
+			    	double varY = 0;//Double.parseDouble(bf.readLine());
+			    	vhk.add(new VHK(varX,varY,var1Kep));
 			    }
 			    
+			    else if (varak==2)
+			    {
+			    	double varX = 0;//Double.parseDouble(bf.readLine());
+			    	double varY = 0;//Double.parseDouble(bf.readLine());
+			    	vhk.add(new VHK(varX,varY,var2Kep));
+			    }
+			    	
 			    line = bf.readLine();
 			    int hordok = Integer.parseInt(line);
 			    
 			    for (int i= 0; i<hordok; i++)
 			    {
 			    	
-			    	//double hordoX = Double.parseDouble(bf.readLine());
-			    	//double hordoY = Double.parseDouble(bf.readLine());
+			    	double hordoX = 0;//Double.parseDouble(bf.readLine());
+			    	double hordoY = 0;//Double.parseDouble(bf.readLine());
+			    	vhk.add(new VHK(hordoX,hordoY,hordoKep));
 			    	
 			    }
 			    
@@ -231,36 +264,35 @@ public void initRes()
 			    for (int i= 0; i<korona; i++)
 			    {
 			    	
-			    	//double koronaX = Double.parseDouble(bf.readLine());
-			    	//double koronaY = Double.parseDouble(bf.readLine());
+			    	double koronaX = 0;//Double.parseDouble(bf.readLine());
+			    	double koronaY = 0;//Double.parseDouble(bf.readLine());
+			    	vhk.add(new VHK(koronaX,koronaY,koronaKep));
 			    	
 			    }
 			    
 			    
 			    Haz tulajdonos = Tabla.getHaz(bf.readLine());
 			    
-			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep,X,Y);
+			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep,X,Y,vhk);
 			    Tabla.teruletek.add(terulet);
 			    
 			    line = bf.readLine();
 			    int gyalogos = Integer.parseInt(line);
 			    for (int i= 0; i<gyalogos; i++)
 			    {
-		
-			    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep);
-			    	//double gyalogosX = Double.parseDouble(bf.readLine());
-			    	//double gyalogosY = Double.parseDouble(bf.readLine());
+			    	double gyalogosX = 0;//Double.parseDouble(bf.readLine());
+			    	double gyalogosY = 0;//Double.parseDouble(bf.readLine());
+			    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep,gyalogosX,gyalogosY);
 			    	terulet.addEgyseg(gyalogosE);
 			    }
 			    
 			    line = bf.readLine();
 			    int lovag = Integer.parseInt(line);
 			    for (int i= 0; i<lovag; i++)
-			    {
-	
-			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep);    	
-			    	//double lovagX = Double.parseDouble(bf.readLine());
-			    	//double lovagY = Double.parseDouble(bf.readLine());
+			    {    	
+			    	double lovagX = 0;//Double.parseDouble(bf.readLine());
+			    	double lovagY = 0;//Double.parseDouble(bf.readLine());
+			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep,lovagX,lovagY);
 			    	terulet.addEgyseg(lovagE);
 			    }
 			    
@@ -315,9 +347,9 @@ public void initRes()
 			    int hajo = Integer.parseInt(line);
 			    for (int i= 0; i<hajo; i++)
 			    {
-			    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep);
-			    	//double lovagX = Double.parseDouble(bf.readLine());
-			    	//double lovagY = Double.parseDouble(bf.readLine());
+			    	double hajoX = 0;//Double.parseDouble(bf.readLine());
+			    	double hajoY = 0;//Double.parseDouble(bf.readLine());
+			    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep,hajoX,hajoY);
 			    	tenger.addEgyseg(hajoE);
 			    }
 			    
