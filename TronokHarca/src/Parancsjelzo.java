@@ -114,6 +114,8 @@ public class Parancsjelzo extends JLabel{
 	
 	public void performClick(int x, int y)
 	{
+		if (tablanVan) return;
+		
 		if (!Tabla.parancsjelzoLerakas)
 		{
 			Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(x,y), ""));

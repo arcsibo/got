@@ -116,12 +116,13 @@ public class Tenger extends JLabel{
 			this.add(parancs);
 			tulajdonos.removeParancs(parancs);
 			Tabla.parancsJelzoAmitLeraksz.lefordit(true);
+			Tabla.got.setCursor(Tabla.defCursor);
+			Tabla.parancsJelzoAmitLeraksz = null;
+			Tabla.parancsjelzoLerakas = false;
+			parancsjelzo.tablanVan = true;
 		}
 		
-		Tabla.got.setCursor(Tabla.defCursor);
-		Tabla.parancsJelzoAmitLeraksz = null;
-		Tabla.parancsjelzoLerakas = false;
-		parancsjelzo.tablanVan = true;
+		
 		
 
 	

@@ -62,11 +62,12 @@ public class Terulet extends Tenger{
 			this.add(hazjelzo);
 			tulajdonos.removeHazjelzo(hazjelzo);
 			hazjelzo.tablanVan = true;
+			Tabla.got.setCursor(Tabla.defCursor);
+			Tabla.hazJelzoAmitLeraksz = null;
+			Tabla.hazjelzoLerakas = false;
 		}
 		
-		Tabla.got.setCursor(Tabla.defCursor);
-		Tabla.hazJelzoAmitLeraksz = null;
-		Tabla.hazjelzoLerakas = false;
+		
 		
 
 		

@@ -81,6 +81,8 @@ public class Hazjelzo extends JLabel{
 	
 	void performClick(int x, int y)
 	{
+		if (tablanVan) return;
+		
 		if (!Tabla.hazjelzoLerakas)
 		{
 			Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(x,y), ""));
