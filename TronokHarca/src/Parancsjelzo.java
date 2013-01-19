@@ -116,7 +116,7 @@ public class Parancsjelzo extends JLabel{
 	{
 		if (tablanVan) return;
 		
-		if (!Tabla.parancsjelzoLerakas)
+		if (!Tabla.parancsjelzoLerakas && Tabla.TERVEZES)
 		{
 			Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(x,y), ""));
 			Tabla.parancsjelzoLerakas = true;

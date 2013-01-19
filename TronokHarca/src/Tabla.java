@@ -3,13 +3,14 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.util.*;
+
 import javax.swing.*;
 
 public class Tabla extends JLabel{
 	
 	//GLOBÁLIS ÁLLAPOTVÁLTOZÓK
 	public static boolean KARTYAHUZAS;
-	public static boolean TERVEZES;
+	public static boolean TERVEZES = true;
 	
 	
 	public static boolean AKCIO;
@@ -23,19 +24,22 @@ public class Tabla extends JLabel{
 	public static TronokHarca got; //Itt tudod elérni magát az Appletet
 	public static Cursor defCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 	
-	
+	//parancsjelzõt lelehet-e rakni
 	public static boolean parancsjelzoLerakas = false;
 	public static Parancsjelzo parancsJelzoAmitLeraksz = null;
 	
+	//házjelzõt lelehet-e rakni
 	public static boolean hazjelzoLerakas = false;
 	public static Hazjelzo hazJelzoAmitLeraksz = null;
 	
+	//egységet lelehet-e rakni
 	public static boolean egysegLerakas = false;
 	public static Egyseg egysegAmitLeraksz = null;
 	
-	
-	
-	
+	//segédvektorok pakoláshoz
+	public static Vector<Tenger> segedTer = new Vector<Tenger>();
+	public static Vector<Egyseg> segedEgy = new Vector<Egyseg>();
+	//ezekbe rakjuk apakolni kívánt egyseégeket illetve akciót végrehajtó területeket
 	
 	
 	public static Image kep;
@@ -161,6 +165,7 @@ public class Tabla extends JLabel{
 		
 	}
 	
+	//lehet nem kell
 	public static void setHjelzo()
 	{
 		Iterator<Haz> hazit = vastron.iterator();
