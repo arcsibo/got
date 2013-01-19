@@ -478,7 +478,7 @@ public class Tenger extends JLabel{
            
            if (change.checkClick(relX,relY,this))
            {
-        	   performClick(x,y);
+        	   performClick(relX,relY);
         	   return true;
            }
            
@@ -488,8 +488,8 @@ public class Tenger extends JLabel{
         protected void debugMouse(int x, int y)
         {
         	System.out.println();
-        	System.out.println((double)this.kep.getWidth(null)/(double)x);
-        	System.out.println((double)this.kep.getHeight(null)/(double)y);
+        	System.out.println((double)x/(double)this.kep.getWidth(null));
+        	System.out.println((double)y/(double)this.kep.getHeight(null));
         	System.out.println();
         }
         

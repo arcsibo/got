@@ -24,6 +24,7 @@ public class Terulet extends Tenger{
 		this.hazjelzo = null;
 	}
 	
+	
 	public int getHordo(){return this.hordok; }
 	public int getVarak(){ return this.varak; }
 	public int Korona(){ return this.korona; }
