@@ -487,19 +487,15 @@ public void init()
 	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
 	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
 	
-	fele = vectorHJelzok.size()/2 + 1;
 	i = 0;
-	hY = y;
+	y = 0;
+	x = Tabla.aktHaz.getKep().getWidth(null);
 	while(itHJelzo.hasNext())
 	{
 		Hazjelzo aktJelzo = itHJelzo.next();
-		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktJelzo.setBounds(x, y,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
 		aktHazPanel.add(aktJelzo);
-		
-		y += aktJelzo.getKep().getHeight(null);
-		i++;
-		
-		if (i == fele) y = hY;
+		y += aktJelzo.getHeight()/1.5;
 
 	}
 	
@@ -628,19 +624,15 @@ public void updateHaz()
 	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
 	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
 	
-	fele = vectorHJelzok.size()/2 + 1;
 	i = 0;
-	hY = y;
+	y = 0;
+	x = Tabla.aktHaz.getKep().getWidth(null);
 	while(itHJelzo.hasNext())
 	{
 		Hazjelzo aktJelzo = itHJelzo.next();
-		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktJelzo.setBounds(x, y,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
 		aktHazPanel.add(aktJelzo);
-		
-		y += aktJelzo.getKep().getHeight(null);
-		i++;
-		
-		if (i == fele) y = hY;
+		y += aktJelzo.getHeight()/1.5;
 
 	}
 	
