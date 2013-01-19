@@ -18,6 +18,7 @@ final int korrigálás = 626;
 final double hazR = W/12;
 final double parancsjR = W/25;
 final double hazjR = W/20;
+final double tronR = W/30;
 double teruletR1, teruletR2;
 final double egysegR = W/45;
 final double cuccosR = W/20;
@@ -93,17 +94,17 @@ public void initRes()
 	  kardKep = getImage(getCodeBase(), "res/kard.png");
 	  tracker.addImage(kardKep, 0);
 	  loading();
-	  kardKep = scaledImage(kardKep,egysegR);
+	  kardKep = scaledImage(kardKep,hazR);
 	  
 	  holloKep = getImage(getCodeBase(), "res/hollo.png");
 	  tracker.addImage(holloKep, 0);
 	  loading();
-	  holloKep = scaledImage(holloKep,egysegR);
+	  holloKep = scaledImage(holloKep,hazR);
 	  
 	  vastronKep = getImage(getCodeBase(), "res/tron.png");
 	  tracker.addImage(vastronKep, 0);
 	  loading();
-	  vastronKep = scaledImage(vastronKep,egysegR);
+	  vastronKep = scaledImage(vastronKep,tronR);
 	  
 	  Image var1Kep = getImage(getCodeBase(), "res/var1.png");
 	  tracker.addImage(var1Kep, 0);

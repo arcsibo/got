@@ -12,7 +12,7 @@ public class Egyseg extends JLabel{
 	private int ertek;
 	private String tipus;
 	public Image kep;
-	private Haz tulajdonos;
+	public Haz tulajdonos;
 	
 	//Területen való elhelyezkedés
 	public double x=0, y=0;
@@ -59,6 +59,8 @@ public class Egyseg extends JLabel{
 		else return;
 		
 		this.addMouseListener(mL);
+		
+		change.szinez(this);
 		
 	}
 	

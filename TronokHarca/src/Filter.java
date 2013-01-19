@@ -5,6 +5,7 @@ public class Filter extends RGBImageFilter
 {
 
 		 Tenger jomagam;
+		 Egyseg e;
 		
 		/*
 		 * 1-es típus : Terület színezõ filter
@@ -20,7 +21,12 @@ public class Filter extends RGBImageFilter
 			tipus = 1;
 		}
 		
-		
+		public Filter(Egyseg e)
+		{
+			super();
+			this.e = e;
+			tipus = 3;
+		}
 		
 		public Filter(Tenger t,int Mx, int My)
 		{
@@ -42,12 +48,23 @@ public class Filter extends RGBImageFilter
 			
 			if (tipus == 1) {	
 			
+			
+			if (rgb == 0) return rgb;  
 			if (jomagam.tulajdonos == null) return rgb;
 			
-			int szin = jomagam.tulajdonos.getColor().getRGB();
+			
+			//GYuri ezt majd szedd ki ha kész a textúra
+			if (jomagam instanceof Terulet) rgb = 0x00000000;
 
-			if (jomagam.tulajdonos != null) return ((rgb | 0x00ffffff )& szin );
-			else return rgb;
+			Color color = jomagam.tulajdonos.getColor();
+			
+			color = new Color(color.getRed()/4,color.getGreen()/4,color.getBlue()/4);
+			
+			rgb +=color.getRGB();
+
+			return rgb;
+			
+			
 		}
 		
 		else if (tipus == 2){
@@ -71,6 +88,22 @@ public class Filter extends RGBImageFilter
 			return rgb;
 			
 		}
+		
+		if (tipus == 3) {	
+			
+			if (rgb == 0) return rgb;  
+			
+			if (e.tulajdonos == null) return rgb;
+				
+				Color color = e.tulajdonos.getColor();
+				
+				color = new Color(color.getRed()/2,color.getGreen()/2,color.getBlue()/2);
+				
+				rgb +=color.getRGB();
+
+				return rgb;
+			}
+		
 		
 		else {
 			System.out.println("Mibevagy????");

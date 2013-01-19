@@ -56,7 +56,7 @@ public class Haz {
 		
 		else if (nev.equals("Stark"))
 		{
-			this.szin = Color.gray;
+			this.szin = Color.lightGray;
 		}
 		
 		else if (nev.equals("Greyjoy"))

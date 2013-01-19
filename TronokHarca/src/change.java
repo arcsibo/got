@@ -24,6 +24,21 @@ public class change {
 		
 	}
 	
+	public static void szinez(Egyseg e)
+	{
+		
+		Image resultImage;
+		
+		Filter filter = new Filter(e);
+        ImageProducer producer = new FilteredImageSource(
+                                        e.kep.getSource(),
+                                        filter);
+        resultImage = e.createImage(producer);
+        
+        e.setIcon(new ImageIcon(resultImage));
+		
+	}
+	
 	public static boolean checkClick(int x, int y, Tenger t)
 	{
 		
