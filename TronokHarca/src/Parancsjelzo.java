@@ -12,6 +12,8 @@ public class Parancsjelzo extends JLabel{
 	private int plussz;
 	private Image kep;
 	
+	private Parancsjelzo jomagam = this;
+	
 	public boolean katt;
 	
 	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kep)
@@ -58,7 +60,7 @@ public class Parancsjelzo extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			System.out.println(jomagam.tipus);
 		}
 
 		@Override

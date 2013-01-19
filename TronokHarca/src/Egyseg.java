@@ -14,6 +14,10 @@ public class Egyseg extends JLabel{
 	private Image kep;
 	private Haz tulajdonos;
 	
+	public int x=0, y=0;
+	
+	private Egyseg jomagam = this;
+	
 	public boolean katt;
 	
 	public Egyseg(String tipus,Haz tulajdonos, Image kep)
@@ -22,7 +26,7 @@ public class Egyseg extends JLabel{
 		
 		this.tipus = tipus;
 		this.tulajdonos = tulajdonos;
-		this.kep = kep;
+		this.setKep(kep);
 		
 		if (tipus.equals("Hajó"))
 		{
@@ -70,12 +74,19 @@ public class Egyseg extends JLabel{
 		return s;
 	}
 		
+	public Image getKep() {
+		return kep;
+	}
+	public void setKep(Image kep) {
+		this.kep = kep;
+	}
+
 	MouseListener mL = new MouseListener() {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			System.out.println(jomagam.tipus);
 		}
 
 		@Override

@@ -36,6 +36,8 @@ public class Tenger extends JLabel{
 	{
 		super(new ImageIcon(kep));
 		
+		this.setLayout(null);
+		
 		this.nev = nev;
 		this.vizi = true;
 	
@@ -81,6 +83,20 @@ public class Tenger extends JLabel{
 	public void addEgyseg(Egyseg egyseg)
 	{
 		egysegek.add(egyseg);
+	}
+	
+	public void placeEgysegek()
+	{
+		Iterator<Egyseg> it = this.egysegek.iterator();
+		
+		while (it.hasNext())
+		{
+			Egyseg egyseg = it.next();
+			egyseg.setBounds(egyseg.x, egyseg.y, egyseg.getKep().getWidth(null), egyseg.getKep().getHeight(null));
+			this.add(egyseg);
+			
+		}
+		
 	}
 	
 	//parancsjelz�k felrak�sa leszed�se
@@ -404,7 +420,7 @@ public class Tenger extends JLabel{
 				
 			}
 			
-			else performClick();
+			else performClick(x,y);
 						
 		}
 
@@ -434,15 +450,29 @@ public class Tenger extends JLabel{
 		
 	};
 	
-	public void performClick()
+	public void performClick(int x, int y)
 	{
 
 		if(jomagam.tulajdonos == null)
 		{
-			System.out.println(jomagam.nev+" : nincs tulajdonos");
+			//System.out.println(jomagam.nev+" : nincs tulajdonos");
 		}else 
 		{
-			System.out.println(jomagam.nev + " : " + jomagam.tulajdonos.getNev());
+			//System.out.println(jomagam.nev + " : " + jomagam.tulajdonos.getNev());
+			
+			if (this.egysegek.size() >0)
+			{
+				
+				Iterator<Egyseg> it = egysegek.iterator();
+				System.out.print(this.nev + ": ");
+				while (it.hasNext()) System.out.print(it.next() + ", ");
+				if (!(jomagam instanceof Terulet))debugMouse(x,y);
+				
+			}
+			
+			
+			
+			
 		}
 		
 
@@ -459,13 +489,20 @@ public class Tenger extends JLabel{
            
            if (change.checkClick(relX,relY,this))
            {
-        	   performClick();
+        	   performClick(x,y);
         	   return true;
            }
            
            return false;
         }
         
+        protected void debugMouse(int x, int y)
+        {
+        	System.out.println();
+        	System.out.println((double)this.kep.getWidth(null)/(double)x);
+        	System.out.println((double)this.kep.getHeight(null)/(double)y);
+        	System.out.println();
+        }
         
         
 }

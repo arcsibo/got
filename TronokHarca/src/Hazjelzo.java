@@ -11,6 +11,8 @@ public class Hazjelzo extends JLabel{
 	public Image kep;
 	private Haz tulajdonos;
 	
+	private Hazjelzo jomagam = this;
+	
 	public boolean katt;
 	
 	public Hazjelzo(Image kep,Haz haz)
@@ -44,7 +46,7 @@ public class Hazjelzo extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			System.out.println(jomagam.tulajdonos);
 		}
 
 		@Override

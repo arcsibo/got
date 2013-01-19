@@ -11,7 +11,7 @@ public class TronokHarca extends Applet{
 	
 
 //Az alkalmazás méretei
-final int W = 1024;
+final int W = 1300;
 final int H = 600;
 final int korrigálás = 626;
 
@@ -125,6 +125,8 @@ public void initRes()
 	{
 		 
 		if (line.equals("")) continue;
+		if (line.startsWith("#")) continue;
+		
 		else if (line.equals("<vastron>"))
 		{
 			

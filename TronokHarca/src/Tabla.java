@@ -56,6 +56,18 @@ public class Tabla extends JLabel{
 			this.add(aktTer);
 			
 		}
+		
+		//placeEgysegek();
+	}
+	
+	private void placeEgysegek()
+	{
+		Iterator<Tenger> it = this.teruletek.iterator();
+		
+		while (it.hasNext())
+		{
+			it.next().placeEgysegek();
+		}
 	}
 	
 	public static void kovHaz()
