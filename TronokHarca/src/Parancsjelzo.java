@@ -19,6 +19,8 @@ public class Parancsjelzo extends JLabel{
 	
 	private boolean leforditott;
 	
+	public boolean tablanVan = false;
+	
 	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kepLE, Image kepFEL)
 	{
 		super(new ImageIcon(kepFEL));

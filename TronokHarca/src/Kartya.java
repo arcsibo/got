@@ -175,7 +175,7 @@ public class Kartya {
 			Tabla.aktHaz = hazit.next();
 			for(int i = 0; i < Tabla.aktHaz.getHjelzo(); i++)
 			{
-				Tabla.aktHaz.addHazjelzo();
+				Tabla.aktHaz.addHazjelzo(new Hazjelzo(Tabla.aktHaz.keph,Tabla.aktHaz));
 			}
 		}
 	}

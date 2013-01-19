@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class Tenger extends JLabel{
 	
-	private Tenger jomagam = this;
+	protected Tenger jomagam = this;
 	protected String nev;
 	protected boolean vizi;
 	protected Image kep;
@@ -121,6 +121,7 @@ public class Tenger extends JLabel{
 		Tabla.got.setCursor(Tabla.defCursor);
 		Tabla.parancsJelzoAmitLeraksz = null;
 		Tabla.parancsjelzoLerakas = false;
+		parancsjelzo.tablanVan = true;
 		
 
 	
@@ -130,6 +131,7 @@ public class Tenger extends JLabel{
 	public void removeParancs()
 	{
 		this.tulajdonos.addParancs(this.parancsjelzo);
+		parancsjelzo.tablanVan = false;
 		this.parancsjelzo = null;
 	}
 	
@@ -150,7 +152,7 @@ public class Tenger extends JLabel{
 			
 		}else if(levesz.parancsjelzo.getName().equals("korona"))
 		{
-			this.tulajdonos.addHazjelzo();
+			this.tulajdonos.addHazjelzo(new Hazjelzo(tulajdonos.keph,tulajdonos));
 			levesz.tulajdonos.addParancs(levesz.parancsjelzo);
 			levesz.parancsjelzo = null;
 			
@@ -456,11 +458,10 @@ public class Tenger extends JLabel{
 		{
 			this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
 		}
-		else System.out.println("Nincs végrehajtható mûvelet");
-			
+	
 		
-
 	}
+
 	
 
         

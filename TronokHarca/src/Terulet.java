@@ -45,13 +45,38 @@ public class Terulet extends Tenger{
 	public int Korona(){ return this.korona; }
 	public Hazjelzo getHazjelzo(){ return this.hazjelzo; }
 	
-	public void addHazjelzo(Hazjelzo jelzo)
+	public void addHazjelzo(Hazjelzo jelzo,int x, int y)
 	{
-		this.hazjelzo = jelzo;
+		boolean lehet = true;
+		
+		if(this.tulajdonos == null) lehet = false; 
+		if(this.tulajdonos != Tabla.aktHaz) lehet = false;
+		if(this.hazjelzo != null) lehet = false;
+		if(this.egysegek.size() == 0) lehet = false;
+
+		if (lehet)
+		{
+		
+			this.hazjelzo = jelzo;
+			hazjelzo.setBounds(x-hazjelzo.getKep().getWidth(this)/2,y-hazjelzo.getKep().getHeight(null)/2,hazjelzo.getKep().getWidth(this),hazjelzo.getKep().getHeight(null));
+			this.add(hazjelzo);
+			tulajdonos.removeHazjelzo(hazjelzo);
+			hazjelzo.tablanVan = true;
+		}
+		
+		Tabla.got.setCursor(Tabla.defCursor);
+		Tabla.hazJelzoAmitLeraksz = null;
+		Tabla.hazjelzoLerakas = false;
+		
+
+		
 	}
 	public void removeHazjelzo()
 	{
+		tulajdonos.addHazjelzo(hazjelzo);
+		hazjelzo.tablanVan = false;
 		this.hazjelzo = null;
+		
 	}
 	
 	public void setTulaj(){
@@ -66,24 +91,33 @@ public class Terulet extends Tenger{
 	
 	public void korona()
 	{
-		this.tulajdonos.addHazjelzo();
+		this.tulajdonos.addHazjelzo(new Hazjelzo(tulajdonos.keph,tulajdonos));
 		for(int i = 0; i < this.korona; i++)
 		{
-			this.tulajdonos.addHazjelzo();
+			this.tulajdonos.addHazjelzo(new Hazjelzo(tulajdonos.keph,tulajdonos));
 		}
 		this.tulajdonos.addParancs(this.parancsjelzo);
 		this.parancsjelzo = null;
 	}
 	
-	public void performclick(int x, int y)
+
+	public void performClick(int x, int y)
 	{
 		boolean talalat = false;
 		if (hazjelzo != null) talalat = change.szomszedClick(x, y, hazjelzo);
 		if (talalat) return;
 		
 		super.performClick(x, y);
-	}
 	
+		if (Tabla.hazjelzoLerakas && Tabla.hazJelzoAmitLeraksz != null)
+		{
+			this.addHazjelzo(Tabla.hazJelzoAmitLeraksz, x, y);
+		}
+		
+		else System.out.println("Nincs végrehajtható mûvelet");
+		
+		
+	}
 	
 	
 	

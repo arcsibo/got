@@ -15,6 +15,8 @@ public class Hazjelzo extends JLabel{
 	
 	public boolean katt;
 	
+	public boolean tablanVan = false;
+	
 	public Hazjelzo(Image kep,Haz haz)
 	{
 		super(new ImageIcon(kep));
@@ -79,7 +81,20 @@ public class Hazjelzo extends JLabel{
 	
 	void performClick(int x, int y)
 	{
-		System.out.println(this.tulajdonos.getNev());
+		if (!Tabla.hazjelzoLerakas)
+		{
+			Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(x,y), ""));
+			Tabla.hazjelzoLerakas = true;
+			Tabla.hazJelzoAmitLeraksz = jomagam;
+		}
+		
+		//Visszarakjuk
+		else
+		{
+			Tabla.got.setCursor(Tabla.defCursor);
+			Tabla.hazjelzoLerakas = false;
+			Tabla.hazJelzoAmitLeraksz = null;
+		}
 	}
 	
 }
