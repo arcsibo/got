@@ -465,6 +465,7 @@ public void init()
 	add(aktHazPanel);
 	add(tabla);
 	add(jatekPanel);
+	
 
 }
 

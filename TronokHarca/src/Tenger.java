@@ -30,6 +30,8 @@ public class Tenger extends JLabel{
 	protected Vector<Egyseg> egysegek;
 	protected Vector<String> szomszedNevek;
 	
+	public Vector<Tenger> getSzomszedok() { return this.szomszedok; }
+	
 	public Tenger(String nev, Image kep, Haz tulajdonos, double X, double Y)
 	{
 		super(new ImageIcon(kep));
@@ -51,6 +53,8 @@ public class Tenger extends JLabel{
 		this.Y = Y;
 		
 		this.addMouseListener(ml);
+		
+		//this.setContentAreaFilled(false);
 		
 		szinez();
 	}
@@ -362,26 +366,45 @@ public class Tenger extends JLabel{
 		
 			int x = arg0.getX();
 			int y = arg0.getY();
+			boolean talalat = false;
 		
 			if (!checkClick(x,y)) {
 				Iterator<Tenger> szomszedok = jomagam.szomszedok.iterator();
 				
 				while (szomszedok.hasNext())
 				{
-					szomszedok.next().szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y);
+					talalat = szomszedok.next().szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y);
+					if (talalat) break;
 				}
-				return;
+				if (talalat) {
+					return;
+				}
+			
+			if (!talalat)
+			{
+				
+				szomszedok = jomagam.szomszedok.iterator();
+				
+				while (szomszedok.hasNext())
+				{
+					
+					Iterator<Tenger> szomszedokSzomszedjai = szomszedok.next().getSzomszedok().iterator();
+					
+					while (szomszedokSzomszedjai.hasNext())
+					{
+					
+						talalat = szomszedokSzomszedjai.next().szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y);
+						if (talalat) break;
+					}
+					if (talalat) break;
+				}
+				if (talalat) return;
+			}
+				
 			}
 			
-			if(jomagam.tulajdonos == null)
-			{
-				System.out.println(jomagam.nev+" : nincs tulajdonos");
-			}else 
-			{
-				System.out.println("Klikk erre:"+jomagam.nev + " : " + jomagam.tulajdonos.getNev() + x + ":"+ y);
-			}
-			
-			
+			else performClick();
+						
 		}
 
 		@Override
@@ -409,6 +432,20 @@ public class Tenger extends JLabel{
 		}
 		
 	};
+	
+	public void performClick()
+	{
+
+		if(jomagam.tulajdonos == null)
+		{
+			System.out.println(jomagam.nev+" : nincs tulajdonos");
+		}else 
+		{
+			System.out.println(jomagam.nev + " : " + jomagam.tulajdonos.getNev());
+		}
+		
+
+	}
 	
 	public void szinez()
 	{
@@ -446,7 +483,7 @@ public class Tenger extends JLabel{
         else return false;
 	}
         
-        public void szomszedClick(int x, int y)
+        public boolean szomszedClick(int x, int y)
         {
            int relX;
            relX = x - this.getLocation().x;
@@ -455,8 +492,11 @@ public class Tenger extends JLabel{
            
            if (checkClick(relX,relY))
            {
-        	   System.out.println("Igazi klikk: " + this.nev);
+        	   performClick();
+        	   return true;
            }
+           
+           return false;
         }
         
         
