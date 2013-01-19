@@ -208,11 +208,33 @@ public void initRes()
 				line = bf.readLine();
 			    int varak = Integer.parseInt(line);
 			    
+			    for (int i= 0; i<varak; i++)
+			    {
+			    	//double varX = Double.parseDouble(bf.readLine());
+			    	//double varY = Double.parseDouble(bf.readLine());
+			    }
+			    
 			    line = bf.readLine();
 			    int hordok = Integer.parseInt(line);
 			    
+			    for (int i= 0; i<hordok; i++)
+			    {
+			    	
+			    	//double hordoX = Double.parseDouble(bf.readLine());
+			    	//double hordoY = Double.parseDouble(bf.readLine());
+			    	
+			    }
+			    
 			    line = bf.readLine();
 			    int korona = Integer.parseInt(line);
+			    
+			    for (int i= 0; i<korona; i++)
+			    {
+			    	
+			    	//double koronaX = Double.parseDouble(bf.readLine());
+			    	//double koronaY = Double.parseDouble(bf.readLine());
+			    	
+			    }
 			    
 			    
 			    Haz tulajdonos = Tabla.getHaz(bf.readLine());
@@ -226,6 +248,8 @@ public void initRes()
 			    {
 		
 			    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep);
+			    	//double gyalogosX = Double.parseDouble(bf.readLine());
+			    	//double gyalogosY = Double.parseDouble(bf.readLine());
 			    	terulet.addEgyseg(gyalogosE);
 			    }
 			    
@@ -234,7 +258,9 @@ public void initRes()
 			    for (int i= 0; i<lovag; i++)
 			    {
 	
-			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep);
+			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep);    	
+			    	//double lovagX = Double.parseDouble(bf.readLine());
+			    	//double lovagY = Double.parseDouble(bf.readLine());
 			    	terulet.addEgyseg(lovagE);
 			    }
 			    
@@ -290,6 +316,8 @@ public void initRes()
 			    for (int i= 0; i<hajo; i++)
 			    {
 			    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep);
+			    	//double lovagX = Double.parseDouble(bf.readLine());
+			    	//double lovagY = Double.parseDouble(bf.readLine());
 			    	tenger.addEgyseg(hajoE);
 			    }
 			    
