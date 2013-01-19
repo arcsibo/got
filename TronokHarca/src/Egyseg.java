@@ -14,6 +14,8 @@ public class Egyseg extends JLabel{
 	private Image kep;
 	private Haz tulajdonos;
 	
+	public boolean katt;
+	
 	public Egyseg(String tipus,Haz tulajdonos, Image kep)
 	{
 		super(new ImageIcon(kep));
@@ -47,6 +49,8 @@ public class Egyseg extends JLabel{
 		}
 		
 		else return;
+		
+		this.addMouseListener(mL);
 		
 	}
 	public int getEro()

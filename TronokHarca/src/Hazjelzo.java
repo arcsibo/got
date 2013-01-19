@@ -8,13 +8,18 @@ import javax.swing.JLabel;
 public class Hazjelzo extends JLabel{
 	
 	private Image lekep;
+	public Image kep;
 	private Haz tulajdonos;
+	
+	public boolean katt;
 	
 	public Hazjelzo(Image kep,Haz haz)
 	{
 		super(new ImageIcon(kep));
 		this.lekep = kep;
 		this.tulajdonos = haz;
+		
+		this.addMouseListener(mL);
 	}
 	
 	public Haz getHaz()

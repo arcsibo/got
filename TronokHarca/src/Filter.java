@@ -4,7 +4,7 @@ import java.awt.image.RGBImageFilter;
 public class Filter extends RGBImageFilter
 {
 
-		Tenger jomagam;
+		 Tenger jomagam;
 		
 		/*
 		 * 1-es típus : Terület színezõ filter
@@ -19,6 +19,8 @@ public class Filter extends RGBImageFilter
 			jomagam = t;
 			tipus = 1;
 		}
+		
+		
 		
 		public Filter(Tenger t,int Mx, int My)
 		{

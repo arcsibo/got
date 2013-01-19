@@ -56,7 +56,7 @@ public class Tenger extends JLabel{
 		
 		//this.setContentAreaFilled(false);
 		
-		szinez();
+		change.szinez(this);
 	}
 	
 	//alap getterek
@@ -368,7 +368,7 @@ public class Tenger extends JLabel{
 			int y = arg0.getY();
 			boolean talalat = false;
 		
-			if (!checkClick(x,y)) {
+			if (!change.checkClick(x,y,jomagam)) {
 				Iterator<Tenger> szomszedok = jomagam.szomszedok.iterator();
 				
 				while (szomszedok.hasNext())
@@ -448,41 +448,7 @@ public class Tenger extends JLabel{
 
 	}
 	
-	public void szinez()
-	{
-		
-		Image resultImage;
-		
-		Filter filter = new Filter(this);
-        ImageProducer producer = new FilteredImageSource(
-                                        kep.getSource(),
-                                        filter);
-        resultImage = createImage(producer);
-        
-        this.setIcon(new ImageIcon(resultImage));
-		
-	}
-	
-	public boolean checkClick(int x, int y)
-	{
-		
-		Image resultImage;
-		Filter filter = new Filter(this,x,y);
-	
-        ImageProducer producer = new FilteredImageSource(
-                                        kep.getSource(),
-                                        filter);
-        resultImage = createImage(producer);
-        ImageIcon dump = new ImageIcon(resultImage);
-        
-        
-        if (this.katt) {
-        	katt = false;
-        	return true;
-        }
-        
-        else return false;
-	}
+
         
         public boolean szomszedClick(int x, int y)
         {
@@ -491,7 +457,7 @@ public class Tenger extends JLabel{
            int relY;
            relY = y - this.getLocation().y;
            
-           if (checkClick(relX,relY))
+           if (change.checkClick(relX,relY,this))
            {
         	   performClick();
         	   return true;
