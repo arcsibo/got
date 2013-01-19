@@ -125,7 +125,7 @@ public void initRes()
 	{
 		 
 		if (line.equals("")) continue;
-		if (line.startsWith("#")) continue;
+		
 		
 		else if (line.equals("<vastron>"))
 		{

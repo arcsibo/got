@@ -91,6 +91,7 @@ public class Terulet extends Tenger{
 		boolean volt = false;
 		if (this.varak > 0) {System.out.print("Varak:" + varak + ","); volt = true;}
 		if (this.hordok > 0) {System.out.print("Hordok:" + hordok + ","); volt = true; }
+		if (this.korona > 0) {System.out.print("Korona:" + korona + ","); volt = true; }
 		if (volt) debugMouse(x,y);
 	}
 	
