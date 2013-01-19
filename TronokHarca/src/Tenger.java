@@ -452,28 +452,17 @@ public class Tenger extends JLabel{
 	
 	public void performClick(int x, int y)
 	{
-
-		if(jomagam.tulajdonos == null)
-		{
-			//System.out.println(jomagam.nev+" : nincs tulajdonos");
-		}else 
-		{
-			//System.out.println(jomagam.nev + " : " + jomagam.tulajdonos.getNev());
-			
+		System.out.println(this.nev);
 			if (this.egysegek.size() >0)
 			{
 				
 				Iterator<Egyseg> it = egysegek.iterator();
-				System.out.print(this.nev + ": ");
+				
 				while (it.hasNext()) System.out.print(it.next() + ", ");
 				if (!(jomagam instanceof Terulet))debugMouse(x,y);
 				
 			}
 			
-			
-			
-			
-		}
 		
 
 	}

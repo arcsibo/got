@@ -57,6 +57,7 @@ public class Egyseg extends JLabel{
 		this.addMouseListener(mL);
 		
 	}
+	
 	public int getEro()
 	{
 		return this.ertek;
