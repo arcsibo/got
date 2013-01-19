@@ -6,6 +6,7 @@ public class Filter extends RGBImageFilter
 
 		 Tenger jomagam;
 		 Egyseg e;
+		 Parancsjelzo p;
 		
 		/*
 		 * 1-es típus : Terület színezõ filter
@@ -33,6 +34,26 @@ public class Filter extends RGBImageFilter
 			super();
 			jomagam = t;
 			tipus = 2;
+			this.mX = Mx;
+			this.mY = My;
+
+		}
+		
+		public Filter(Egyseg e,int Mx, int My)
+		{
+			super();
+			this.e = e;
+			tipus = 4;
+			this.mX = Mx;
+			this.mY = My;
+
+		}
+		
+		public Filter(Parancsjelzo p,int Mx, int My)
+		{
+			super();
+			this.p = p;
+			tipus = 5;
 			this.mX = Mx;
 			this.mY = My;
 
@@ -97,16 +118,65 @@ public class Filter extends RGBImageFilter
 			return rgb;
 			
 		}
+			
+		else if (tipus == 4){
+			
+			if (x == mX && y == mY)
+			{
+				
+				if (rgb == 0)
+				{
+					e.katt = false;
+				}
+				else {
+					
+					e.katt = true;
+					
+					
+				}
+				
+			}
+			
+			return rgb;
+			
+		}	
+			
+		else if (tipus == 5){
+			
+			if (x == mX && y == mY)
+			{
+				
+				if (rgb == 0)
+				{
+					p.katt = false;
+				}
+				else {
+					
+					p.katt = true;
+					
+					
+				}
+				
+			}
+			
+			return rgb;
+			
+		}	
 		
-		if (tipus == 3) {	
+		else if (tipus == 3) {	
 			
 			if (rgb == 0) return rgb;  
 			
 			if (e.tulajdonos == null) return rgb;
 				
 				Color color = e.tulajdonos.getColor();
+				Color sotetit = new Color(rgb);
 				
-				color = new Color(color.getRed()/2,color.getGreen()/2,color.getBlue()/2);
+				rgb = new Color(sotetit.getRed()/3,sotetit.getGreen()/3,sotetit.getBlue()/3).getRGB();
+				
+				
+				
+				color = new Color(color.getRed()/3,color.getGreen()/3,color.getBlue()/3);
 				
 				rgb +=color.getRGB();
 

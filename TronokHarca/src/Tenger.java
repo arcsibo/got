@@ -370,7 +370,7 @@ public class Tenger extends JLabel{
 				
 				while (szomszedok.hasNext())
 				{
-					talalat = szomszedok.next().szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y);
+					talalat = change.szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y,szomszedok.next());
 					if (talalat) break;
 				}
 				if (talalat) {
@@ -391,7 +391,7 @@ public class Tenger extends JLabel{
 					while (szomszedokSzomszedjai.hasNext())
 					{
 					
-						talalat = szomszedokSzomszedjai.next().szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y);
+						talalat = change.szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y,szomszedokSzomszedjai.next());
 						if (talalat) break;
 					}
 					if (talalat) break;
@@ -401,7 +401,7 @@ public class Tenger extends JLabel{
 				
 			}
 			
-			else performClick(x,y);
+			else  performClick(x,y);
 						
 		}
 
@@ -435,6 +435,23 @@ public class Tenger extends JLabel{
 	//Ez az igazi egér kattintás kezelõje
 	public void performClick(int x, int y)
 	{
+		boolean talalat = false;
+		if (jomagam.egysegek.size()>0)
+		{
+			
+			Iterator <Egyseg> it = jomagam.egysegek.iterator();
+			while (it.hasNext())
+			{
+				talalat = change.szomszedClick(x, y, it.next());
+			}
+			if (talalat) return;
+		}
+		
+		if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
+		if (talalat) return;
+		
+		
+		
 		if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
 		{
 			this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
@@ -446,22 +463,8 @@ public class Tenger extends JLabel{
 	}
 	
 
-        // Egymást fedõ területeknél ez végzi a kattintást
-        public boolean szomszedClick(int x, int y)
-        {
-           int relX;
-           relX = x - this.getLocation().x;
-           int relY;
-           relY = y - this.getLocation().y;
-           
-           if (change.checkClick(relX,relY,this))
-           {
-        	   performClick(relX,relY);
-        	   return true;
-           }
-           
-           return false;
-        }
+        
+        
         
         
         

@@ -77,7 +77,10 @@ public class Egyseg extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println(jomagam.tipus);
+			
+			if (!change.checkClick(arg0.getX(), arg0.getY(), jomagam)) return;
+				
+			jomagam.performClick();
 		}
 
 		@Override
@@ -105,6 +108,11 @@ public class Egyseg extends JLabel{
 		}
 		
 	};
+	
+	public void performClick()
+	{
+		System.out.println(this.tipus);
+	}
 	
 
 }

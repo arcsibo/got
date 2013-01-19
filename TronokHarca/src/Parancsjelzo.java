@@ -78,21 +78,10 @@ public class Parancsjelzo extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
+			if (!change.checkClick(arg0.getX(), arg0.getY(), jomagam)) return;
 			
-			if (!Tabla.parancsjelzoLerakas)
-			{
-				Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(arg0.getX(),arg0.getY()), ""));
-				Tabla.parancsjelzoLerakas = true;
-				Tabla.parancsJelzoAmitLeraksz = jomagam;
-			}
+			jomagam.performClick(arg0.getX(),arg0.getY());
 			
-			//Visszarakjuk
-			else
-			{
-				Tabla.got.setCursor(Tabla.defCursor);
-				Tabla.parancsjelzoLerakas = false;
-				Tabla.parancsJelzoAmitLeraksz = null;
-			}
 		}
 
 		@Override
@@ -120,4 +109,22 @@ public class Parancsjelzo extends JLabel{
 		}
 		
 	};
+	
+	public void performClick(int x, int y)
+	{
+		if (!Tabla.parancsjelzoLerakas)
+		{
+			Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(x,y), ""));
+			Tabla.parancsjelzoLerakas = true;
+			Tabla.parancsJelzoAmitLeraksz = jomagam;
+		}
+		
+		//Visszarakjuk
+		else
+		{
+			Tabla.got.setCursor(Tabla.defCursor);
+			Tabla.parancsjelzoLerakas = false;
+			Tabla.parancsJelzoAmitLeraksz = null;
+		}
+	}
 }
