@@ -46,7 +46,7 @@ Tabla tabla;
 //A képek betöltõdését figyelhetjük vele
 MediaTracker tracker;
 
-//res mappa behúzása, file.got feldolgozásam, etc
+//res mappa behúzása, file.got feldolgozásam, etc // kezdeti feltöltés
 public void initRes()
 {
 	
@@ -433,7 +433,7 @@ public void initRes()
 	
 }
 
-//beállítjuk az appletet, elhelyezzük a grafikai elemeket
+//beállítjuk az appletet, elhelyezzük a grafikai elemeket //kezdeti beállítások
 public void init()
 {
 	
@@ -575,6 +575,7 @@ ActionListener kovGombAction = new ActionListener() {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		Tabla.vizsgalatKorok();
 		Tabla.kovHaz();
 		updateHaz();
 		

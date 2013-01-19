@@ -13,11 +13,14 @@ public class Tabla extends JLabel{
 	public static boolean TERVEZES = true;
 	
 	
-	public static boolean AKCIO;
+	public static boolean AKCIO =false;
 
-		public static boolean portyazas;
-		public static boolean tamadas;
-		public static boolean koronaosztas;
+		public static boolean portyazas = false;
+		public static boolean tamadas = false;
+		public static boolean koronaosztas = false;
+		
+		
+	public static int countKiskor = 0;
 	
 		
 	//SEGÉD ÁLLAPOTVÁLTOZÓK
@@ -55,7 +58,6 @@ public class Tabla extends JLabel{
 	//Gyuri,ï¿½ï¿½ï¿½ron
 	public static Haz aktHaz;
 	public static Tenger aktTer;
-	public static int count = 0;
 	
 	private int yScroll = 0;
 	private int x;
@@ -110,9 +112,25 @@ public class Tabla extends JLabel{
 	
 	public static void kovHaz()
 	{ 
-		if(count >= vastron.size()) count = 0;
-		aktHaz = vastron.get(count);
-		count++;
+		if(countKiskor >= vastron.size()) countKiskor = 0;
+		aktHaz = vastron.get(countKiskor);
+		countKiskor++;
+		System.out.println(countKiskor +" " +vastron.size());
+	}
+	
+	public static void vizsgalatKorok()
+	{
+		if(countKiskor >= vastron.size() && TERVEZES)
+		{
+			TERVEZES = false;
+			AKCIO = true;
+			Iterator<Tenger> itTer =  Tabla.teruletek.iterator();
+			while(itTer.hasNext())
+			{
+				aktTer = itTer.next();
+				aktTer.felforditParancsjelzo();
+			}
+		}
 	}
 	
 	// /Gyuri,ï¿½ï¿½ï¿½ron
