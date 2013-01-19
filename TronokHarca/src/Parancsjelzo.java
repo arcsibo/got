@@ -73,12 +73,6 @@ public class Parancsjelzo extends JLabel{
 	}
 	
 	
-	public String toString()
-	{
-		String s = this.tipus;
-		return s;
-	}
-	
 	MouseListener mL = new MouseListener() {
 
 		@Override

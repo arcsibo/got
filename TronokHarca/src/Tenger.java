@@ -102,6 +102,7 @@ public class Tenger extends JLabel{
 		boolean lehet = true;
 		
 		if(this.tulajdonos == null) lehet = false; 
+		if(this.tulajdonos != Tabla.aktHaz) lehet = false;
 		if(this.vizi == true && parancs.getTipus().equals("korona")) lehet = false;
 		if(this.parancsjelzo != null) lehet = false;
 		if(this.egysegek.size() == 0) lehet = false;
@@ -114,8 +115,15 @@ public class Tenger extends JLabel{
 			parancs.setBounds(x-parancs.getKep().getWidth(this)/2,y-parancs.getKep().getHeight(null)/2,parancs.getKep().getWidth(this),parancs.getKep().getHeight(null));
 			this.add(parancs);
 			tulajdonos.removeParancs(parancs);
-			Tabla.got.setCursor(Tabla.defCursor);
+			Tabla.parancsJelzoAmitLeraksz.lefordit(true);
 		}
+		
+		Tabla.got.setCursor(Tabla.defCursor);
+		Tabla.parancsJelzoAmitLeraksz = null;
+		Tabla.parancsjelzoLerakas = false;
+		
+
+	
 		
 	}
 	
@@ -427,12 +435,9 @@ public class Tenger extends JLabel{
 	//Ez az igazi egér kattintás kezelõje
 	public void performClick(int x, int y)
 	{
-		if (Tabla.parancsjelzoLerakas)
+		if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
 		{
 			this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
-			Tabla.parancsJelzoAmitLeraksz.lefordit(true);
-			Tabla.parancsJelzoAmitLeraksz = null;
-			Tabla.parancsjelzoLerakas = false;
 		}
 		else System.out.println("Nincs végrehajtható mûvelet");
 			

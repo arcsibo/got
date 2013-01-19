@@ -7,12 +7,33 @@ import javax.swing.*;
 
 public class Tabla extends JLabel{
 	
-	//JÁTÉK ÁLLAPOTVÁLTOZÓK
+	//GLOBÁLIS ÁLLAPOTVÁLTOZÓK
+	public static boolean KARTYAHUZAS;
+	public static boolean TERVEZES;
+	
+	
+	public static boolean AKCIO;
+
+		public static boolean portyazas;
+		public static boolean tamadas;
+		public static boolean koronaosztas;
+	
+		
+	//SEGÉD ÁLLAPOTVÁLTOZÓK
 	public static TronokHarca got; //Itt tudod elérni magát az Appletet
 	public static Cursor defCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 	
+	
 	public static boolean parancsjelzoLerakas = false;
-	public static Parancsjelzo parancsJelzoAmitLeraksz;
+	public static Parancsjelzo parancsJelzoAmitLeraksz = null;
+	
+	public static boolean hazjelzoLerakas = false;
+	public static Hazjelzo hazJelzoAmitLeraksz = null;
+	
+	public static boolean egysegLerakas = false;
+	public static Egyseg egysegAmitLeraksz = null;
+	
+	
 	
 	
 	

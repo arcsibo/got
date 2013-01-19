@@ -76,33 +76,6 @@ public class Terulet extends Tenger{
 	}
 	
 	
-	public String toString()
-	{
-		String s = "Szárazföld: ";
-		s += this.nev;
-		s += " Tulajdonos:";
-		if (tulajdonos != null) s += this.tulajdonos.getNev();
-		
-		s += "\n";
-		
-		Iterator<Egyseg> egyIt = egysegek.iterator();
-		while (egyIt.hasNext())
-		{
-			s += "    " + egyIt.next().toString();
-			s += "\n";
-		}
-		
-		s += "\n    Szomszedok:\n";
-		
-		Iterator<Tenger> szIt = szomszedok.iterator();
-		while (szIt.hasNext())
-		{
-			s += "    " + szIt.next().getNev();
-			s += "\n";
-		}
-		
-		return s;
-	}
 	
 	
 	

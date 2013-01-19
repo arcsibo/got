@@ -70,15 +70,6 @@ public class Egyseg extends JLabel{
 	public Haz getHaz(){
 		return this.tulajdonos;
 	}
-	
-	public String toString()
-	{
-		String s = "";
-			
-		s += this.tipus;
-			
-		return s;
-	}
 		
 
 	MouseListener mL = new MouseListener() {
