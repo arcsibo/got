@@ -178,6 +178,7 @@ public class Kartya {
 				Tabla.aktHaz.addHazjelzo(new Hazjelzo(Tabla.aktHaz.keph,Tabla.aktHaz));
 			}
 		}
+		//FASZ
 	}
 	
 	private static void utanpotlas() 
