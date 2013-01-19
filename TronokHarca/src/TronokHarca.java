@@ -14,7 +14,7 @@ public class TronokHarca extends Applet{
 //Az alkalmazás méretei
 final int W = 1300;
 final int H = 600;
-final int korrigálás = 626;
+final int korrigalas = 626;
 
 //Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
 final double hazR = W/12;
@@ -245,7 +245,7 @@ public void initRes()
 				if (line.equals("</terulet>")) break;
 				String nev = line;
 				
-				int x = Integer.parseInt(bf.readLine()) - korrigálás;
+				int x = Integer.parseInt(bf.readLine()) - korrigalas;
 				
 				double X = x / origW;
 				double Y = Integer.parseInt(bf.readLine()) / origH;
@@ -353,7 +353,7 @@ public void initRes()
 				if (line.equals("</tenger>")) break;
 				String nev = line;
 				
-				int x =  Integer.parseInt(bf.readLine()) - korrigálás;
+				int x =  Integer.parseInt(bf.readLine()) - korrigalas;
 				double X = x / origW;
 				double Y = Integer.parseInt(bf.readLine()) / origH;
 				
