@@ -380,6 +380,7 @@ public class Tenger extends JLabel{
 					return;
 				}
 			
+				//valami
 			if (!talalat)
 			{
 				
