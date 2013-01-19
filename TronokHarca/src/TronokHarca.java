@@ -19,14 +19,14 @@ final int korrigálás = 626;
 //Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
 final double hazR = W/12;
 final double parancsjR = W/25;
-final double hazjR = W/20;
+final double hazjR = W/30;
 final double tronR = W/30;
 double teruletR1, teruletR2;
 final double egysegR = W/45;
 final double cuccosR = W/20;
 final double vhkR = W/45;
 
-final double aktHazPanelR = hazR;
+final double aktHazPanelR = hazR+hazR/2;
 final double jatekPanelR = W/4;
 
 final double terkepR = W - (aktHazPanelR + jatekPanelR);
@@ -45,18 +45,6 @@ Tabla tabla;
 
 //A képek betöltõdését figyelhetjük vele
 MediaTracker tracker;
-
-
-ActionListener kovGombAction = new ActionListener() {
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		Tabla.kovHaz();
-		
-	}
-	
-};
 
 //res mappa behúzása, file.got feldolgozásam, etc
 public void initRes()
@@ -583,6 +571,79 @@ public void init()
 	add(jatekPanel);
 	
 
+}
+
+//kovhaz gombnak az akciója
+ActionListener kovGombAction = new ActionListener() {
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		Tabla.kovHaz();
+		updateHaz();
+		
+	}
+	
+};
+
+public void updateHaz()
+{
+	aktHazPanel.removeAll();
+	aktHazPanel.repaint();
+	
+	JButton kovGomb = new JButton(new ImageIcon(Tabla.aktHaz.getKep()));
+	kovGomb.addActionListener(kovGombAction);
+	kovGomb.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
+	
+	aktHazPanel.add(kovGomb);
+	
+	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
+	aktHazKep.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
+	//aktHazPanel.add(aktHazKep);
+
+	
+	
+	int y = Tabla.aktHaz.getKep().getHeight(null);
+	int x = Tabla.aktHaz.getKep().getWidth(null)/2;
+	
+	Vector<Parancsjelzo> vectorPJelzok = Tabla.aktHaz.getPjelzok();
+	Iterator<Parancsjelzo> itPJelzo = vectorPJelzok.iterator();
+	
+	int fele = vectorPJelzok.size()/2;
+	int i = 0;
+	int hY = y;
+	while(itPJelzo.hasNext())
+	{
+		Parancsjelzo aktJelzo = itPJelzo.next();
+		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktHazPanel.add(aktJelzo);
+		
+		y += aktJelzo.getKep().getHeight(null);
+		i++;
+		
+		if (i == fele) y = hY;
+
+	}
+	
+	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
+	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
+	
+	fele = vectorHJelzok.size()/2 + 1;
+	i = 0;
+	hY = y;
+	while(itHJelzo.hasNext())
+	{
+		Hazjelzo aktJelzo = itHJelzo.next();
+		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktHazPanel.add(aktJelzo);
+		
+		y += aktJelzo.getKep().getHeight(null);
+		i++;
+		
+		if (i == fele) y = hY;
+
+	}
+	
 }
 
 public Image scaledImage(Image img,double ratio) {
