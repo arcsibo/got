@@ -19,7 +19,7 @@ final int korrigálás = 626;
 //Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
 final double hazR = W/12;
 final double parancsjR = W/25;
-final double hazjR = W/30;
+final double hazjR = W/40;
 final double tronR = W/30;
 double teruletR1, teruletR2;
 final double egysegR = W/45;
@@ -198,7 +198,7 @@ public void initRes()
 			    loading();
 			    kep = scaledImage(kep,hazR);
 			    kepp = scaledImage(kepp,parancsjR);
-			    keph = scaledImage(keph,parancsjR);
+			    keph = scaledImage(keph,hazjR);
 			    Haz haz = new Haz(line,kep,kepp,keph);
 				Tabla.vastron.add(haz);
 			
@@ -487,19 +487,15 @@ public void init()
 	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
 	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
 	
-	fele = vectorHJelzok.size()/2 + 1;
 	i = 0;
-	hY = y;
+	y = 0;
+	x = Tabla.aktHaz.getKep().getWidth(null);
 	while(itHJelzo.hasNext())
 	{
 		Hazjelzo aktJelzo = itHJelzo.next();
-		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktJelzo.setBounds(x, y,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
 		aktHazPanel.add(aktJelzo);
-		
-		y += aktJelzo.getKep().getHeight(null);
-		i++;
-		
-		if (i == fele) y = hY;
+		y += aktJelzo.getHeight();
 
 	}
 	
@@ -628,19 +624,15 @@ public void updateHaz()
 	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
 	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
 	
-	fele = vectorHJelzok.size()/2 + 1;
 	i = 0;
-	hY = y;
+	y = 0;
+	x = Tabla.aktHaz.getKep().getWidth(null);
 	while(itHJelzo.hasNext())
 	{
 		Hazjelzo aktJelzo = itHJelzo.next();
-		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktJelzo.setBounds(x, y,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
 		aktHazPanel.add(aktJelzo);
-		
-		y += aktJelzo.getKep().getHeight(null);
-		i++;
-		
-		if (i == fele) y = hY;
+		y += aktJelzo.getHeight();
 
 	}
 	
