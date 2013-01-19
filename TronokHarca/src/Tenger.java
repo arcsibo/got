@@ -450,7 +450,7 @@ public class Tenger extends JLabel{
 		if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
 		if (talalat) return;
 		
-		
+		//Innentõl történik valami hasznos
 		
 		if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
 		{

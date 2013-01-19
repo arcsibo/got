@@ -46,7 +46,9 @@ public class Hazjelzo extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println(jomagam.tulajdonos);
+        if (!change.checkClick(arg0.getX(), arg0.getY(), jomagam)) return;
+			
+			jomagam.performClick(arg0.getX(),arg0.getY());
 		}
 
 		@Override
@@ -74,5 +76,10 @@ public class Hazjelzo extends JLabel{
 		}
 		
 	};
+	
+	void performClick(int x, int y)
+	{
+		System.out.println(this.tulajdonos.getNev());
+	}
 	
 }

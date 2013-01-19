@@ -58,6 +58,22 @@ public class change {
        return false;
     }
 	
+	public static boolean szomszedClick(int x, int y,Hazjelzo h)
+    {
+       int relX;
+       relX = x - h.getLocation().x;
+       int relY;
+       relY = y - h.getLocation().y;
+       
+       if (change.checkClick(relX,relY,h))
+       {
+    	   h.performClick(x,y);
+    	   return true;
+       }
+       
+       return false;
+    }
+	
 	
 	
 	public static void szinez(Tenger t)
@@ -147,6 +163,27 @@ public class change {
         
         if (p.katt) {
         	p.katt = false;
+        	return true;
+        }
+        
+        else return false;
+	}
+	
+	public static boolean checkClick(int x, int y, Hazjelzo h)
+	{
+		
+		Image resultImage;
+		Filter filter = new Filter(h,x,y);
+	
+        ImageProducer producer = new FilteredImageSource(
+                                        h.getKep().getSource(),
+                                        filter);
+        resultImage = h.createImage(producer);
+        ImageIcon dump = new ImageIcon(resultImage);
+        
+        
+        if (h.katt) {
+        	h.katt = false;
         	return true;
         }
         

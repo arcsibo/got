@@ -75,7 +75,14 @@ public class Terulet extends Tenger{
 		this.parancsjelzo = null;
 	}
 	
-	
+	public void performclick(int x, int y)
+	{
+		boolean talalat = false;
+		if (hazjelzo != null) talalat = change.szomszedClick(x, y, hazjelzo);
+		if (talalat) return;
+		
+		super.performClick(x, y);
+	}
 	
 	
 	

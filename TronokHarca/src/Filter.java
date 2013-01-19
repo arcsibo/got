@@ -7,6 +7,7 @@ public class Filter extends RGBImageFilter
 		 Tenger jomagam;
 		 Egyseg e;
 		 Parancsjelzo p;
+		 Hazjelzo h;
 		
 		/*
 		 * 1-es típus : Terület színezõ filter
@@ -54,6 +55,16 @@ public class Filter extends RGBImageFilter
 			super();
 			this.p = p;
 			tipus = 5;
+			this.mX = Mx;
+			this.mY = My;
+
+		}
+		
+		public Filter(Hazjelzo h,int Mx, int My)
+		{
+			super();
+			this.h = h;
+			tipus = 6;
 			this.mX = Mx;
 			this.mY = My;
 
@@ -153,6 +164,28 @@ public class Filter extends RGBImageFilter
 				else {
 					
 					p.katt = true;
+					
+					
+				}
+				
+			}
+			
+			return rgb;
+			
+		}	
+			
+		else if (tipus == 6){
+			
+			if (x == mX && y == mY)
+			{
+				
+				if (rgb == 0)
+				{
+					h.katt = false;
+				}
+				else {
+					
+					h.katt = true;
 					
 					
 				}

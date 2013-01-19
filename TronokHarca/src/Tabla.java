@@ -109,7 +109,6 @@ public class Tabla extends JLabel{
 		if(count >= vastron.size()) count = 0;
 		aktHaz = vastron.get(count);
 		count++;
-		System.out.println(aktHaz.getNev());
 	}
 	
 	// /Gyuri,���ron
