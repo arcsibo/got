@@ -89,8 +89,8 @@ public class Parancsjelzo extends JLabel{
 			//Visszarakjuk
 			else
 			{
-				Tabla.parancsjelzoLerakas = false;
 				Tabla.got.setCursor(Tabla.defCursor);
+				Tabla.parancsjelzoLerakas = false;
 				Tabla.parancsJelzoAmitLeraksz = null;
 			}
 		}

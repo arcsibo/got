@@ -1,6 +1,8 @@
 import java.io.*;
 import java.applet.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.*;
 import java.net.*;
 import java.util.*;
@@ -43,6 +45,18 @@ Tabla tabla;
 
 //A képek betöltõdését figyelhetjük vele
 MediaTracker tracker;
+
+
+ActionListener kovGombAction = new ActionListener() {
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		Tabla.kovHaz();
+		
+	}
+	
+};
 
 //res mappa behúzása, file.got feldolgozásam, etc
 public void initRes()
@@ -445,12 +459,18 @@ public void init()
 	//setLayout(new BorderLayout());
 	setLayout(null);
 	
+	JButton kovGomb = new JButton(new ImageIcon(Tabla.aktHaz.getKep()));
+	kovGomb.addActionListener(kovGombAction);
+	kovGomb.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
+	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(null);
 	
+	aktHazPanel.add(kovGomb);
+	
 	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
 	aktHazKep.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
-	aktHazPanel.add(aktHazKep);
+	//aktHazPanel.add(aktHazKep);
 
 	
 	

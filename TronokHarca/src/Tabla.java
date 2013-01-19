@@ -109,6 +109,7 @@ public class Tabla extends JLabel{
 		if(count >= vastron.size()) count = 0;
 		aktHaz = vastron.get(count);
 		count++;
+		System.out.println(aktHaz.getNev());
 	}
 	
 	// /Gyuri,ï¿½ï¿½ï¿½ron
@@ -236,32 +237,8 @@ public class Tabla extends JLabel{
 			aktHaz.setLicit(licit);
 		}
 	}
-	//licitálás vége
-	public static String toString1()
-	{
-		String s = "";
-		Iterator<Tenger> terIt = teruletek.iterator();
-		s += "Teruletek:\n";
-		while (terIt.hasNext())
-		{
-			Tenger aktTer = terIt.next();
-			s += "    " + aktTer.toString();
-			s += "\n";
-		}
-		
-		s += "\n";
-		
-		Iterator<Haz> hazIt = vastron.iterator();
-		s += "Hï¿½zak:\n";
-		while (hazIt.hasNext())
-		{
-			Haz aktHaz = hazIt.next();
-			s += "    " + aktHaz.getNev();
-			s += "\n";
-		}
-		
-		return s;
-	}
+	
+	
 	
 	
 	MouseWheelListener wl = new MouseWheelListener() {

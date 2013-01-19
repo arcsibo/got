@@ -51,16 +51,25 @@ public class Filter extends RGBImageFilter
 			
 			if (rgb == 0) return rgb;  
 			if (jomagam.tulajdonos == null) return rgb;
-			
-			
-			//GYuri ezt majd szedd ki ha kész a textúra
-			if (jomagam instanceof Terulet) rgb = 0x00000000;
+				
 
 			Color color = jomagam.tulajdonos.getColor();
 			
-			color = new Color(color.getRed()/4,color.getGreen()/4,color.getBlue()/4);
-			
-			rgb +=color.getRGB();
+			if (jomagam instanceof Terulet)
+			{
+				
+				Color teruletSzin = new Color((rgb));
+				teruletSzin = new Color(teruletSzin.getRed()/2,teruletSzin.getGreen()/2,teruletSzin.getBlue()/2);
+				rgb = teruletSzin.getRGB();
+				color = new Color(color.getRed()/2,color.getGreen()/2,color.getBlue()/2);
+				rgb += color.getRGB();
+				
+			}
+			else
+			{
+				color = new Color(color.getRed()/4,color.getGreen()/4,color.getBlue()/4);
+				rgb +=color.getRGB();
+			}
 
 			return rgb;
 			
