@@ -126,6 +126,35 @@ public void initRes()
 	  loading();
 	  koronaKep = scaledImage(koronaKep,vhkR);
 	  
+	  
+	  for (int i=1; i<=3;i++)
+	  {
+		  Image kep0 =   getImage(getCodeBase(),"res/mozgas"+i+".png");
+		  tracker.addImage(kep0, 0);
+		  Tabla.parancsjelzok.add(kep0);
+		  Image kep1 = getImage(getCodeBase(),"res/vedekez"+i+".png");
+		  tracker.addImage(kep0, 0);
+		  Tabla.parancsjelzok.add(kep1);
+		  Image kep2 = getImage(getCodeBase(),"res/tamogatas"+i+".png");
+		  tracker.addImage(kep0, 0);
+		  Tabla.parancsjelzok.add(kep2);
+		  Image kep3 = getImage(getCodeBase(),"res/korona"+i+".png");
+		  tracker.addImage(kep0, 0);
+		  Tabla.parancsjelzok.add(kep3);
+		  Image kep4 = getImage(getCodeBase(),"res/portya"+i+".png");
+		  tracker.addImage(kep0, 0);
+		  Tabla.parancsjelzok.add(kep4);
+	  }
+	  loading();
+	  
+	  for (int i=0; i<15; i++)
+	  {
+		  Image img = Tabla.parancsjelzok.get(i);
+		  img = scaledImage(Tabla.parancsjelzok.get(i),parancsjR);
+		  Tabla.parancsjelzok.remove(i);
+		  Tabla.parancsjelzok.add(i, img);
+	  }
+	  
 	  try {
 		  fileGot = new URL(getCodeBase(), "file.got");
 	} catch (MalformedURLException e) {
@@ -299,7 +328,6 @@ public void initRes()
 			    
 			    line = bf.readLine();
 			    
-			    terulet.placeEgysegek();
 			    terulet.placeVHK();
 			    
 			    while (true)
@@ -356,7 +384,6 @@ public void initRes()
 			    	tenger.addEgyseg(hajoE);
 			    }
 			    
-			    tenger.placeEgysegek();
 			    
 			    while (true)
 			    {
@@ -408,6 +435,7 @@ public void initRes()
 public void init()
 {
 	
+	Tabla.got = this;
 	Tabla.H = H;
 	initRes();
 	Tabla.kovHaz();

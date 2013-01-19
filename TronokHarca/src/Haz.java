@@ -6,8 +6,8 @@ public class Haz {
 	private String nev;
 	private Color szin;
 	private Image kep;
-	private Image kepp;
-	private Image keph;
+	public Image kepp;
+	public Image keph;
 	private Vector<Parancsjelzo> parancsjelzok;
 	private Vector<Hazjelzo> hazjelzok;
 	private int hordo;
@@ -25,25 +25,25 @@ public class Haz {
 		this.hazjelzok = new Vector<Hazjelzo>();
 		
 		//ezt belerakhatjuk egy fï¿½ï¿½ï¿½jlba mint a terï¿½ï¿½ï¿½leteket, hï¿½ï¿½ï¿½zakat
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, kepp));
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, kepp));
-		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, kepp,Tabla.parancsjelzok.get(0)));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, kepp,Tabla.parancsjelzok.get(5)));
+		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, kepp,Tabla.parancsjelzok.get(10)));
 		
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp,Tabla.parancsjelzok.get(1)));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp,Tabla.parancsjelzok.get(6)));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, kepp,Tabla.parancsjelzok.get(11)));
 		
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(2)));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(7)));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, kepp,Tabla.parancsjelzok.get(12)));
 		
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp));
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp));
-		parancsjelzok.add(new Parancsjelzo("korona", true, +1, kepp));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp,Tabla.parancsjelzok.get(3)));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp,Tabla.parancsjelzok.get(8)));
+		parancsjelzok.add(new Parancsjelzo("korona", true, +1, kepp,Tabla.parancsjelzok.get(13)));
 		
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp));
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp));
-		parancsjelzok.add(new Parancsjelzo("portya", true, +2, kepp));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp,Tabla.parancsjelzok.get(4)));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp,Tabla.parancsjelzok.get(9)));
+		parancsjelzok.add(new Parancsjelzo("portya", true, +2, kepp,Tabla.parancsjelzok.get(14)));
 		//kezdeti hazjelzok
 		for(int i=0; i<5; i++){
 			hazjelzok.add(new Hazjelzo(keph,this));
@@ -96,10 +96,7 @@ public class Haz {
 	public void setLicit(int l) { this.licit = l; }
 	public void zeroLicit(){ this.licit = 0; }
 	
-	public Parancsjelzo getParancsjelzo(int i)
-	{
-		return this.parancsjelzok.get(i);
-	}
+	
 	public void removeParancs(Parancsjelzo parancs)
 	{
 		parancsjelzok.remove(parancs);	
@@ -125,11 +122,6 @@ public class Haz {
 		}else{
 			//nem lehet tï¿½bb
 		}
-	}
-	
-	public int DBHazjelzo()//váááááááááááááááááááááá
-	{
-		return hazjelzok.size();
 	}
 	
 	//ha sikerï¿½ï¿½lt eldobnia azt a bizonyos mennyisï¿½ï¿½gï¿½ï¿½ hï¿½ï¿½zjelzï¿½ï¿½t

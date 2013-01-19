@@ -10,22 +10,27 @@ public class Parancsjelzo extends JLabel{
 	private String tipus;
 	private boolean csillag;
 	private int plussz;
-	private Image kep;
+	private Image kepLE;
+	private Image kepFEL;
 	
 	private Parancsjelzo jomagam = this;
 	
 	public boolean katt;
 	
-	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kep)
+	private boolean leforditott;
+	
+	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kepLE, Image kepFEL)
 	{
-		super(new ImageIcon(kep));
+		super(new ImageIcon(kepFEL));
 		
 		this.tipus = tipus;
 		this.csillag = csillag;
 		this.plussz = plussz;
-		this.kep = kep;
+		this.kepLE = kepLE;
+		this.kepFEL = kepFEL;
 		
 		this.addMouseListener(mL);
+		this.leforditott = false;
 	}
 	
 	public String getTipus()
@@ -46,8 +51,27 @@ public class Parancsjelzo extends JLabel{
 	
 	public Image getKep()
 	{
-		return this.kep;
+		if (leforditott) return this.kepLE;
+		else return this.kepFEL;
 	}
+	
+	
+	public void lefordit(boolean le)
+	{
+		if (le)
+		{
+			this.leforditott = true;
+			this.setIcon(new ImageIcon(this.kepLE));
+			
+		}
+		
+		else
+		{
+			this.leforditott = false;
+			this.setIcon(new ImageIcon(this.kepFEL));
+		}
+	}
+	
 	
 	public String toString()
 	{
@@ -60,7 +84,21 @@ public class Parancsjelzo extends JLabel{
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println(jomagam.tipus);
+			
+			if (!Tabla.parancsjelzoLerakas)
+			{
+				Tabla.got.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(jomagam.getKep(), new Point(arg0.getX(),arg0.getY()), ""));
+				Tabla.parancsjelzoLerakas = true;
+				Tabla.parancsJelzoAmitLeraksz = jomagam;
+			}
+			
+			//Visszarakjuk
+			else
+			{
+				Tabla.parancsjelzoLerakas = false;
+				Tabla.got.setCursor(Tabla.defCursor);
+				Tabla.parancsJelzoAmitLeraksz = null;
+			}
 		}
 
 		@Override

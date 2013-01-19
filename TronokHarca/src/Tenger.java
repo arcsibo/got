@@ -85,37 +85,38 @@ public class Tenger extends JLabel{
 	{
 		
 		egysegek.add(egyseg);
+		change.szinez(egyseg);
+		egyseg.setBounds((int)Math.round(egyseg.x*this.kep.getWidth(null))-egyseg.kep.getWidth(null)/2, (int)Math.round(egyseg.y*this.kep.getHeight(null))-egyseg.kep.getHeight(null)/2, egyseg.kep.getWidth(null), egyseg.kep.getHeight(null));
+		this.add(egyseg);
 	}
 	
-	public void placeEgysegek()
+	
+	public void felforditParancsjelzo()
 	{
-		Iterator<Egyseg> it = this.egysegek.iterator();
-		
-		while (it.hasNext())
-		{
-			Egyseg egyseg = it.next();
-			egyseg.setBounds((int)Math.round(egyseg.x*this.kep.getWidth(null))-egyseg.kep.getWidth(null)/2, (int)Math.round(egyseg.y*this.kep.getHeight(null))-egyseg.kep.getHeight(null)/2, egyseg.kep.getWidth(null), egyseg.kep.getHeight(null));
-			this.add(egyseg);
-			
-		}
-		
+		if (this.parancsjelzo != null) this.parancsjelzo.lefordit(false);
 	}
 	
 	//parancsjelzï¿½k felrakï¿½sa leszedï¿½se
-	public void addParancsjelzo(Parancsjelzo parancs)
+	public void addParancsjelzo(Parancsjelzo parancs,int x, int y)
 	{
-		if(this.tulajdonos != null)
+		boolean lehet = true;
+		
+		if(this.tulajdonos == null) lehet = false; 
+		if(this.vizi == true && parancs.getTipus().equals("korona")) lehet = false;
+		if(this.parancsjelzo != null) lehet = false;
+		if(this.egysegek.size() == 0) lehet = false;
+
+		
+		if (lehet)
 		{
-			if(this.vizi == true && parancs.getTipus().equals("korona")){
-				//kï¿½ï¿½r valamit h nem rakhat le
-			}else{
-				this.parancsjelzo = parancs;
-				tulajdonos.removeParancs(parancs);
-			}
-			
-		}else{
-			//valamit kiï¿½r
+		
+			this.parancsjelzo = parancs;
+			parancs.setBounds(x-parancs.getKep().getWidth(this)/2,y-parancs.getKep().getHeight(null)/2,parancs.getKep().getWidth(this),parancs.getKep().getHeight(null));
+			this.add(parancs);
+			tulajdonos.removeParancs(parancs);
+			Tabla.got.setCursor(Tabla.defCursor);
 		}
+		
 	}
 	
 	public void removeParancs()
@@ -347,36 +348,6 @@ public class Tenger extends JLabel{
 		return null;
 	}
 	
-	
-	public String toString()
-	{
-		String s = "Tenger: ";
-		s += this.nev;
-		s += "Tulajdonos:";
-		if (tulajdonos != null) s += this.tulajdonos.getNev();
-		
-		s += "\n";
-		
-		Iterator<Egyseg> egyIt = egysegek.iterator();
-		while (egyIt.hasNext())
-		{
-			s += "    " + egyIt.next().toString();
-			s += "\n";
-		}
-		
-		s += "\nSzomszedok:\n";
-		
-		Iterator<Tenger> szIt = szomszedok.iterator();
-		while (szIt.hasNext())
-		{
-			s += "    " + szIt.next().getNev();
-			s += "\n";
-		}
-		
-		
-		return s;
-	}
-	
 	MouseListener ml = new MouseListener() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -452,25 +423,25 @@ public class Tenger extends JLabel{
 		
 	};
 	
+	
+	//Ez az igazi egér kattintás kezelõje
 	public void performClick(int x, int y)
 	{
-		System.out.println(this.nev);
-			if (this.egysegek.size() >0)
-			{
-				
-				Iterator<Egyseg> it = egysegek.iterator();
-				
-				while (it.hasNext()) System.out.print(it.next() + ", ");
-				if (!(jomagam instanceof Terulet))debugMouse(x,y);
-				
-			}
+		if (Tabla.parancsjelzoLerakas)
+		{
+			this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
+			Tabla.parancsJelzoAmitLeraksz.lefordit(true);
+			Tabla.parancsJelzoAmitLeraksz = null;
+			Tabla.parancsjelzoLerakas = false;
+		}
+		else System.out.println("Nincs végrehajtható mûvelet");
 			
 		
 
 	}
 	
 
-        
+        // Egymást fedõ területeknél ez végzi a kattintást
         public boolean szomszedClick(int x, int y)
         {
            int relX;
@@ -487,13 +458,7 @@ public class Tenger extends JLabel{
            return false;
         }
         
-        protected void debugMouse(int x, int y)
-        {
-        	System.out.println();
-        	System.out.println((double)x/(double)this.kep.getWidth(null));
-        	System.out.println((double)y/(double)this.kep.getHeight(null));
-        	System.out.println();
-        }
+        
         
         
 }

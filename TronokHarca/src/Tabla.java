@@ -7,7 +7,19 @@ import javax.swing.*;
 
 public class Tabla extends JLabel{
 	
+	//JÁTÉK ÁLLAPOTVÁLTOZÓK
+	public static TronokHarca got; //Itt tudod elérni magát az Appletet
+	public static Cursor defCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+	
+	public static boolean parancsjelzoLerakas = false;
+	public static Parancsjelzo parancsJelzoAmitLeraksz;
+	
+	
+	
+	
 	public static Image kep;
+	
+	public static Vector<Image> parancsjelzok = new Vector<Image>();
 	
 	public static Vector<Tenger> teruletek = new Vector<Tenger>();
 	public static Vector<Haz> vastron = new Vector<Haz>();
@@ -59,6 +71,16 @@ public class Tabla extends JLabel{
 		this.add(terkep);
 		
 		
+	}
+	
+	public void felforditParancsjelzok()
+	{
+		Iterator<Tenger> it = teruletek.iterator();
+		
+		while (it.hasNext())
+		{
+			it.next().felforditParancsjelzo();
+		}
 	}
 	
 	public static void kovHaz()

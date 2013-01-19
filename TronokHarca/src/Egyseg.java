@@ -60,7 +60,6 @@ public class Egyseg extends JLabel{
 		
 		this.addMouseListener(mL);
 		
-		change.szinez(this);
 		
 	}
 	
