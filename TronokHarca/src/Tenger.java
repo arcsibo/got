@@ -228,15 +228,28 @@ public class Tenger extends JLabel{
 			
 			if(tamadero>vedero){
 				System.out.println(this.getNev() +" " + tamad.getNev());
-				tamad.egysegek.removeAllElements();
-				Iterator<Egyseg> itE = this.egysegek.iterator();
-				while(itE.hasNext())
+				Iterator<Egyseg> itVE = tamad.egysegek.iterator();
+				while(itVE.hasNext())
 				{
-					Egyseg aktE = itE.next();
+					Egyseg aktE = itVE.next();
+					aktE.setBounds(0,0,0,0);				
+				}
+				tamad.egysegek.removeAllElements();
+				Iterator<Egyseg> itTE = this.egysegek.iterator();
+				while(itTE.hasNext())
+				{
+					Egyseg aktE = itTE.next();
 					aktE.valaszt = false;
 					tamad.addEgyseg(aktE);
 				}
+				this.tulajdonos.addParancs(this.parancsjelzo);
+				if(tamad.parancsjelzo != null)
+				{
+					if(tamad.parancsjelzo.getTipus().equals("vedekezes")) tamad.removeParancs();
+				}
+				this.egysegek.removeAllElements();
 				System.out.println(tamad.egysegek.size());
+				System.out.println(this.egysegek.size());
 				this.setTulaj();
 				tamad.setTulaj();
 				change.szinez(this);
@@ -244,15 +257,26 @@ public class Tenger extends JLabel{
 				
 			}else if(tamadero<vedero){
 				//nemfoglaltad el
+				this.tulajdonos.addParancs(this.parancsjelzo);
+				if(tamad.parancsjelzo != null)
+				{
+					if(tamad.parancsjelzo.getTipus().equals("vedekezes")) tamad.removeParancs();
+				}
 				System.out.println("kisseb");
 			}else{//egyenl�
 				//tamadoero egyenlo
 				int hazT, hazV;
 				hazT = Tabla.kard.indexOf(this.tulajdonos);
 				hazV = Tabla.kard.indexOf(tamad.tulajdonos);
-				if(hazT> hazV)
+				if(hazT < hazV)
 				{
 					System.out.println("egyenlo");
+					Iterator<Egyseg> itVE = tamad.egysegek.iterator();
+					while(itVE.hasNext())
+					{
+						Egyseg aktE = itVE.next();
+						aktE.setBounds(0,0,0,0);				
+					}
 					tamad.egysegek.removeAllElements();
 					Iterator<Egyseg> itE = this.egysegek.iterator();
 					while(itE.hasNext())
@@ -261,19 +285,28 @@ public class Tenger extends JLabel{
 						aktE.valaszt = false;
 						tamad.addEgyseg(aktE);
 					}
+					this.tulajdonos.addParancs(this.parancsjelzo);
+					if(tamad.parancsjelzo != null)
+					{
+						if(tamad.parancsjelzo.getTipus().equals("vedekezes")) tamad.removeParancs();
+					}
+					System.out.println(tamad.egysegek.size());
+					System.out.println(this.egysegek.size());
+					this.egysegek.removeAllElements();
 					this.setTulaj();
 					tamad.setTulaj();
 					change.szinez(this);
 					change.szinez(tamad);
 					
 				}else{
-					
+					this.tulajdonos.addParancs(this.parancsjelzo);
+					if(tamad.parancsjelzo != null)
+					{
+						if(tamad.parancsjelzo.getTipus().equals("vedekezes")) tamad.removeParancs();
+					}
 				}
 			}
 		}
-		
-		//this.tulajdonos.addParancs(this.parancsjelzo);
-		//this.parancsjelzo = null;
 		
 	}
 	public int getEro(){
