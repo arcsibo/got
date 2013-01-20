@@ -66,6 +66,11 @@ public class Egyseg extends JLabel{
 		
 		
 	}
+	public String gettipus()
+	{
+		return this.tipus;
+	}
+	
 	
 	public int getEro()
 	{

@@ -265,7 +265,7 @@ public class Tenger extends JLabel{
 	
 	public void menetel(Tenger megy,Vector<Egyseg> egyseg)
 	{
-		if(megy == null)
+		if(megy != null)
 		{
 			if(this.vizi == true && megy.vizi == true){
 				megy.egysegek = egyseg;
@@ -282,6 +282,11 @@ public class Tenger extends JLabel{
 		}
 		this.setTulaj();
 		megy.setTulaj();
+		change.szinez(this);
+		change.szinez(megy);
+		this.katt = false;
+		megy.katt = false;
+		//az egysegek kttját átállítani
 	}
 	
 	
@@ -486,19 +491,35 @@ public class Tenger extends JLabel{
 					System.out.println(this.getNev());
 					Tabla.segedTer.add(this);
 					this.tulajdonos.setvalasztMivel(true);
-					this.tamadas();
 					
 				}
 				
 				//itt választjuk ki hogy mit akarunk támadni
 				if(!Tabla.aktHaz.equals(this.tulajdonos) && Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
 				{
+					Tabla.segedTer.add(this);
+					// ez nem kell kiíratás
+					Iterator<Tenger> itST = Tabla.segedTer.iterator();
+					System.out.println(Tabla.segedTer.size());
+					while(itST.hasNext())
+					{
+						Tenger STI = itST.next();
+						System.out.println(STI.getNev());
+					}
+					System.out.println(Tabla.segedEgy.size());
+					Iterator<Egyseg> itSE = Tabla.segedEgy.iterator();
+					while(itST.hasNext())
+					{
+						Egyseg SEI = itSE.next();
+						System.out.println(SEI.gettipus());
+					}
 					if(this.tulajdonos != null)
 					{
 						System.out.println("tamadas");
 						System.out.println(this.getNev());
 					}else{
-						System.out.println("meneteles");
+						//meneteles
+						Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
 						System.out.println(this.getNev());
 					}
 				}
