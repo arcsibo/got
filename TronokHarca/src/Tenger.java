@@ -265,14 +265,32 @@ public class Tenger extends JLabel{
 	
 	public void menetel(Tenger megy,Vector<Egyseg> egyseg)
 	{
-		if(megy != null)
+		if(megy != null && this.parancsjelzo.getTipus() == "tamadas")
 		{
 			if(this.vizi == true && megy.vizi == true){
 				megy.egysegek = egyseg;
-				this.egysegek.remove(egyseg);
+				this.egysegek.removeAll(egyseg);
+				
+				this.setTulaj();
+				megy.setTulaj();
+				change.szinez(this);
+				change.szinez(megy);
+				
 			}else if(this.vizi==false && megy.vizi == false){
 				megy.egysegek = egyseg;
-				this.egysegek.remove(egyseg);
+				this.egysegek.removeAll(egyseg);
+				if(this.egysegek.size() == 0)
+				{
+					this.egysegek = null;
+				}
+				//System.out.println(this.egysegek.size());
+				//System.out.println(megy.egysegek.size());
+				
+				this.setTulaj();
+				megy.setTulaj();
+				change.szinez(this);
+				change.szinez(megy);
+				
 			}else{
 				System.out.println();
 			}
@@ -280,18 +298,19 @@ public class Tenger extends JLabel{
 		}else{
 			System.out.println("ide nem mehetsz");
 		}
-		this.setTulaj();
-		megy.setTulaj();
-		change.szinez(this);
-		change.szinez(megy);
 		this.katt = false;
 		megy.katt = false;
+		Tabla.segedTer.clear();
+		Tabla.segedEgy.clear();
+		System.out.println(this.tulajdonos.getNev() +" "+ this.nev + " " + megy.egysegek.size());
+		System.out.println(megy.tulajdonos.getNev() +" "+ megy.nev + " " + megy.egysegek.size() );
+		System.out.println(	Tabla.segedTer.size() +" " + Tabla.segedEgy.size());
 		//az egysegek kttját átállítani
 	}
 	
 	
 	public void setTulaj(){
-		if(this.egysegek != null){
+		if(this.egysegek != null ){
 			this.tulajdonos = this.egysegek.get(0).getHaz();
 		}else {
 			this.tulajdonos = null;
@@ -499,20 +518,6 @@ public class Tenger extends JLabel{
 				{
 					Tabla.segedTer.add(this);
 					// ez nem kell kiíratás
-					Iterator<Tenger> itST = Tabla.segedTer.iterator();
-					System.out.println(Tabla.segedTer.size());
-					while(itST.hasNext())
-					{
-						Tenger STI = itST.next();
-						System.out.println(STI.getNev());
-					}
-					System.out.println(Tabla.segedEgy.size());
-					Iterator<Egyseg> itSE = Tabla.segedEgy.iterator();
-					while(itST.hasNext())
-					{
-						Egyseg SEI = itSE.next();
-						System.out.println(SEI.gettipus());
-					}
 					if(this.tulajdonos != null)
 					{
 						System.out.println("tamadas");

@@ -9,7 +9,7 @@ public class Terulet extends Tenger{
 	private int varak;
 	private int hordok;
 	private int korona;
-	private Hazjelzo hazjelzo;
+	public Hazjelzo hazjelzo;
 	
 	private Vector<VHK> vhk;
 	
