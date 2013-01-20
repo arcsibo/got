@@ -124,6 +124,7 @@ public class Tabla extends JLabel{
 		{
 			TERVEZES = false;
 			AKCIO = true;
+			tamadas = true;
 			Iterator<Tenger> itTer =  Tabla.teruletek.iterator();
 			while(itTer.hasNext())
 			{

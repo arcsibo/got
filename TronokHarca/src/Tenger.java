@@ -74,6 +74,11 @@ public class Tenger extends JLabel{
 		return this.tulajdonos;
 	}
 	
+	public Vector<Egyseg> getEgysegek()
+	{
+		
+		return this.egysegek;
+	}
 	
 	//szomszéd hozzáadása
 	public void addSzomszed(String szomszed)
@@ -325,22 +330,21 @@ public class Tenger extends JLabel{
 		
 		return vissza;
 	}
-	
-	public Vector<Tenger> tamadas(){
+	//lehet nem kell
+	public void tamadas(){
 		
-		Vector<Tenger> vissza = new Vector<Tenger>();
 		Iterator<Tenger> it = this.szomszedok.iterator();
 		while(it.hasNext())
 		{
 			Tenger aktTer = it.next();
 			if(this.vizi == true && aktTer.vizi == true){//vï¿½zrï¿½l csak vï¿½zre lehet menni
-				vissza.add(aktTer);
+				System.out.println(aktTer.getNev());
 			}else if(this.vizi == false && aktTer.vizi == false){//szï¿½razfï¿½ldrï¿½l csak szï¿½razfï¿½ldre
-				vissza.add(aktTer);
+				System.out.println(aktTer.getNev());
 			}
 		}
 		///
-		return vissza;
+		
 	}
 	
 	public Tenger getTerulet(String nev)
@@ -379,7 +383,8 @@ public class Tenger extends JLabel{
 					talalat = change.szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y,szomszedok.next());
 					if (talalat) break;
 				}
-				if (talalat) {
+				if (talalat)
+				{
 					return;
 				}
 			
@@ -398,16 +403,19 @@ public class Tenger extends JLabel{
 					{
 					
 						talalat = change.szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y,szomszedokSzomszedjai.next());
+						Tenger talal = jomagam;
 						if (talalat) break;
 					}
 					if (talalat) break;
 				}
-				if (talalat) return;
+				if (talalat)
+				{
+					return;
+				}
 				
 			}
 				
 			}
-			
 			else  performClick(x,y);
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		   //----------------------------------------------------------------------------------------------------------//
@@ -448,6 +456,7 @@ public class Tenger extends JLabel{
 	public void performClick(int x, int y)
 	{
 		boolean talalat = false;
+		//ha egységre katintunk
 		if (jomagam.egysegek.size()>0)
 		{
 			
@@ -456,31 +465,47 @@ public class Tenger extends JLabel{
 			{
 				talalat = change.szomszedClick(x, y, it.next());
 			}
-			if (talalat)
-			{
-				return;
+			if (talalat) return;
+		}
+
+			if(Tabla.TERVEZES==true){
+				if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
+				if (talalat) return;
+			//Innentõl történik valami hasznos
+				if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
+				{
+					this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
+			
+				}
 			}
-		}
-		
-		if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
-		if (talalat) return;
-		
-		//Innentõl történik valami hasznos
-		
-		if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
-		{
-			this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
-		}
-	
-		
+			if(Tabla.AKCIO==true && Tabla.tamadas == true){
+				
+				// it választjuk ki mivel akarunk támadni
+				if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
+				{
+					System.out.println(this.getNev());
+					Tabla.segedTer.add(this);
+					this.tulajdonos.setvalasztMivel(true);
+					this.tamadas();
+					
+				}
+				
+				//itt választjuk ki hogy mit akarunk támadni
+				if(!Tabla.aktHaz.equals(this.tulajdonos) && Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
+				{
+					if(this.tulajdonos != null)
+					{
+						System.out.println("tamadas");
+						System.out.println(this.getNev());
+					}else{
+						System.out.println("meneteles");
+						System.out.println(this.getNev());
+					}
+				}
+					
+			}
 	}
-
-	
-
-        
-        
-        
-        
+   
         
         
 }

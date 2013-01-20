@@ -106,7 +106,10 @@ public class Terulet extends Tenger{
 	{
 		boolean talalat = false;
 		if (hazjelzo != null) talalat = change.szomszedClick(x, y, hazjelzo);
-		if (talalat) return;
+		if (talalat)
+		{
+			return;
+		}
 		
 		super.performClick(x, y);
 	
@@ -115,8 +118,7 @@ public class Terulet extends Tenger{
 			this.addHazjelzo(Tabla.hazJelzoAmitLeraksz, x, y);
 		}
 		
-		else System.out.println(jomagam.getNev());
-		
+		else /* System.out.println(this.getNev())*/;
 		
 	}
 	

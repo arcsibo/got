@@ -305,6 +305,7 @@ public void initRes()
 			    Haz tulajdonos = Tabla.getHaz(bf.readLine());
 			    
 			    Terulet terulet = new Terulet(nev, varak, hordok, korona, tulajdonos, kep,X,Y,vhk);
+			    terulet.getNev();
 			    Tabla.teruletek.add(terulet);
 			    
 			    

@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.*;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,6 +13,7 @@ public class Egyseg extends JLabel{
 	private boolean vizi;
 	private int ertek;
 	private String tipus;
+	private boolean valaszt;
 	public Image kep;
 	public Haz tulajdonos;
 	
@@ -28,6 +31,7 @@ public class Egyseg extends JLabel{
 		this.tipus = tipus;
 		this.tulajdonos = tulajdonos;
 		this.kep = kep;
+		this.valaszt = false;
 		
 		this.x = x;
 		this.y = y;
@@ -69,6 +73,15 @@ public class Egyseg extends JLabel{
 	}
 	public Haz getHaz(){
 		return this.tulajdonos;
+	}
+	
+	public boolean getvalaszt()
+	{
+		return this.valaszt;
+	}
+	public void setvalaszt(boolean b)
+	{
+		this.valaszt = b;
 	}
 		
 
@@ -112,6 +125,21 @@ public class Egyseg extends JLabel{
 	public void performClick()
 	{
 		System.out.println(this.tipus);
+		if(Tabla.aktHaz.getvalasztMivel() && this.tulajdonos.equals(Tabla.aktHaz))
+		{	
+			Vector<Egyseg> e = Tabla.segedTer.get(0).getEgysegek();
+			Iterator<Egyseg> it = e.iterator();
+			while(it.hasNext())
+			{
+				Egyseg es = it.next();
+				if(es.equals(this) && !this.valaszt)
+				{
+					System.out.println(this.tipus + " add");
+					Tabla.segedEgy.add(this);
+					this.valaszt = true;
+				}
+			}
+		}
 	}
 	
 
