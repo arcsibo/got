@@ -268,7 +268,12 @@ public class Tenger extends JLabel{
 		if(megy != null && this.parancsjelzo.getTipus() == "tamadas")
 		{
 			if(this.vizi == true && megy.vizi == true){
-				megy.egysegek = egyseg;
+				Iterator<Egyseg> itE = egyseg.iterator();
+				while(itE.hasNext())
+				{
+					Egyseg aktE = itE.next();
+					megy.addEgyseg(aktE);
+				}
 				this.egysegek.removeAll(egyseg);
 				
 				this.setTulaj();
@@ -277,7 +282,12 @@ public class Tenger extends JLabel{
 				change.szinez(megy);
 				
 			}else if(this.vizi==false && megy.vizi == false){
-				megy.egysegek = egyseg;
+				Iterator<Egyseg> itE = egyseg.iterator();
+				while(itE.hasNext())
+				{
+					Egyseg aktE = itE.next();
+					megy.addEgyseg(aktE);
+				}
 				this.egysegek.removeAll(egyseg);
 				if(this.egysegek.size() == 0)
 				{
@@ -300,10 +310,8 @@ public class Tenger extends JLabel{
 		}
 		this.katt = false;
 		megy.katt = false;
-		Tabla.segedTer.clear();
-		Tabla.segedEgy.clear();
-		System.out.println(this.tulajdonos.getNev() +" "+ this.nev + " " + megy.egysegek.size());
-		System.out.println(megy.tulajdonos.getNev() +" "+ megy.nev + " " + megy.egysegek.size() );
+		if(this.tulajdonos != null)System.out.println(this.tulajdonos.getNev() +" "+ this.nev + " " + megy.egysegek.size());
+		if(this.tulajdonos != null)System.out.println(megy.tulajdonos.getNev() +" "+ megy.nev + " " + megy.egysegek.size() );
 		System.out.println(	Tabla.segedTer.size() +" " + Tabla.segedEgy.size());
 		//az egysegek kttját átállítani
 	}
@@ -526,6 +534,7 @@ public class Tenger extends JLabel{
 						//meneteles
 						Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
 						System.out.println(this.getNev());
+						
 					}
 				}
 					
