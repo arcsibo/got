@@ -115,7 +115,7 @@ public class Terulet extends Tenger{
 			this.addHazjelzo(Tabla.hazJelzoAmitLeraksz, x, y);
 		}
 		
-		else System.out.println("Nincs végrehajtható mûvelet");
+		else System.out.println(jomagam.getNev());
 		
 		
 	}

@@ -403,6 +403,7 @@ public class Tenger extends JLabel{
 					if (talalat) break;
 				}
 				if (talalat) return;
+				
 			}
 				
 			}
@@ -411,7 +412,6 @@ public class Tenger extends JLabel{
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		   //----------------------------------------------------------------------------------------------------------//
 		  //////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-			//Tabla.
 			
 			
 			
@@ -456,7 +456,10 @@ public class Tenger extends JLabel{
 			{
 				talalat = change.szomszedClick(x, y, it.next());
 			}
-			if (talalat) return;
+			if (talalat)
+			{
+				return;
+			}
 		}
 		
 		if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
