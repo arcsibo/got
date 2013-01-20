@@ -179,78 +179,101 @@ public class Tenger extends JLabel{
 				Tenger aktTer1 = it1.next();
 				if(this.vizi == true)
 				{
-					if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("tamogatas"))//vï¿½zi harvan szï¿½razfï¿½ld nem tï¿½mogathatja
-					{
-						tamadero += aktTer1.getEro();
-						tamadero += aktTer1.parancsjelzo.getPlussz();
+					if(aktTer1.parancsjelzo != null){
+						if(aktTer1.vizi == true && aktTer1.parancsjelzo.getTipus().equals("tamogatas"))//vï¿½zi harvan szï¿½razfï¿½ld nem tï¿½mogathatja
+						{
+							tamadero += aktTer1.getEro();
+							tamadero += aktTer1.parancsjelzo.getPlussz();
+						}
 					}
 				}else{
-					if(aktTer1.parancsjelzo.getTipus().equals("tamogatas")){// szï¿½razfï¿½ldi csata vizi egysï¿½g tï¿½mogathatja
-						tamadero += aktTer1.getEro();
-						tamadero += aktTer1.parancsjelzo.getPlussz();
+					if(aktTer1.parancsjelzo != null){
+						if(aktTer1.parancsjelzo.getTipus().equals("tamogatas")){// szï¿½razfï¿½ldi csata vizi egysï¿½g tï¿½mogathatja
+							tamadero += aktTer1.getEro();
+							tamadero += aktTer1.parancsjelzo.getPlussz();
+						}
 					}
 				}
 			}//elvileg meg van a tï¿½madï¿½ erï¿½
 			
 			vedero += tamad.getEro();
-			if(tamad.parancsjelzo.getTipus().equals("vedekezes"))
-			{
-				vedero += tamad.parancsjelzo.getPlussz();
+			if(tamad.parancsjelzo != null){
+				if(tamad.parancsjelzo.getTipus().equals("vedekezes"))
+				{
+					vedero += tamad.parancsjelzo.getPlussz();
+				}
 			}
 			Iterator<Tenger> it2 = tamad.szomszedok.iterator();
 			while(it2.hasNext()){
 				Tenger aktTer2 = it2.next();
 				if(tamad.vizi == true)
 				{
-					if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("tamogatas"))//vï¿½zi harvan szï¿½razfï¿½ld nem tï¿½mogathatja
-					{
-						vedero += aktTer2.getEro();
-						vedero += aktTer2.parancsjelzo.getPlussz();
+					if(aktTer2.parancsjelzo != null){
+						if(aktTer2.vizi == true && aktTer2.parancsjelzo.getTipus().equals("tamogatas"))//vï¿½zi harvan szï¿½razfï¿½ld nem tï¿½mogathatja
+						{
+							vedero += aktTer2.getEro();
+							vedero += aktTer2.parancsjelzo.getPlussz();
+						}
 					}
 				}else{
-					if(aktTer2.parancsjelzo.getTipus().equals("tamogatas")){// szï¿½razfï¿½ldi csata vizi egysï¿½g tï¿½mogathatja
-						vedero += aktTer2.getEro();
-						vedero += aktTer2.parancsjelzo.getPlussz();
-					}
+					if(aktTer2.parancsjelzo != null){
+						if(aktTer2.parancsjelzo.getTipus().equals("tamogatas")){// szï¿½razfï¿½ldi csata vizi egysï¿½g tï¿½mogathatja
+							vedero += aktTer2.getEro();
+							vedero += aktTer2.parancsjelzo.getPlussz();
+						}
 					//cpp/mx/3/5
+					}
 				}
 			}//elvileg meg van a vï¿½dekezï¿½ erï¿½
 			
 			if(tamadero>vedero){
-				tamad.egysegek.clear();
-				tamad.egysegek = this.egysegek;
-				this.egysegek.clear();
-				this. egysegek = null;
+				System.out.println(this.getNev() +" " + tamad.getNev());
+				tamad.egysegek.removeAllElements();
+				Iterator<Egyseg> itE = this.egysegek.iterator();
+				while(itE.hasNext())
+				{
+					Egyseg aktE = itE.next();
+					aktE.valaszt = false;
+					tamad.addEgyseg(aktE);
+				}
+				System.out.println(tamad.egysegek.size());
 				this.setTulaj();
 				tamad.setTulaj();
+				change.szinez(this);
+				change.szinez(tamad);
+				
 			}else if(tamadero<vedero){
 				//nemfoglaltad el
+				System.out.println("kisseb");
 			}else{//egyenlï¿½
+				//tamadoero egyenlo
 				int hazT, hazV;
 				hazT = Tabla.kard.indexOf(this.tulajdonos);
 				hazV = Tabla.kard.indexOf(tamad.tulajdonos);
 				if(hazT> hazV)
 				{
-					tamad.egysegek.clear();
-					tamad.egysegek = this.egysegek;
-					this.egysegek.clear();
-					this. egysegek = null;
+					System.out.println("egyenlo");
+					tamad.egysegek.removeAllElements();
+					Iterator<Egyseg> itE = this.egysegek.iterator();
+					while(itE.hasNext())
+					{
+						Egyseg aktE = itE.next();
+						aktE.valaszt = false;
+						tamad.addEgyseg(aktE);
+					}
 					this.setTulaj();
 					tamad.setTulaj();
+					change.szinez(this);
+					change.szinez(tamad);
+					
 				}else{
 					
 				}
 			}
 		}
 		
-		this.tulajdonos.addParancs(this.parancsjelzo);
-		this.parancsjelzo = null;
-		
-		if(tamad.parancsjelzo.getName().equals("tamadas"))
-		{
-			tamad.tulajdonos.addParancs(tamad.parancsjelzo);
-			tamad.parancsjelzo = null;
-		}
+		//this.tulajdonos.addParancs(this.parancsjelzo);
+		//this.parancsjelzo = null;
 		
 	}
 	public int getEro(){
@@ -278,11 +301,6 @@ public class Tenger extends JLabel{
 						megy.addEgyseg(aktE);
 					}
 					this.egysegek.removeAll(egyseg);
-					if(this.egysegek.size() == 0)
-					{
-						this.egysegek = null;
-					}
-				
 					this.setTulaj();
 					megy.setTulaj();
 					change.szinez(this);
@@ -297,10 +315,6 @@ public class Tenger extends JLabel{
 						megy.addEgyseg(aktE);
 					}
 					this.egysegek.removeAll(egyseg);
-					if(this.egysegek.size() == 0)
-					{
-						this.egysegek = null;
-					}
 					//System.out.println(this.egysegek.size());
 					//System.out.println(megy.egysegek.size());
 				
@@ -322,7 +336,9 @@ public class Tenger extends JLabel{
 		System.out.println(	Tabla.segedTer.size() +" " + Tabla.segedEgy.size());
 		Tabla.segedTer.removeAllElements();
 		Tabla.segedEgy.removeAllElements();
-		if(this.egysegek == null) 
+		Tabla.aktHaz.setvalasztMit(false);
+		Tabla.aktHaz.setvalasztMivel(false);
+		if(this.egysegek.size() == 0) 
 			{
 				Tabla.aktHaz.addParancs(this.parancsjelzo);
 				this.parancsjelzo = null;
@@ -333,7 +349,7 @@ public class Tenger extends JLabel{
 	
 	
 	public void setTulaj(){
-		if(this.egysegek != null ){
+		if(this.egysegek.size() > 0 ){
 			this.tulajdonos = this.egysegek.get(0).getHaz();
 		}else {
 			this.tulajdonos = null;
@@ -545,7 +561,7 @@ public class Tenger extends JLabel{
 					// ez nem kell kiíratás
 					if(this.tulajdonos != null)
 					{
-						System.out.println("tamadas");
+						Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
 						System.out.println(this.getNev());
 						this.tulajdonos.setvalasztMit(true);
 					}else{
