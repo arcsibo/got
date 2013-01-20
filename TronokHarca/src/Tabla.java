@@ -115,7 +115,6 @@ public class Tabla extends JLabel{
 		if(countKiskor >= vastron.size()) countKiskor = 0;
 		aktHaz = vastron.get(countKiskor);
 		countKiskor++;
-		System.out.println(countKiskor +" " +vastron.size());
 	}
 	
 	public static void vizsgalatKorok()

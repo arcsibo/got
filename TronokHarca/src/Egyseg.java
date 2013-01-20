@@ -13,7 +13,6 @@ public class Egyseg extends JLabel{
 	private boolean vizi;
 	private int ertek;
 	private String tipus;
-	private boolean valaszt;
 	public Image kep;
 	public Haz tulajdonos;
 	
@@ -23,6 +22,7 @@ public class Egyseg extends JLabel{
 	private Egyseg jomagam = this;
 	
 	public boolean katt;
+	public boolean valaszt;
 	
 	public Egyseg(String tipus,Haz tulajdonos, Image kep,double x, double y)
 	{

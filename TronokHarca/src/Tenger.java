@@ -264,59 +264,70 @@ public class Tenger extends JLabel{
 	}
 	
 	public void menetel(Tenger megy,Vector<Egyseg> egyseg)
-	{
-		if(megy != null && this.parancsjelzo.getTipus() == "tamadas")
+	{	
+		if(this.parancsjelzo != null)
 		{
-			if(this.vizi == true && megy.vizi == true){
-				Iterator<Egyseg> itE = egyseg.iterator();
-				while(itE.hasNext())
-				{
-					Egyseg aktE = itE.next();
-					megy.addEgyseg(aktE);
-				}
-				this.egysegek.removeAll(egyseg);
-				if(this.egysegek.size() == 0)
-				{
-					this.egysegek = null;
-				}
+			if(megy != null && this.parancsjelzo.getTipus() == "tamadas")
+			{
+				if(this.vizi == true && megy.vizi == true){
+					Iterator<Egyseg> itE = egyseg.iterator();
+					while(itE.hasNext())
+					{
+						Egyseg aktE = itE.next();
+						aktE.valaszt = false;
+						megy.addEgyseg(aktE);
+					}
+					this.egysegek.removeAll(egyseg);
+					if(this.egysegek.size() == 0)
+					{
+						this.egysegek = null;
+					}
 				
-				this.setTulaj();
-				megy.setTulaj();
-				change.szinez(this);
-				change.szinez(megy);
+					this.setTulaj();
+					megy.setTulaj();
+					change.szinez(this);
+					change.szinez(megy);
 				
-			}else if(this.vizi==false && megy.vizi == false){
-				Iterator<Egyseg> itE = egyseg.iterator();
-				while(itE.hasNext())
-				{
-					Egyseg aktE = itE.next();
-					megy.addEgyseg(aktE);
+				}else if(this.vizi==false && megy.vizi == false){
+					Iterator<Egyseg> itE = egyseg.iterator();
+					while(itE.hasNext())
+					{
+						Egyseg aktE = itE.next();
+						aktE.valaszt = false;
+						megy.addEgyseg(aktE);
+					}
+					this.egysegek.removeAll(egyseg);
+					if(this.egysegek.size() == 0)
+					{
+						this.egysegek = null;
+					}
+					//System.out.println(this.egysegek.size());
+					//System.out.println(megy.egysegek.size());
+				
+					this.setTulaj();
+					megy.setTulaj();
+					change.szinez(this);
+					change.szinez(megy);
+				
+				}else{
+					System.out.println();
 				}
-				this.egysegek.removeAll(egyseg);
-				if(this.egysegek.size() == 0)
-				{
-					this.egysegek = null;
-				}
-				//System.out.println(this.egysegek.size());
-				//System.out.println(megy.egysegek.size());
-				
-				this.setTulaj();
-				megy.setTulaj();
-				change.szinez(this);
-				change.szinez(megy);
-				
-			}else{
-				System.out.println();
-			}
 			
-		}else{
-			System.out.println("ide nem mehetsz");
+			}else{
+				System.out.println("ide nem mehetsz");
+			}
 		}
 		this.katt = false;
 		megy.katt = false;
-		if(this.tulajdonos != null)System.out.println(this.tulajdonos.getNev() +" "+ this.nev + " " + megy.egysegek.size());
-		if(this.tulajdonos != null)System.out.println(megy.tulajdonos.getNev() +" "+ megy.nev + " " + megy.egysegek.size() );
 		System.out.println(	Tabla.segedTer.size() +" " + Tabla.segedEgy.size());
+		Tabla.segedTer.removeAllElements();
+		Tabla.segedEgy.removeAllElements();
+		if(this.egysegek == null) 
+			{
+				Tabla.aktHaz.addParancs(this.parancsjelzo);
+				this.parancsjelzo = null;
+			}
+		System.out.println(	this.katt );
 		//az egysegek kttját átállítani
 	}
 	
@@ -491,9 +502,10 @@ public class Tenger extends JLabel{
 	//Ez az igazi egér kattintás kezelõje
 	public void performClick(int x, int y)
 	{
+		System.out.println(this.getNev());
 		boolean talalat = false;
 		//ha egységre katintunk
-		if (jomagam.egysegek.size()>0)
+		if (jomagam.egysegek != null)
 		{
 			
 			Iterator <Egyseg> it = jomagam.egysegek.iterator();
@@ -529,19 +541,23 @@ public class Tenger extends JLabel{
 				if(!Tabla.aktHaz.equals(this.tulajdonos) && Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
 				{
 					Tabla.segedTer.add(this);
+					
 					// ez nem kell kiíratás
 					if(this.tulajdonos != null)
 					{
 						System.out.println("tamadas");
 						System.out.println(this.getNev());
+						this.tulajdonos.setvalasztMit(true);
 					}else{
 						//meneteles
 						Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
 						System.out.println(this.getNev());
-						
+						this.tulajdonos.setvalasztMit(true);
 					}
 				}
-					
+				System.out.println(Tabla.tamadas);
+				System.out.println(Tabla.aktHaz.getvalasztMivel());	
+				System.out.println(Tabla.aktHaz.getvalasztMit());	
 			}
 	}
    

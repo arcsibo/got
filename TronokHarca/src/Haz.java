@@ -131,7 +131,18 @@ public class Haz {
 	}
 	public void addParancs(Parancsjelzo parancs)
 	{
+		int x = 0,y = 0;
 		parancsjelzok.add(parancs);
+		parancs.tablanVan = false;
+		Iterator<Parancsjelzo> itP = parancsjelzok.iterator();
+		while(itP.hasNext())
+		{
+			Parancsjelzo aktP = itP.next();
+			x = 0;
+			if(parancsjelzok.size()>6)y = 0;
+		}
+		parancs.setBounds(x,y,parancs.getHeight(),parancs.getWidth());
+		Tabla.got.aktHazPanel.add(parancs);
 	}
 	//hazjelzo
 	//ezeket meg légyszi to string meg az eseménykezelõk elõtt pls igen már átraktam
