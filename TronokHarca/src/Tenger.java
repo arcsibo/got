@@ -275,6 +275,10 @@ public class Tenger extends JLabel{
 					megy.addEgyseg(aktE);
 				}
 				this.egysegek.removeAll(egyseg);
+				if(this.egysegek.size() == 0)
+				{
+					this.egysegek = null;
+				}
 				
 				this.setTulaj();
 				megy.setTulaj();
