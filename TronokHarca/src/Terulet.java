@@ -118,8 +118,6 @@ public class Terulet extends Tenger{
 			this.addHazjelzo(Tabla.hazJelzoAmitLeraksz, x, y);
 		}
 		
-		else /* System.out.println(this.getNev())*/;
-		
 	}
 	
 	

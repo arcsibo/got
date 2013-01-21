@@ -117,7 +117,7 @@ public class Tenger extends JLabel{
 		{
 		
 			this.parancsjelzo = parancs;
-			parancs.setBounds(x-parancs.getKep().getWidth(this)/2,y-parancs.getKep().getHeight(null)/2,parancs.getKep().getWidth(this),parancs.getKep().getHeight(null));
+			parancs.setBounds(x-parancs.getKep().getWidth(this)/3,y-parancs.getKep().getHeight(null)/3,parancs.getKep().getWidth(this),parancs.getKep().getHeight(null));
 			this.add(parancs);
 			tulajdonos.removeParancs(parancs);
 			Tabla.parancsJelzoAmitLeraksz.lefordit(true);
@@ -469,8 +469,9 @@ public class Tenger extends JLabel{
 	      //////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 			int x = arg0.getX();
 			int y = arg0.getY();
+			
 			boolean talalat = false;
-		
+			
 			if (!change.checkClick(x,y,jomagam)) {
 				Iterator<Tenger> szomszedok = jomagam.szomszedok.iterator();
 				
@@ -499,7 +500,6 @@ public class Tenger extends JLabel{
 					{
 					
 						talalat = change.szomszedClick(x+jomagam.getLocation().x, y+jomagam.getLocation().y,szomszedokSzomszedjai.next());
-						Tenger talal = jomagam;
 						if (talalat) break;
 					}
 					if (talalat) break;
@@ -515,9 +515,7 @@ public class Tenger extends JLabel{
 			else  performClick(x,y);
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		   //----------------------------------------------------------------------------------------------------------//
-		  //////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-			
-			
+		  //////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 			
 		}
 
@@ -551,7 +549,7 @@ public class Tenger extends JLabel{
 	//Ez az igazi egér kattintás kezelõje
 	public void performClick(int x, int y)
 	{
-		System.out.println(this.getNev());
+		
 		boolean talalat = false;
 		//ha egységre katintunk
 		if (jomagam.egysegek != null)
@@ -563,12 +561,21 @@ public class Tenger extends JLabel{
 				talalat = change.szomszedClick(x, y, it.next());
 			}
 			if (talalat) return;
+		}		
+		
+		//Innentõl történik valami hasznos
+		Iterator<Tenger> szomszedok = this.szomszedok.iterator();
+		while (szomszedok.hasNext())
+		{
+			System.out.println(szomszedok.next().nev);
 		}
-
-			if(Tabla.TERVEZES==true){
+		
+		
+		if(Tabla.TERVEZES==true){
 				if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
-				if (talalat) return;
-			//Innentõl történik valami hasznos
+				if (talalat) return;	
+				
+			
 				if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
 				{
 					this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
@@ -604,9 +611,12 @@ public class Tenger extends JLabel{
 						this.tulajdonos.setvalasztMit(true);
 					}
 				}
+				
 				System.out.println(Tabla.tamadas);
 				System.out.println(Tabla.aktHaz.getvalasztMivel());	
-				System.out.println(Tabla.aktHaz.getvalasztMit());	
+				System.out.println(Tabla.aktHaz.getvalasztMit());
+				this.tulajdonos.setvalasztMit(false);
+				this.tulajdonos.setvalasztMivel(false);
 			}
 	}
    

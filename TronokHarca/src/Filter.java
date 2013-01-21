@@ -12,6 +12,10 @@ public class Filter extends RGBImageFilter
 		/*
 		 * 1-es típus : Terület színezõ filter
 		 * 2-es típus : Terület határfigyelõ filter
+		 * 3 : Egység szinezés
+		 * 4:  Egység figyelés
+		 * 5: Pjelzõ figy
+		 * 6: Hjelzõ figy
 		 */
 		int tipus = 0; 
 		int mX, mY;
@@ -23,13 +27,6 @@ public class Filter extends RGBImageFilter
 			tipus = 1;
 		}
 		
-		public Filter(Egyseg e)
-		{
-			super();
-			this.e = e;
-			tipus = 3;
-		}
-		
 		public Filter(Tenger t,int Mx, int My)
 		{
 			super();
@@ -38,6 +35,13 @@ public class Filter extends RGBImageFilter
 			this.mX = Mx;
 			this.mY = My;
 
+		}
+		
+		public Filter(Egyseg e)
+		{
+			super();
+			this.e = e;
+			tipus = 3;
 		}
 		
 		public Filter(Egyseg e,int Mx, int My)
@@ -130,6 +134,26 @@ public class Filter extends RGBImageFilter
 			
 		}
 			
+		else if (tipus == 3) {	
+			
+			if (rgb == 0) return rgb;  
+			
+			if (e.tulajdonos == null) return rgb;
+				
+				Color color = e.tulajdonos.getColor();
+				Color sotetit = new Color(rgb);
+				
+				rgb = new Color(sotetit.getRed()/3,sotetit.getGreen()/3,sotetit.getBlue()/3).getRGB();
+				
+				
+				
+				color = new Color(color.getRed()/3,color.getGreen()/3,color.getBlue()/3);
+				
+				rgb +=color.getRGB();
+
+				return rgb;
+			}
+			
 		else if (tipus == 4){
 			
 			if (x == mX && y == mY)
@@ -196,25 +220,7 @@ public class Filter extends RGBImageFilter
 			
 		}	
 		
-		else if (tipus == 3) {	
-			
-			if (rgb == 0) return rgb;  
-			
-			if (e.tulajdonos == null) return rgb;
-				
-				Color color = e.tulajdonos.getColor();
-				Color sotetit = new Color(rgb);
-				
-				rgb = new Color(sotetit.getRed()/3,sotetit.getGreen()/3,sotetit.getBlue()/3).getRGB();
-				
-				
-				
-				color = new Color(color.getRed()/3,color.getGreen()/3,color.getBlue()/3);
-				
-				rgb +=color.getRGB();
-
-				return rgb;
-			}
+		
 		
 		
 		else {
