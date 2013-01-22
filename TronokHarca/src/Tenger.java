@@ -596,7 +596,7 @@ public class Tenger extends JLabel{
 				this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
 			
 			}
-		}
+		}//
 		
 		if(Tabla.AKCIO==true && Tabla.portyazas == true){
 			if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
