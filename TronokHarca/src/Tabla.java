@@ -160,6 +160,8 @@ public class Tabla extends JLabel{
  	
 	public static void setHordo()
 	{
+		Haz aktHaz;
+		Tenger aktTer;
 		Iterator<Haz> hazit = vastron.iterator();
 		while (hazit.hasNext())
 		{
@@ -193,6 +195,8 @@ public class Tabla extends JLabel{
 	//lehet nem kell
 	public static void setHjelzo()
 	{
+		Haz aktHaz;
+		Tenger aktTer;
 		Iterator<Haz> hazit = vastron.iterator();
 		while (hazit.hasNext())
 		{
@@ -224,58 +228,10 @@ public class Tabla extends JLabel{
 		
 	}
 	
-	//licitálás 
-	public static void licit()
-	{
-		Iterator<Haz> hazit = vastron.iterator();
-		Haz aktHaz=null;
-		boolean licitOK = false;
-		while (hazit.hasNext())
-		{
 		
-			if(licitOK)
-			{
-				aktHaz = hazit.next();
-			}
-			
-			int licit = 0;
-			
-			/*
-			
-			//////////////////////////////////////////////
-			//ide kene beszurni a GUI-s licitalas kodjat// 
-			Popup licital = new Popup();
-			licital.setVisible(true);
-			
-			
-			JButton licitGomb = new JButton("Licit");
-			licitGomb.addActionListener(new ActionListener(){
-			public void actionPerformed throw IOException(ActionEvent ae)
-			{
-				
-				
-				(licit) = JOptionPane.showInputDialog(null, "Add meg a licitet: ", aktHaz.getNev()+" licitál", 1);
-				if(licit <= aktHaz.getHjelzok().size())
-				{
-					licitOK = true;
-				}
-				else
-				{
-					licitOK = false;
-				}
-			}
-			*/
-					
-
-			
-			
-			aktHaz.setLicit(licit);
-			//////////////////////////////////////////////
-		}
-	}
-	
 	public static void zeroLicit()// miez
 	{
+		Haz aktHaz;
 		Iterator<Haz> hazit = vastron.iterator();
 		while (hazit.hasNext())
 		{
@@ -287,6 +243,7 @@ public class Tabla extends JLabel{
 	//a licit testeleshez kell
 	public static void randomLicit() // meg ez
 	{
+		Haz aktHaz;
 		Iterator<Haz> hazit = vastron.iterator();
 		while (hazit.hasNext())
 		{
