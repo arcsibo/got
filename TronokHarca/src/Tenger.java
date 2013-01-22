@@ -326,7 +326,7 @@ public class Tenger extends JLabel{
 	{	
 		if(this.parancsjelzo != null)
 		{
-			if(megy != null && this.parancsjelzo.getTipus() == "tamadas")
+			if(this.parancsjelzo.getTipus() == "tamadas")
 			{
 				if(this.vizi == true && megy.vizi == true){
 					Iterator<Egyseg> itE = egyseg.iterator();
@@ -365,10 +365,8 @@ public class Tenger extends JLabel{
 		}
 		this.katt = false;
 		megy.katt = false;
-		Tabla.segedTer.removeAllElements();
+		Tabla.segedTer.removeElementAt(1);
 		Tabla.segedEgy.removeAllElements();
-		Tabla.aktHaz.setvalasztMit(false);
-		Tabla.aktHaz.setvalasztMivel(false);
 		if(this.egysegek.size() == 0) 
 		{
 			Tabla.aktHaz.addParancs(this.parancsjelzo);
@@ -442,6 +440,7 @@ public class Tenger extends JLabel{
 				}
 			}
 		}
+		System.out.println(talal + " :" + this.nev);
 		return talal;
 		
 	}
@@ -515,7 +514,10 @@ public class Tenger extends JLabel{
 			}
 				
 			}
-			else  performClick(x,y);
+			else 
+			{
+				performClick(x,y);
+			}
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		   //----------------------------------------------------------------------------------------------------------//
 		  //////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -575,16 +577,16 @@ public class Tenger extends JLabel{
 		
 		
 		if(Tabla.TERVEZES==true){
-				if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
-				if (talalat) return;	
+			if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
+			if (talalat) return;	
 				
 			
-				if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
-				{
-					this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
+			if (Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
+			{
+				this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
 			
-				}
 			}
+		}
 			if(Tabla.AKCIO==true && Tabla.tamadas == true){
 				
 				// it választjuk ki mivel akarunk támadni
@@ -593,34 +595,48 @@ public class Tenger extends JLabel{
 					System.out.println(this.getNev());
 					Tabla.segedTer.add(this);
 					this.tulajdonos.setvalasztMivel(true);
+					Iterator<Egyseg> itE = this.egysegek.iterator();
+					while(itE.hasNext()){
+						itE.next().valaszt = true;
+					}
 					
 				}
 				
 				//itt választjuk ki hogy mit akarunk támadni
-				if(!Tabla.aktHaz.equals(this.tulajdonos) && Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
+				if(Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
 				{
 						Tabla.segedTer.add(this);
 					
 						// ez nem kell kiíratás
 					if(this.tulajdonos != null)
 					{
-						if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
+						if(!this.tulajdonos.equals(Tabla.aktHaz))//ha nem mi vagyunk a tulaj
 						{
-							Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
-							//System.out.println(this.getNev());
-							//this.tulajdonos.setvalasztMit(true);
-							Tabla.aktHaz.setvalasztMit(false);
-							Tabla.aktHaz.setvalasztMivel(false);
+							if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
+							{
+								Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
+								//System.out.println(this.getNev());
+								//this.tulajdonos.setvalasztMivel(true);
+								Tabla.aktHaz.setvalasztMit(false);
+							}
+						}else{//ha mi vagyunk a tulaj
+							if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
+							{
+								//meneteles
+								Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
+								//System.out.println(this.getNev());
+								//this.tulajdonos.setvalasztMivel(true);
+								Tabla.aktHaz.setvalasztMit(false);
+							}
 						}
-					}else{
+					}else if(this.tulajdonos == null){
 						if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
 						{
 							//meneteles
 							Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
 							//System.out.println(this.getNev());
-							//this.tulajdonos.setvalasztMit(true);
+							//this.tulajdonos.setvalasztMivel(true);
 							Tabla.aktHaz.setvalasztMit(false);
-							Tabla.aktHaz.setvalasztMivel(false);
 						}
 					}
 				}

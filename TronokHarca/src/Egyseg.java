@@ -129,15 +129,14 @@ public class Egyseg extends JLabel{
 	
 	public void performClick()
 	{
-		System.out.println(this.tipus);
-		if(Tabla.aktHaz.getvalasztMivel() && this.tulajdonos.equals(Tabla.aktHaz))
+		System.out.println(this.tipus +" "+ this.valaszt);
+		if(Tabla.aktHaz.getvalasztMivel() && this.tulajdonos.equals(Tabla.aktHaz) )
 		{	
-			System.out.println(Tabla.aktHaz.getvalasztMivel()+" "+this.tulajdonos.getNev());
-			if(!this.valaszt)
+			if(this.valaszt)
 			{
 				System.out.println(this.tipus + " add");
 				Tabla.segedEgy.add(this);
-				this.valaszt = true;
+				this.valaszt = false;
 			}	
 		}
 	}
