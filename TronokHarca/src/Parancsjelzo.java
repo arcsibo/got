@@ -124,7 +124,7 @@ public class Parancsjelzo extends JLabel{
 		}
 		
 		//Visszarakjuk
-		else
+		else if (Tabla.TERVEZES)
 		{
 			Tabla.got.setCursor(Tabla.defCursor);
 			Tabla.parancsjelzoLerakas = false;

@@ -18,8 +18,32 @@ public class Tabla extends JLabel{
 		
 	public static boolean TERVEZES = true;
 	
+	//SEGÉD ÁLLAPOTVÁLTOZÓK
+		public static TronokHarca got; //Itt tudod elérni magát az Appletet
+		public static Cursor defCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		
+		//parancsjelzõt lelehet-e rakni
+		public static boolean parancsjelzoLerakas = false;
+		public static Parancsjelzo parancsJelzoAmitLeraksz = null;
+		
+		//házjelzõt lelehet-e rakni
+		public static boolean hazjelzoLerakas = false;
+		public static Hazjelzo hazJelzoAmitLeraksz = null;
+		
+		//egységet lelehet-e rakni
+		public static boolean egysegLerakas = false;
+		public static Egyseg egysegAmitLeraksz = null;
+		
+		
+	
 	
 	public static boolean AKCIO =false;
+	
+	//segédvektorok pakoláshoz
+			public static Tenger tamadoTerulet;
+			public static Vector<Egyseg> segedEgy = new Vector<Egyseg>();
+			//ezekbe rakjuk apakolni kívánt egyseégeket illetve akciót végrehajtó területeket
+		
 
 		public static boolean portyazas = false;
 		public static boolean tamadas = false;
@@ -29,26 +53,7 @@ public class Tabla extends JLabel{
 	public static int countKiskor = 0;
 	
 		
-	//SEGÉD ÁLLAPOTVÁLTOZÓK
-	public static TronokHarca got; //Itt tudod elérni magát az Appletet
-	public static Cursor defCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 	
-	//parancsjelzõt lelehet-e rakni
-	public static boolean parancsjelzoLerakas = false;
-	public static Parancsjelzo parancsJelzoAmitLeraksz = null;
-	
-	//házjelzõt lelehet-e rakni
-	public static boolean hazjelzoLerakas = false;
-	public static Hazjelzo hazJelzoAmitLeraksz = null;
-	
-	//egységet lelehet-e rakni
-	public static boolean egysegLerakas = false;
-	public static Egyseg egysegAmitLeraksz = null;
-	
-	//segédvektorok pakoláshoz
-	public static Vector<Tenger> segedTer = new Vector<Tenger>();
-	public static Vector<Egyseg> segedEgy = new Vector<Egyseg>();
-	//ezekbe rakjuk apakolni kívánt egyseégeket illetve akciót végrehajtó területeket
 	
 	
 	public static Image kep;
@@ -125,6 +130,8 @@ public class Tabla extends JLabel{
 	
 	public static void vizsgalatKorok()
 	{
+		
+		//Megyünk tovább a portyázásra
 		if(countKiskor >= vastron.size() && TERVEZES)
 		{
 			System.out.println("portyazas");

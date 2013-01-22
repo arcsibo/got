@@ -192,8 +192,9 @@ public class Kartya {
 		if(b) Tabla.vadakEreje++;
 		
 		
-		int rand = generator.nextInt(DB)+1;
-		rand = 3;
+		//int rand = generator.nextInt(DB)+1;
+		//rand = 3;
+		int rand = generator.nextInt(DB)+2;
 		switch(rand)
 		{
 			case 1:
