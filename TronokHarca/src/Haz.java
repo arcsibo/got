@@ -188,13 +188,5 @@ public class Haz {
 	
 	public void setHordo(int h){ this.hordo = h; }
 	
-	
-	//Gyuri,Aron
 
-	//unatkoztam ugyhogy kivertem, ��s megfogant az ��tlet:
-	
-	
-	//szal elt��vol��tja a bekapott h��zjelz��, elvileg azt fogja dobni amit bek��
-	
-	// /Gyuri,Aron
 }
