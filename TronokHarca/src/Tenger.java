@@ -150,17 +150,21 @@ public class Tenger extends JLabel{
 	
 	public void portya(Tenger levesz)
 	{
-		if(levesz.parancsjelzo.getName().equals("tamogatas"))
+		if(levesz.parancsjelzo.getTipus().equals("tamogatas"))
 		{
 			
 			levesz.tulajdonos.addParancs(levesz.parancsjelzo);
 			levesz.parancsjelzo = null;
+			this.tulajdonos.addParancs(this.parancsjelzo);
+			this.parancsjelzo = null;
 			
-		}else if(levesz.parancsjelzo.getName().equals("korona"))
+		}else if(levesz.parancsjelzo.getTipus().equals("korona"))
 		{
 			this.tulajdonos.addHazjelzo();
 			levesz.tulajdonos.addParancs(levesz.parancsjelzo);
 			levesz.parancsjelzo = null;
+			this.tulajdonos.addParancs(this.parancsjelzo);
+			this.parancsjelzo = null;
 			
 		}else{
 			System.out.println("nincs/nemtudod levenni a parancsjelzo");
@@ -404,31 +408,30 @@ public class Tenger extends JLabel{
 	
 	
 	// ezek kiíratások
-	public void portyazhat(Tenger t)
-	{
-		Vector<Tenger> vissza = new Vector<Tenger>();
-		
-		if(this.parancsjelzo.getTipus().equals("portya") && this.tulajdonos.equals(Tabla.aktHaz)){
-			Iterator<Tenger> it = this.szomszedok.iterator();
-			while(it.hasNext())
+	public boolean portyazhat(Tenger t)
+	{	
+		System.out.println(this.getNev() +" ezzel");
+		System.out.println(t.getNev() +" ezt");
+		Iterator<Tenger> itT = this.szomszedok.iterator();
+		while(itT.hasNext())
+		{
+			Tenger aktT= itT.next();
+			if(this.vizi == true)
 			{
-				Tenger aktTer = it.next();
-				if(aktTer.tulajdonos != null)
-				{
-					if(!aktTer.tulajdonos.equals(Tabla.aktHaz) && aktTer.parancsjelzo != null){
-						if(aktTer.parancsjelzo.getTipus().equals("tamogatas") && aktTer.parancsjelzo.getTipus().equals("portya")){
-							aktTer.tulajdonos.addParancs(aktTer.parancsjelzo);
-							aktTer.parancsjelzo = null;
-						}else if(aktTer.parancsjelzo.getTipus().equals("korona")){ //ha korona
-							aktTer.tulajdonos.addParancs(aktTer.parancsjelzo);
-							aktTer.parancsjelzo = null;
-							this.tulajdonos.addHazjelzo();
-						}
+				if(aktT.equals(t) && aktT.tulajdonos != null){
+					if(!t.tulajdonos.equals(Tabla.aktHaz)){
+						return true;
 					}
 				}
-				
+			}else if(t.vizi != true){
+				if(aktT.equals(t) && aktT.tulajdonos != null){
+					if(!t.tulajdonos.equals(Tabla.aktHaz)){
+						return true;
+					}
+				}
 			}
 		}
+		return false;
 	}
 	//lehet nem kell
 	public boolean tamadhate(Tenger t){
@@ -596,26 +599,35 @@ public class Tenger extends JLabel{
 				this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
 			
 			}
-		}//
+		}
 		
-		if(Tabla.AKCIO==true && Tabla.portyazas == true){
+		if(Tabla.AKCIO==true && Tabla.portyazas == true)
+		{
 			if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
 			{
 				System.out.println("ezzel portya");
-				System.out.println(this.getNev());
+				System.out.println(this.getNev()+" eza neve");
 				Tabla.segedTer.add(this);
+				System.out.println(Tabla.segedTer.get(0).getNev());
 				this.tulajdonos.setvalasztMivel(true);
 				System.out.println(Tabla.aktHaz.getvalasztMivel());
 			}
-			if(Tabla.aktHaz.getvalasztMivel() && Tabla.aktHaz.getvalasztMit())
+			if(Tabla.aktHaz.getvalasztMivel())
 			{
-				System.out.println("ezt portya");
-				System.out.println(this.getNev());
-				System.out.println(Tabla.aktHaz.getvalasztMit());
+				if(this.tulajdonos != null)
+				{
+					if(Tabla.segedTer.get(0).portyazhat(this))
+					{
+						System.out.println("ezt portya");
+						System.out.println(this.getNev());
+						System.out.println(Tabla.aktHaz.getvalasztMit());
+						Tabla.segedTer.get(0).portya(this);
+					}
+				}
 			}
 		}
-		
-		if(Tabla.AKCIO==true && Tabla.tamadas == true){
+		if(Tabla.AKCIO==true && Tabla.tamadas == true)
+		{
 				
 			// it választjuk ki mivel akarunk támadni
 			if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
@@ -674,5 +686,6 @@ public class Tenger extends JLabel{
         
         
 }
+
 	
 		
