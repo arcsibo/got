@@ -68,9 +68,9 @@ public class Haz {
 		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, kepp,Tabla.parancsjelzok.get(5)));
 		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, kepp,Tabla.parancsjelzok.get(10)));
 		
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp,Tabla.parancsjelzok.get(1)));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +0, kepp,Tabla.parancsjelzok.get(6)));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +1, kepp,Tabla.parancsjelzok.get(11)));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +1, kepp,Tabla.parancsjelzok.get(1)));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +1, kepp,Tabla.parancsjelzok.get(6)));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +2, kepp,Tabla.parancsjelzok.get(11)));
 		
 		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(2)));
 		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(7)));

@@ -36,7 +36,7 @@ public class Egyseg extends JLabel{
 		this.x = x;
 		this.y = y;
 		
-		if (tipus.equals("Hajó"))
+		if (tipus.equals("Hajo"))
 		{
 			
 			this.vizi = true;
