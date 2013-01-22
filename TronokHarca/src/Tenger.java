@@ -409,7 +409,7 @@ public class Tenger extends JLabel{
 	
 	
 	// ezek kiíratások
-	public Vector<Tenger> portya()
+	public boolean portyazhat(Tenger t)
 	{
 		Vector<Tenger> vissza = new Vector<Tenger>();
 		
@@ -424,22 +424,30 @@ public class Tenger extends JLabel{
 			}
 		}
 		
-		return vissza;
+		return false;
 	}
 	//lehet nem kell
-	public void tamadas(){
+	public boolean tamadhate(Tenger t){
 		
 		Iterator<Tenger> it = this.szomszedok.iterator();
 		while(it.hasNext())
 		{
-			Tenger aktTer = it.next();
-			if(this.vizi == true && aktTer.vizi == true){//vï¿½zrï¿½l csak vï¿½zre lehet menni
-				System.out.println(aktTer.getNev());
-			}else if(this.vizi == false && aktTer.vizi == false){//szï¿½razfï¿½ldrï¿½l csak szï¿½razfï¿½ldre
-				System.out.println(aktTer.getNev());
+			Tenger aktSzom = it.next();
+			if(this.vizi == true && t.vizi == true && aktSzom.equals(t)){//vízre megyünk
+				System.out.println("igen");
+				return true;
+			}else if(this.vizi == false && t.vizi == false){//szárazföldre megyünk
+				if(aktSzom.equals(t))//ha szomszédja
+				{
+					System.out.println("igen");
+					return true;
+				}else{
+					
+				}
 			}
 		}
-		///
+		System.out.println("nem");
+		return false;
 		
 	}
 	
@@ -596,29 +604,32 @@ public class Tenger extends JLabel{
 				//itt választjuk ki hogy mit akarunk támadni
 				if(!Tabla.aktHaz.equals(this.tulajdonos) && Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
 				{
-					Tabla.segedTer.add(this);
-					
-					// ez nem kell kiíratás
-					if(this.tulajdonos != null)
+					if(Tabla.segedTer.get(0).tamadhate(this))
 					{
-						Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
-						System.out.println(this.getNev());
-						//this.tulajdonos.setvalasztMit(true);
-						Tabla.aktHaz.setvalasztMit(false);
-						Tabla.aktHaz.setvalasztMivel(false);
-					}else{
-						//meneteles
-						Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
-						System.out.println(this.getNev());
-						//this.tulajdonos.setvalasztMit(true);
-						Tabla.aktHaz.setvalasztMit(false);
-						Tabla.aktHaz.setvalasztMivel(false);
+						Tabla.segedTer.add(this);
+					
+						// ez nem kell kiíratás
+						if(this.tulajdonos != null)
+						{
+							Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
+							System.out.println(this.getNev());
+							//this.tulajdonos.setvalasztMit(true);
+							Tabla.aktHaz.setvalasztMit(false);
+							Tabla.aktHaz.setvalasztMivel(false);
+						}else{
+							//meneteles
+							Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
+							System.out.println(this.getNev());
+							//this.tulajdonos.setvalasztMit(true);
+							Tabla.aktHaz.setvalasztMit(false);
+							Tabla.aktHaz.setvalasztMivel(false);
+						}
 					}
 				}
 				
-				System.out.println(Tabla.tamadas);
+				/*System.out.println(Tabla.tamadas);
 				System.out.println(Tabla.aktHaz.getvalasztMivel());	
-				System.out.println(Tabla.aktHaz.getvalasztMit());
+				System.out.println(Tabla.aktHaz.getvalasztMit());*/
 			}
 	}
    
