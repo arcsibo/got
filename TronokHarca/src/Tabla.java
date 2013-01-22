@@ -129,14 +129,15 @@ public class Tabla extends JLabel{
 		{
 			TERVEZES = false;
 			AKCIO = true;
-			tamadas = true;
+			portyazas = true;
 			Iterator<Tenger> itTer =  Tabla.teruletek.iterator();
 			while(itTer.hasNext())
 			{
 				aktTer = itTer.next();
 				aktTer.felforditParancsjelzo();
 			}
-		}
+		}// tervezes szakasz vege
+		
 	}
 	
 	// /Gyuri,���ron

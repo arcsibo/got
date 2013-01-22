@@ -585,7 +585,8 @@ public class Tenger extends JLabel{
 		}
 		
 		
-		if(Tabla.TERVEZES==true){
+		if(Tabla.TERVEZES==true)
+		{
 			if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);
 			if (talalat) return;	
 				
@@ -596,49 +597,57 @@ public class Tenger extends JLabel{
 			
 			}
 		}
-			if(Tabla.AKCIO==true && Tabla.tamadas == true){
+		
+		if(Tabla.AKCIO==true && Tabla.portyazas == true){
+			if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
+			{
+				System.out.println("ezzel portya");
+				System.out.println(this.getNev());
+				Tabla.segedTer.add(this);
+				this.tulajdonos.setvalasztMivel(true);
+				System.out.println(Tabla.aktHaz.getvalasztMivel());
+			}
+			if(Tabla.aktHaz.getvalasztMivel() && Tabla.aktHaz.getvalasztMit())
+			{
+				System.out.println("ezt portya");
+				System.out.println(this.getNev());
+				System.out.println(Tabla.aktHaz.getvalasztMit());
+			}
+		}
+		
+		if(Tabla.AKCIO==true && Tabla.tamadas == true){
 				
-				// it választjuk ki mivel akarunk támadni
-				if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
-				{
-					System.out.println(this.getNev());
+			// it választjuk ki mivel akarunk támadni
+			if(Tabla.aktHaz.equals(this.tulajdonos) && !Tabla.aktHaz.getvalasztMivel())
+			{
+				System.out.println(this.getNev());
+				Tabla.segedTer.add(this);
+				this.tulajdonos.setvalasztMivel(true);
+				Iterator<Egyseg> itE = this.egysegek.iterator();
+				while(itE.hasNext()){
+					itE.next().valaszt = true;
+			}
+					
+			}
+				
+			//itt választjuk ki hogy mit akarunk támadni
+			if(Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
+			{
 					Tabla.segedTer.add(this);
-					this.tulajdonos.setvalasztMivel(true);
-					Iterator<Egyseg> itE = this.egysegek.iterator();
-					while(itE.hasNext()){
-						itE.next().valaszt = true;
-					}
 					
-				}
-				
-				//itt választjuk ki hogy mit akarunk támadni
-				if(Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
+					// ez nem kell kiíratás
+				if(this.tulajdonos != null)
 				{
-						Tabla.segedTer.add(this);
-					
-						// ez nem kell kiíratás
-					if(this.tulajdonos != null)
+					if(!this.tulajdonos.equals(Tabla.aktHaz))//ha nem mi vagyunk a tulaj
 					{
-						if(!this.tulajdonos.equals(Tabla.aktHaz))//ha nem mi vagyunk a tulaj
+						if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
 						{
-							if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
-							{
-								Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
-								//System.out.println(this.getNev());
-								//this.tulajdonos.setvalasztMivel(true);
-								Tabla.aktHaz.setvalasztMit(false);
-							}
-						}else{//ha mi vagyunk a tulaj
-							if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
-							{
-								//meneteles
-								Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
-								//System.out.println(this.getNev());
-								//this.tulajdonos.setvalasztMivel(true);
-								Tabla.aktHaz.setvalasztMit(false);
-							}
+							Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
+							//System.out.println(this.getNev());
+							//this.tulajdonos.setvalasztMivel(true);
+							Tabla.aktHaz.setvalasztMit(false);
 						}
-					}else if(this.tulajdonos == null){
+					}else{//ha mi vagyunk a tulaj
 						if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
 						{
 							//meneteles
@@ -648,8 +657,18 @@ public class Tenger extends JLabel{
 							Tabla.aktHaz.setvalasztMit(false);
 						}
 					}
+				}else if(this.tulajdonos == null){
+					if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
+					{
+						//meneteles
+						Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
+						//System.out.println(this.getNev());
+						//this.tulajdonos.setvalasztMivel(true);
+						Tabla.aktHaz.setvalasztMit(false);
+					}
 				}
 			}
+		}
 	}
    
         

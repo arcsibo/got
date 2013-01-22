@@ -570,7 +570,7 @@ public void init()
 	
 	
 	Input licit = new Input();
-    licit.setVisible(true);
+    licit.dispose();
     //licit.dispose(); //eltüntet
     //licit.setVisible(true); //elõhoz
 
