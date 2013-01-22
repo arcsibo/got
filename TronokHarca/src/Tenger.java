@@ -603,20 +603,22 @@ public class Tenger extends JLabel{
 					{
 						Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
 						System.out.println(this.getNev());
-						this.tulajdonos.setvalasztMit(true);
+						//this.tulajdonos.setvalasztMit(true);
+						Tabla.aktHaz.setvalasztMit(false);
+						Tabla.aktHaz.setvalasztMivel(false);
 					}else{
 						//meneteles
 						Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
 						System.out.println(this.getNev());
-						this.tulajdonos.setvalasztMit(true);
+						//this.tulajdonos.setvalasztMit(true);
+						Tabla.aktHaz.setvalasztMit(false);
+						Tabla.aktHaz.setvalasztMivel(false);
 					}
 				}
 				
 				System.out.println(Tabla.tamadas);
 				System.out.println(Tabla.aktHaz.getvalasztMivel());	
 				System.out.println(Tabla.aktHaz.getvalasztMit());
-				this.tulajdonos.setvalasztMit(false);
-				this.tulajdonos.setvalasztMivel(false);
 			}
 	}
    

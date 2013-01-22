@@ -132,12 +132,13 @@ public class Egyseg extends JLabel{
 		System.out.println(this.tipus);
 		if(Tabla.aktHaz.getvalasztMivel() && this.tulajdonos.equals(Tabla.aktHaz))
 		{	
+			System.out.println(Tabla.aktHaz.getvalasztMivel()+" "+this.tulajdonos.getNev());
 			Vector<Egyseg> e = Tabla.segedTer.get(0).getEgysegek();
 			Iterator<Egyseg> it = e.iterator();
 			while(it.hasNext())
 			{
 				Egyseg es = it.next();
-				if(es.equals(this) && !this.valaszt)
+				if(es.equals(this) && this.valaszt)
 				{
 					System.out.println(this.tipus + " add");
 					Tabla.segedEgy.add(this);
