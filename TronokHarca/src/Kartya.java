@@ -14,7 +14,7 @@ public class Kartya {
 
 	private static void licitalas() 
 	{
-		
+		Haz aktHaz;
 		/////////Debug/////////
 		System.out.println("Licit előtt:");
 		System.out.println("("+Tabla.vastron.size()+")"+"vastron:");
@@ -56,7 +56,7 @@ public class Kartya {
 		for(int j = 1; j < Tabla.vastron.size(); j++)
 		{
 			int kulcs = tmp[j];
-			Tabla.aktHaz = Tabla.vastron.get(j);
+			aktHaz = Tabla.vastron.get(j);
 			int i = j-1;
 			
 			while( i>=0 && tmp[i] < kulcs )
@@ -66,7 +66,7 @@ public class Kartya {
 				i--;
 			}
 			tmp[i+1] = kulcs;
-			Tabla.vastron.set(i+1, Tabla.aktHaz);
+			Tabla.vastron.set(i+1, aktHaz);
 			
 		}
 		
@@ -86,7 +86,7 @@ public class Kartya {
 		for(int j = 1; j < Tabla.kard.size(); j++)
 		{
 			int kulcs = tmp[j];
-			Tabla.aktHaz = Tabla.kard.get(j);
+			aktHaz = Tabla.kard.get(j);
 			int i = j-1;
 			
 			while( i>=0 && tmp[i] < kulcs )
@@ -96,7 +96,7 @@ public class Kartya {
 				i--;
 			}
 			tmp[i+1] = kulcs;
-			Tabla.kard.set(i+1, Tabla.aktHaz);
+			Tabla.kard.set(i+1, aktHaz);
 			
 		}
 		
@@ -116,7 +116,7 @@ public class Kartya {
 		for(int j = 1; j < Tabla.hollo.size(); j++)
 		{
 			int kulcs = tmp[j];
-			Tabla.aktHaz = Tabla.hollo.get(j);
+			aktHaz = Tabla.hollo.get(j);
 			int i = j-1;
 			
 			while( i>=0 && tmp[i] < kulcs )
@@ -126,7 +126,7 @@ public class Kartya {
 				i--;
 			}
 			tmp[i+1] = kulcs;
-			Tabla.hollo.set(i+1, Tabla.aktHaz);
+			Tabla.hollo.set(i+1, aktHaz);
 			
 		}
 		
@@ -166,16 +166,17 @@ public class Kartya {
 	
 	private static void hazjelzok() 
 	{
+		Haz aktHaz;
 		System.out.println("Hazjelzok osztasa");
 		Tabla.setHjelzo();
 		Iterator<Haz> hazit = Tabla.vastron.iterator();
 		
 		while (hazit.hasNext())
 		{
-			Tabla.aktHaz = hazit.next();
-			for(int i = 0; i < Tabla.aktHaz.getHjelzo(); i++)
+			aktHaz = hazit.next();
+			for(int i = 0; i < aktHaz.getHjelzo(); i++)
 			{
-				Tabla.aktHaz.addHazjelzo(new Hazjelzo(Tabla.aktHaz.keph,Tabla.aktHaz));
+				aktHaz.addHazjelzo(new Hazjelzo(aktHaz.keph,aktHaz));
 			}
 		}
 		//FASZ
