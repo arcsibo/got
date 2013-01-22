@@ -74,7 +74,7 @@ public class Terulet extends Tenger{
 	}
 	public void removeHazjelzo()
 	{
-		tulajdonos.addHazjelzo(hazjelzo);
+		tulajdonos.addHazjelzo();
 		hazjelzo.tablanVan = false;
 		this.hazjelzo = null;
 		
@@ -92,10 +92,10 @@ public class Terulet extends Tenger{
 	
 	public void korona()
 	{
-		this.tulajdonos.addHazjelzo(new Hazjelzo(tulajdonos.keph,tulajdonos));
+		this.tulajdonos.addHazjelzo();
 		for(int i = 0; i < this.korona; i++)
 		{
-			this.tulajdonos.addHazjelzo(new Hazjelzo(tulajdonos.keph,tulajdonos));
+			this.tulajdonos.addHazjelzo();
 		}
 		this.tulajdonos.addParancs(this.parancsjelzo);
 		this.parancsjelzo = null;

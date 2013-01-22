@@ -22,39 +22,13 @@ public class Kartya {
 		
 	}
 	
-	public static void licitalas() 
+	public static void licitVastron()
 	{
 		Haz aktHaz;
-		/////////Debug/////////
-		System.out.println("Licit előtt:");
-		System.out.println("("+Tabla.vastron.size()+")"+"vastron:");
-		for(int i = 0; i < Tabla.vastron.size(); i++)
-		{
-			System.out.println(Tabla.vastron.get(i).getNev()+": "+Tabla.vastron.get(i).getLicit());
-		}
-		System.out.println();
-		System.out.println("("+Tabla.kard.size()+")"+"kard:");
-		for(int i = 0; i < Tabla.kard.size(); i++)
-		{
-			System.out.println(Tabla.kard.get(i).getNev()+": "+Tabla.kard.get(i).getLicit());
-		}
-		System.out.println();
-		System.out.println("("+Tabla.hollo.size()+")"+"hollo:");
-		for(int i = 0; i < Tabla.hollo.size(); i++)
-		{
-			System.out.println(Tabla.hollo.get(i).getNev()+": "+Tabla.hollo.get(i).getLicit());
-		}
-		System.out.println();
-		/////////Debug/////////
-		
-		
-		System.out.println("Licitalas");
 		int[] tmp = new int[Tabla.vastron.size()];
 		
 		
-		System.out.println("Vastron");
-		//Tabla.licit();
-		Tabla.randomLicit();
+		////VASTRON////////////////////////////////////////////////////////////////////////////
 		
 		for(int i = 0; i < Tabla.vastron.size(); i++)
 		{
@@ -82,7 +56,14 @@ public class Kartya {
 		
 		
 		Tabla.zeroLicit();
-		
+	}
+	
+	public static void licitKard()
+	{
+
+		Haz aktHaz;
+		int[] tmp = new int[Tabla.vastron.size()];
+		//KARD////////////////////////////////////////////////////////////////////////////
 		System.out.println("Kard");
 		
 		
@@ -111,41 +92,49 @@ public class Kartya {
 		
 		
 		Tabla.zeroLicit();
-		
-		System.out.println("Hollo");
-		//Tabla.licit();
-		Tabla.randomLicit();
-		
-		for(int i = 0; i < Tabla.hollo.size(); i++)
-		{
-			tmp[i] = Tabla.hollo.get(i).getLicit();
-		}
-		
-		
-		for(int j = 1; j < Tabla.hollo.size(); j++)
-		{
-			int kulcs = tmp[j];
-			aktHaz = Tabla.hollo.get(j);
-			int i = j-1;
-			
-			while( i>=0 && tmp[i] < kulcs )
-			{
-				Tabla.hollo.set(i+1, Tabla.hollo.get(i));
-				tmp[i+1] = tmp[i];
-				i--;
-			}
-			tmp[i+1] = kulcs;
-			Tabla.hollo.set(i+1, aktHaz);
-			
-		}
-		
-		Tabla.zeroLicit();
-		
+	}
+	
+	public static void licitHollo()
+	{
+		Haz aktHaz;
+		int[] tmp = new int[Tabla.vastron.size()];
+		//HOLLO////////////////////////////////////////////////////////////////////////////
+				System.out.println("Hollo");
+				
+				for(int i = 0; i < Tabla.hollo.size(); i++)
+				{
+					tmp[i] = Tabla.hollo.get(i).getLicit();
+				}
+				
+				
+				for(int j = 1; j < Tabla.hollo.size(); j++)
+				{
+					int kulcs = tmp[j];
+					aktHaz = Tabla.hollo.get(j);
+					int i = j-1;
+					
+					while( i>=0 && tmp[i] < kulcs )
+					{
+						Tabla.hollo.set(i+1, Tabla.hollo.get(i));
+						tmp[i+1] = tmp[i];
+						i--;
+					}
+					tmp[i+1] = kulcs;
+					Tabla.hollo.set(i+1, aktHaz);
+					
+				}
+				
+				Tabla.zeroLicit();
+	}
+	
+	public static void licitalas() 
+	{
 		System.out.println("Licit vége");
 		
 		
-		
-		System.out.println("Licit előtt:");
+		System.out.println();
+		System.out.println("Licit után:");
+		System.out.println();
 		System.out.println("vastron:");
 		for(int i = 0; i < Tabla.vastron.size(); i++)
 		{
@@ -163,6 +152,7 @@ public class Kartya {
 		{
 			System.out.println(Tabla.hollo.get(i).getNev()+": "+Tabla.hollo.get(i).getLicit());
 		}
+		System.out.println();
 	}
 	
 
@@ -179,7 +169,7 @@ public class Kartya {
 			aktHaz = hazit.next();
 			for(int i = 0; i < aktHaz.getHjelzo(); i++)
 			{
-				aktHaz.addHazjelzo(new Hazjelzo(aktHaz.keph,aktHaz));
+				aktHaz.addHazjelzo();
 			}
 		}
 		//FASZ

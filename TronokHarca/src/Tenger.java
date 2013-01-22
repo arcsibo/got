@@ -158,7 +158,7 @@ public class Tenger extends JLabel{
 			
 		}else if(levesz.parancsjelzo.getName().equals("korona"))
 		{
-			this.tulajdonos.addHazjelzo(new Hazjelzo(tulajdonos.keph,tulajdonos));
+			this.tulajdonos.addHazjelzo();
 			levesz.tulajdonos.addParancs(levesz.parancsjelzo);
 			levesz.parancsjelzo = null;
 			

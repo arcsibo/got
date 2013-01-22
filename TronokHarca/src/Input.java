@@ -11,6 +11,7 @@ public class Input extends JFrame {
 	
 	static JFormattedTextField tf;
 	static String title = Tabla.aktHaz.getNev()+ " licitál:";
+	static int count;
 	
     public Input() {
         
@@ -32,11 +33,7 @@ public class Input extends JFrame {
     
     ActionListener buttonAL = new ActionListener() {
     	public void actionPerformed(ActionEvent arg0) {
-    		
     		System.out.println(getNumber());
-    		Tabla.kovHaz();
-    		Tabla.got.updateHaz();
-    		
     		title(Tabla.aktHaz.getNev()+" licitál:");
     		Tabla.aktHaz.setLicit(getNumber());
     		tf.setText(null);
@@ -44,8 +41,30 @@ public class Input extends JFrame {
     		System.out.println(Tabla.countKiskor+".kor");
     		if(Tabla.countKiskor>=5)
     		{
+    			switch(count)
+    			{
+    			case 0:
+    				Kartya.licitVastron();
+    				break;
+    			case 1:
+    				Kartya.licitKard();
+    			case 2:
+    				Kartya.licitHollo();
+    			}
+    			count++;
+    		}
+    		
+    		
+    		Tabla.kovHaz();
+    		Tabla.got.updateHaz();
+    		
+    		if(count >= 3)
+    		{
     			Kartya.licitalas();
-    			
+    			Tabla.licitalas = false;
+    			count = 0;
+    			Tabla.TERVEZES = true;
+    			Tabla.portyazas = true;
     		}
     	}
     };

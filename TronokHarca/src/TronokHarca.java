@@ -569,10 +569,10 @@ public void init()
 	add(jatekPanel);
 	
 	
-	Input tfe = new Input();
-    //tfe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //tfe.setDefaultCloseOperation(tfe.EXIT_ON_CLOSE);
-    tfe.setVisible(true);
+	Input licit = new Input();
+    licit.setVisible(true);
+    //licit.dispose(); //eltüntet
+    //licit.setVisible(true); //elõhoz
 
 }
 
