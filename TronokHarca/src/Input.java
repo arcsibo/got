@@ -41,7 +41,12 @@ public class Input extends JFrame {
     		Tabla.aktHaz.setLicit(getNumber());
     		tf.setText(null);
     		
-    		
+    		System.out.println(Tabla.countKiskor+".kor");
+    		if(Tabla.countKiskor>=5)
+    		{
+    			Kartya.licitalas();
+    			
+    		}
     	}
     };
     

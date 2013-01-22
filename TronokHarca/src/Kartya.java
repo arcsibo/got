@@ -22,7 +22,7 @@ public class Kartya {
 		
 	}
 	
-	private static void licitalas() 
+	public static void licitalas() 
 	{
 		Haz aktHaz;
 		/////////Debug/////////

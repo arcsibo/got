@@ -9,7 +9,16 @@ import javax.swing.*;
 public class Tabla extends JLabel{
 	
 	//GLOBÁLIS ÁLLAPOTVÁLTOZÓK
-	public static boolean KARTYAHUZAS;
+	public static boolean KARTYAHUZAS = false;
+		public static boolean licitalas = false;
+			public static boolean korTron = false;
+			public static boolean korKard = false;
+			public static boolean korHollo = false;
+			
+		public static boolean toborzas = false;
+		public static boolean koronaKap = false;
+		public static boolean vadakTamadnak = false;
+		
 	public static boolean TERVEZES = true;
 	
 	
