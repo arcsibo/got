@@ -8,10 +8,20 @@ public class Kartya {
 	private static final int DB=6;
 	
 	
-	private static void vadak() {System.out.println("Vadak tamadasa");};
-	private static void hoki() { System.out.println("csitt-csatt"); };
 	
+	private static void hoki() { System.out.println("csitt-csatt"); };
+	private static void toborzas( ) 
+	{
+		System.out.println("Toborzas");
+		
+	}
 
+	private static void vadak() 
+	{
+		System.out.println("Vadak tamadasa");
+		
+	}
+	
 	private static void licitalas() 
 	{
 		Haz aktHaz;
@@ -74,8 +84,7 @@ public class Kartya {
 		Tabla.zeroLicit();
 		
 		System.out.println("Kard");
-		//Tabla.licit();
-		Tabla.randomLicit();
+		
 		
 		for(int i = 0; i < Tabla.kard.size(); i++)
 		{
@@ -157,12 +166,6 @@ public class Kartya {
 	}
 	
 
-	private static void toborzas( ) 
-	{
-		System.out.println("Toborzas");
-		
-	}
-	
 	
 	private static void hazjelzok() 
 	{

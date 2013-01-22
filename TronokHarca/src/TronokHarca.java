@@ -399,6 +399,7 @@ public void initRes()
 			    
 			}
 		}
+		
 	
 	}
 		
@@ -567,6 +568,11 @@ public void init()
 	add(tabla);
 	add(jatekPanel);
 	
+	
+	Input tfe = new Input();
+    //tfe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //tfe.setDefaultCloseOperation(tfe.EXIT_ON_CLOSE);
+    tfe.setVisible(true);
 
 }
 

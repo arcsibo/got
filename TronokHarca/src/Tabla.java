@@ -221,14 +221,46 @@ public class Tabla extends JLabel{
 	public static void licit()
 	{
 		Iterator<Haz> hazit = vastron.iterator();
+		Haz aktHaz=null;
+		boolean licitOK = false;
 		while (hazit.hasNext())
 		{
-			aktHaz = hazit.next();
+		
+			if(licitOK)
+			{
+				aktHaz = hazit.next();
+			}
+			
+			int licit = 0;
+			
+			/*
 			
 			//////////////////////////////////////////////
 			//ide kene beszurni a GUI-s licitalas kodjat// 
+			Popup licital = new Popup();
+			licital.setVisible(true);
+			
+			
+			JButton licitGomb = new JButton("Licit");
+			licitGomb.addActionListener(new ActionListener(){
+			public void actionPerformed throw IOException(ActionEvent ae)
+			{
+				
+				
+				(licit) = JOptionPane.showInputDialog(null, "Add meg a licitet: ", aktHaz.getNev()+" licitál", 1);
+				if(licit <= aktHaz.getHjelzok().size())
+				{
+					licitOK = true;
+				}
+				else
+				{
+					licitOK = false;
+				}
+			}
+			*/
+					
 
-			int licit = 0;
+			
 			
 			aktHaz.setLicit(licit);
 			//////////////////////////////////////////////
