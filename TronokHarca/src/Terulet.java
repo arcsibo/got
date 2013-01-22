@@ -42,7 +42,7 @@ public class Terulet extends Tenger{
 	
 	public int getHordo(){return this.hordok; }
 	public int getVarak(){ return this.varak; }
-	public int Korona(){ return this.korona; }
+	public int getKorona(){ return this.korona; }
 	public Hazjelzo getHazjelzo(){ return this.hazjelzo; }
 	
 	public void addHazjelzo(Hazjelzo jelzo,int x, int y)
@@ -92,13 +92,18 @@ public class Terulet extends Tenger{
 	
 	public void korona()
 	{
-		this.tulajdonos.addHazjelzo();
-		for(int i = 0; i < this.korona; i++)
+		if(this.parancsjelzo != null)
 		{
-			this.tulajdonos.addHazjelzo();
+			if(this.parancsjelzo.getTipus().equals("korona")){
+				this.tulajdonos.addHazjelzo();
+				for(int i = 0; i < this.korona; i++)
+				{
+					this.tulajdonos.addHazjelzo();
+				}
+				this.tulajdonos.addParancs(this.parancsjelzo);
+				this.parancsjelzo = null;
+			}
 		}
-		this.tulajdonos.addParancs(this.parancsjelzo);
-		this.parancsjelzo = null;
 	}
 	
 

@@ -13,7 +13,7 @@ public class Tabla extends JLabel{
 		public static boolean licitalas = false;
 			
 		public static boolean toborzas = false;
-		public static boolean koronaKap = false;
+		public static boolean korona = false;
 		public static boolean vadakTamadnak = false;
 		
 	public static boolean TERVEZES = true;
@@ -127,6 +127,7 @@ public class Tabla extends JLabel{
 	{
 		if(countKiskor >= vastron.size() && TERVEZES)
 		{
+			System.out.println("portyazas");
 			TERVEZES = false;
 			AKCIO = true;
 			portyazas = true;
@@ -137,9 +138,82 @@ public class Tabla extends JLabel{
 				aktTer.felforditParancsjelzo();
 			}
 		}// tervezes szakasz vege
-		
+		if(AKCIO && portyazas)
+		{
+			System.out.println(!vanEPortya());
+			if(!vanEPortya())
+			{
+				portyazas = false;
+				tamadas = true;
+				aktHaz = vastron.get(0);
+				System.out.println("tamadas");
+			}
+		}
+		if(AKCIO && tamadas)
+		{
+			System.out.println(!vanETamadas());
+			if(!vanETamadas())
+			{
+				tamadas = false;
+				korona = true;
+				aktHaz = vastron.get(0);
+				System.out.println("korona");
+			}
+		}
+		if(AKCIO && korona)
+		{
+			System.out.println("IDEADOD BAZDMEG!");
+			Iterator<Tenger> itT = teruletek.iterator();
+			while(itT.hasNext()){
+				Tenger aktT = itT.next();
+				if(aktT instanceof Terulet )
+				{
+					((Terulet) aktT).korona();
+				}
+			}
+			AKCIO = false;
+			korona = false;
+			KARTYAHUZAS = true;
+		}
+		if(KARTYAHUZAS)
+		{
+			System.out.println("kártyát húzunk");
+		}
 	}
 	
+	public static boolean vanEPortya()
+	{
+		Iterator<Tenger> itT = teruletek.iterator();
+		while(itT.hasNext())
+		{
+			Tenger aktT = itT.next();
+			if(aktT.tulajdonos != null && aktT.parancsjelzo != null)
+			{
+				if(aktT.parancsjelzo.getTipus().equals("portya"))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean vanETamadas()
+	{
+		Iterator<Tenger> itT = teruletek.iterator();
+		while(itT.hasNext())
+		{
+			Tenger aktT = itT.next();
+			if(aktT.tulajdonos != null && aktT.parancsjelzo != null)
+			{
+				if(aktT.parancsjelzo.getTipus().equals("tamadas"))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	// /Gyuri,ï¿½ï¿½ï¿½ron
 	
  	public static Haz getHaz(String nev)
@@ -215,7 +289,7 @@ public class Tabla extends JLabel{
 					{
 						if(aktTer instanceof Terulet)
 						{
-							hazjelzo += ((Terulet) aktTer).Korona();
+							hazjelzo += ((Terulet) aktTer).getKorona();
 						}
 						
 					}

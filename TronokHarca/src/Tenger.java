@@ -608,8 +608,8 @@ public class Tenger extends JLabel{
 				System.out.println("ezzel portya");
 				System.out.println(this.getNev()+" eza neve");
 				Tabla.segedTer.add(this);
-				System.out.println(Tabla.segedTer.get(0).getNev());
 				this.tulajdonos.setvalasztMivel(true);
+				System.out.println(Tabla.segedTer.get(0).getNev());
 				System.out.println(Tabla.aktHaz.getvalasztMivel());
 			}
 			if(Tabla.aktHaz.getvalasztMivel())
@@ -622,6 +622,8 @@ public class Tenger extends JLabel{
 						System.out.println(this.getNev());
 						System.out.println(Tabla.aktHaz.getvalasztMit());
 						Tabla.segedTer.get(0).portya(this);
+						this.tulajdonos.setvalasztMivel(false);
+						Tabla.segedTer.removeAllElements();
 					}
 				}
 			}
