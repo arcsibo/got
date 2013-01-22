@@ -646,6 +646,64 @@ public void updateHaz()
 	
 }
 
+public void updateJatekPanel()
+{
+	jatekPanel.removeAll();
+	jatekPanel.repaint();
+	
+	int y = Tabla.aktHaz.getKep().getHeight(null);
+	int x = Tabla.aktHaz.getKep().getWidth(null)/2;
+	
+	JLabel vastron = new JLabel(new ImageIcon(vastronKep));
+	vastron.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
+	jatekPanel.add(vastron);
+	Iterator<Haz> itHaz = Tabla.vastron.iterator();
+	y =  Tabla.aktHaz.getKep().getHeight(null);	
+	while (itHaz.hasNext())
+	{	
+		Haz aktHaz = itHaz.next();
+		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
+		aktLabel.setBounds(0, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
+		y += aktHaz.getKep().getHeight(null);
+	    jatekPanel.add(aktLabel);
+	}
+	x = (Tabla.aktHaz.getKep().getWidth(null));
+	
+	//Kard
+	JLabel kard = new JLabel(new ImageIcon(kardKep));
+	kard.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
+	jatekPanel.add(kard);
+	itHaz = Tabla.kard.iterator();
+	y =  Tabla.aktHaz.getKep().getHeight(null);	
+	while (itHaz.hasNext())
+	{	
+		Haz aktHaz = itHaz.next();
+		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
+		aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
+		y += aktHaz.getKep().getHeight(null);
+		jatekPanel.add(aktLabel);
+		
+	}
+	x += Tabla.aktHaz.getKep().getWidth(null);	
+	
+	//Hollo
+		JLabel hollo = new JLabel(new ImageIcon(holloKep));
+		hollo.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
+		jatekPanel.add(hollo);
+		itHaz = Tabla.hollo.iterator();
+		y =  Tabla.aktHaz.getKep().getHeight(null);	
+		while (itHaz.hasNext())
+		{	
+			Haz aktHaz = itHaz.next();
+			JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
+			aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
+			y += aktHaz.getKep().getHeight(null);
+			jatekPanel.add(aktLabel);
+			
+		}
+	
+}
+
 public Image scaledImage(Image img,double ratio) {
 	
 	

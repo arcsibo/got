@@ -45,9 +45,11 @@ public class Input extends JFrame {
     			{
     			case 0:
     				Kartya.licitVastron();
+    				Tabla.got.updateJatekPanel();
     				break;
     			case 1:
     				Kartya.licitKard();
+    				Tabla.got.updateJatekPanel();
     			case 2:
     				Kartya.licitHollo();
     			}
@@ -60,7 +62,8 @@ public class Input extends JFrame {
     		
     		if(count >= 3)
     		{
-    			Kartya.licitalas();
+    			Kartya.licitalas();//debug
+    			Tabla.got.updateJatekPanel();
     			Tabla.licitalas = false;
     			count = 0;
     			Tabla.TERVEZES = true;
