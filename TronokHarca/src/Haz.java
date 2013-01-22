@@ -152,12 +152,12 @@ public class Haz {
 	}
 	
 	//hazjelzo ~= p��nz
-	public void addHazjelzo(Hazjelzo h)
+	public void addHazjelzo()
 	{
 		//nekem itt rossz ��rz��sem van
 		if(hazjelzok.size()<20)
 		{
-			hazjelzok.add(h);
+			hazjelzok.add(new Hazjelzo(keph,this));
 		}else{
 			//nem lehet t�bb
 		}

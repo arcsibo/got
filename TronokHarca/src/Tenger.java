@@ -404,22 +404,31 @@ public class Tenger extends JLabel{
 	
 	
 	// ezek kiíratások
-	public boolean portyazhat(Tenger t)
+	public void portyazhat(Tenger t)
 	{
 		Vector<Tenger> vissza = new Vector<Tenger>();
 		
-		if(this.parancsjelzo.getTipus().equals("portya")){
+		if(this.parancsjelzo.getTipus().equals("portya") && this.tulajdonos.equals(Tabla.aktHaz)){
 			Iterator<Tenger> it = this.szomszedok.iterator();
 			while(it.hasNext())
 			{
 				Tenger aktTer = it.next();
-				if(aktTer.parancsjelzo.getTipus().equals("korona") || aktTer.parancsjelzo.getTipus().equals("tï¿½mogatï¿½s") ||  aktTer.parancsjelzo.getTipus().equals("portya")){
-					vissza.add(aktTer);
+				if(aktTer.tulajdonos != null)
+				{
+					if(!aktTer.tulajdonos.equals(Tabla.aktHaz) && aktTer.parancsjelzo != null){
+						if(aktTer.parancsjelzo.getTipus().equals("tamogatas") && aktTer.parancsjelzo.getTipus().equals("portya")){
+							aktTer.tulajdonos.addParancs(aktTer.parancsjelzo);
+							aktTer.parancsjelzo = null;
+						}else if(aktTer.parancsjelzo.getTipus().equals("korona")){ //ha korona
+							aktTer.tulajdonos.addParancs(aktTer.parancsjelzo);
+							aktTer.parancsjelzo = null;
+							this.tulajdonos.addHazjelzo();
+						}
+					}
 				}
+				
 			}
 		}
-		
-		return false;
 	}
 	//lehet nem kell
 	public boolean tamadhate(Tenger t){
