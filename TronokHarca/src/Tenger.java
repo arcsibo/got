@@ -429,25 +429,28 @@ public class Tenger extends JLabel{
 	//lehet nem kell
 	public boolean tamadhate(Tenger t){
 		
+		boolean talal = false;
+		
 		Iterator<Tenger> it = this.szomszedok.iterator();
 		while(it.hasNext())
 		{
 			Tenger aktSzom = it.next();
-			if(this.vizi == true && t.vizi == true && aktSzom.equals(t)){//vízre megyünk
+			if(aktSzom.equals(t))
+			{
 				System.out.println("igen");
-				return true;
-			}else if(this.vizi == false && t.vizi == false){//szárazföldre megyünk
-				if(aktSzom.equals(t))//ha szomszédja
-				{
-					System.out.println("igen");
-					return true;
-				}else{
-					
+				System.out.println(aktSzom.getNev()+" ");
+				talal = true;
+				break;
+			}else if(aktSzom.vizi == true && aktSzom.tulajdonos != null){
+				if(aktSzom.tulajdonos.equals(Tabla.aktHaz)){
+					System.out.println("vizsgal");
+					talal = aktSzom.tamadhate(t);
 				}
 			}
 		}
-		System.out.println("nem");
-		return false;
+		if(talal == false)System.out.println("nem");
+		System.out.println(this.getNev()+" ");
+		return talal;
 		
 	}
 	
@@ -604,19 +607,22 @@ public class Tenger extends JLabel{
 				//itt választjuk ki hogy mit akarunk támadni
 				if(!Tabla.aktHaz.equals(this.tulajdonos) && Tabla.aktHaz.getvalasztMivel() && !Tabla.aktHaz.getvalasztMit())
 				{
-					if(Tabla.segedTer.get(0).tamadhate(this))
-					{
 						Tabla.segedTer.add(this);
 					
 						// ez nem kell kiíratás
-						if(this.tulajdonos != null)
+					if(this.tulajdonos != null)
+					{
+						if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
 						{
 							Tabla.segedTer.get(0).tamadas(Tabla.segedTer.get(1));
 							System.out.println(this.getNev());
 							//this.tulajdonos.setvalasztMit(true);
 							Tabla.aktHaz.setvalasztMit(false);
 							Tabla.aktHaz.setvalasztMivel(false);
-						}else{
+						}
+					}else{
+						if(Tabla.segedTer.get(0).tamadhate(Tabla.segedTer.get(1)))
+						{
 							//meneteles
 							Tabla.segedTer.get(0).menetel(Tabla.segedTer.get(1), Tabla.segedEgy);
 							System.out.println(this.getNev());
@@ -626,7 +632,7 @@ public class Tenger extends JLabel{
 						}
 					}
 				}
-				
+			
 				/*System.out.println(Tabla.tamadas);
 				System.out.println(Tabla.aktHaz.getvalasztMivel());	
 				System.out.println(Tabla.aktHaz.getvalasztMit());*/
