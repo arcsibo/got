@@ -433,6 +433,8 @@ public class Tenger extends JLabel{
 	//lehet nem kell
 	public boolean tamadhate(Tenger t){
 		
+		boolean visszad = false;
+		
 		Vector<Tenger> Lephet = new Vector<Tenger>();
 		Iterator<Tenger> itSzom = this.szomszedok.iterator();
 		System.out.print("lephet vektor: ");
@@ -455,10 +457,10 @@ public class Tenger extends JLabel{
 			Tenger aktLep = itlep.next();
 			if(aktLep.equals(t))
 			{
-				return true;
+				visszad = true;
 			}
 		}
-		return false;
+		return visszad;
 	}
 	
 	public Tenger getTerulet(String nev)
