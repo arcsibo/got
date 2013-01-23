@@ -40,7 +40,7 @@ public class Tabla extends JLabel{
 	public static boolean AKCIO =false;
 	
 	//segédvektorok pakoláshoz
-			public static Tenger tamadoTerulet;
+			public static Tenger tamadoTerulet =null;
 			public static Vector<Egyseg> segedEgy = new Vector<Egyseg>();
 			//ezekbe rakjuk apakolni kívánt egyseégeket illetve akciót végrehajtó területeket
 		

@@ -366,7 +366,7 @@ public class Tenger extends JLabel{
 		}
 		this.katt = false;
 		megy.katt = false;
-		Tabla.tamadoTerulet = null;
+		//Tabla.tamadoTerulet = null;
 		Tabla.segedEgy.removeAllElements();
 		if(this.egysegek.size() == 0) 
 		{
@@ -437,14 +437,16 @@ public class Tenger extends JLabel{
 		
 		Vector<Tenger> Lephet = new Vector<Tenger>();
 		Iterator<Tenger> itSzom = this.szomszedok.iterator();
-		System.out.print("lephet vektor: ");
 		while(itSzom.hasNext())
 		{
 			Tenger aktSzom = itSzom.next();
-				Lephet.add(aktSzom);
+			
+			Iterator<Tenger> lephetIt = Lephet.iterator();
+			Lephet.add(aktSzom);
 				System.out.print(aktSzom.getNev() +"; ");
 				if(aktSzom.vizi == true && aktSzom.tulajdonos != null)
 				{
+					if (this.tulajdonos == null) return false; 
 					if(this.tulajdonos.equals(Tabla.aktHaz) && this.vizi == false){
 						aktSzom.tamadhate(t);
 					}
@@ -593,12 +595,23 @@ public class Tenger extends JLabel{
 		
 		System.out.println("Terulet neve: " + this.nev);
 		
-		//Innentõl történik valami hasznos			
+		//Innentõl történik valami hasznos
+		
+		//Tervezés
 		if (Tabla.TERVEZES && Tabla.parancsjelzoLerakas && Tabla.parancsJelzoAmitLeraksz != null)
 		{
 				this.addParancsjelzo(Tabla.parancsJelzoAmitLeraksz, x, y);
 			
 		}
+		
+		if (Tabla.AKCIO) AKCIO();
+		
+		
+		
+	}
+	
+	void AKCIO()
+	{
 		
 		
 		if(Tabla.AKCIO==true && Tabla.portyazas == true)
@@ -628,9 +641,10 @@ public class Tenger extends JLabel{
 			// it választjuk ki mivel akarunk támadni
 			if(Tabla.aktHaz.equals(this.tulajdonos) && Tabla.tamadoTerulet == null)
 			{
-				System.out.println(this.getNev());
+				
+				System.out.println(this.getNev() + "add");
 				Tabla.tamadoTerulet = this;
-				Iterator<Egyseg> itE = this.egysegek.iterator();
+				Iterator<Egyseg> itE = Tabla.tamadoTerulet.egysegek.iterator();
 				while(itE.hasNext()){
 					itE.next().valaszt = true;
 				}
@@ -663,8 +677,8 @@ public class Tenger extends JLabel{
 						//System.out.println(this.getNev());
 					}
 				}
-			}
-		}
+	}
+	}
 	}
    
         
