@@ -43,9 +43,6 @@ boolean szól = false;
 AudioClip zene;
 ImageIcon zeneBe,zeneKi;
 
-
-
-
 Image kardKep, holloKep, vastronKep, var1Kep, var2Kep, hordoKep, koronaKep;
 
 Tabla tabla;
@@ -557,7 +554,7 @@ public void updateHaz()
 	zeneGomb.setBounds((int)iR, H-H/20, H/20, H/20);
 	zeneGomb.setBorderPainted(false);
 	zeneGomb.addActionListener(zeneGombAction);
-	add(zeneGomb);
+	aktHazPanel.add(zeneGomb);
 	
 	JButton kovGomb = new JButton(new ImageIcon(Tabla.aktHaz.getKep()));
 	kovGomb.addActionListener(kovGombAction);
