@@ -450,9 +450,9 @@ public class Tenger extends JLabel{
 		}
 		//megkeresi a lephet vektorban azt a teruletet ahova lepni akarunk
 		Iterator<Tenger> itlep = Lephet.iterator();
-		while(itSzom.hasNext())
+		while(itlep.hasNext())
 		{
-			Tenger aktLep = itSzom.next();
+			Tenger aktLep = itlep.next();
 			if(aktLep.equals(t))
 			{
 				return true;
@@ -633,10 +633,7 @@ public class Tenger extends JLabel{
 					itE.next().valaszt = true;
 				}
 					
-			}
-				
-			//itt választjuk ki hogy mit akarunk támadni
-			if(Tabla.tamadoTerulet != null)
+			}else if(Tabla.tamadoTerulet != null)
 			{		
 					// ez nem kell kiíratás
 				if(this.tulajdonos != null)// ha van tulajdonosa
