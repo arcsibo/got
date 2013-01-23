@@ -59,25 +59,25 @@ public class Haz {
 	public void initJelzok()
 	{
 
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, kepp,Tabla.parancsjelzok.get(0)));
-		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, kepp,Tabla.parancsjelzok.get(5)));
-		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, kepp,Tabla.parancsjelzok.get(10)));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, 0, kepp,Tabla.parancsjelzok.get(0),0,0.135));
+		parancsjelzok.add(new Parancsjelzo("tamadas", false, -1, kepp,Tabla.parancsjelzok.get(5),0,0.22166666666666668));
+		parancsjelzok.add(new Parancsjelzo("tamadas", true, +1, kepp,Tabla.parancsjelzok.get(10),0,0.30833333333333335));
 		
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +1, kepp,Tabla.parancsjelzok.get(1)));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +1, kepp,Tabla.parancsjelzok.get(6)));
-		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +2, kepp,Tabla.parancsjelzok.get(11)));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +1, kepp,Tabla.parancsjelzok.get(1),0,0.395));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", false, +1, kepp,Tabla.parancsjelzok.get(1),0,0.395));
+		parancsjelzok.add(new Parancsjelzo("vedekezes", true, +2, kepp,Tabla.parancsjelzok.get(11),0,0.4816666666666667));
 		
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(2)));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(7)));
-		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, kepp,Tabla.parancsjelzok.get(12)));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(2),0,0.5683333333333334));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", false, +0, kepp,Tabla.parancsjelzok.get(2),0,0.5683333333333334));
+		parancsjelzok.add(new Parancsjelzo("tamogatas", true, +1, kepp,Tabla.parancsjelzok.get(12),0.045,0.135));
 		
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp,Tabla.parancsjelzok.get(3)));
-		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp,Tabla.parancsjelzok.get(8)));
-		parancsjelzok.add(new Parancsjelzo("korona", true, +1, kepp,Tabla.parancsjelzok.get(13)));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp,Tabla.parancsjelzok.get(3),0.045,0.22166666666666668));
+		parancsjelzok.add(new Parancsjelzo("korona", false, +1, kepp,Tabla.parancsjelzok.get(3),0.045,0.22166666666666668));
+		parancsjelzok.add(new Parancsjelzo("korona", true, +1, kepp,Tabla.parancsjelzok.get(13),0.045,0.30833333333333335));
 		
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp,Tabla.parancsjelzok.get(4)));
-		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp,Tabla.parancsjelzok.get(9)));
-		parancsjelzok.add(new Parancsjelzo("portya", true, +2, kepp,Tabla.parancsjelzok.get(14)));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp,Tabla.parancsjelzok.get(4),0.045,0.395));
+		parancsjelzok.add(new Parancsjelzo("portya", false, +1, kepp,Tabla.parancsjelzok.get(4),0.045,0.395));
+		parancsjelzok.add(new Parancsjelzo("portya", true, +2, kepp,Tabla.parancsjelzok.get(14),0.045,0.4816666666666667));
 		//kezdeti hazjelzok
 		for(int i=0; i<5; i++){
 			hazjelzok.add(new Hazjelzo(keph,this));

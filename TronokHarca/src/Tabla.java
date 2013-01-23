@@ -183,6 +183,7 @@ public class Tabla extends JLabel{
 			korona = false;
 			System.out.println("KÁRTYAHÚZÁS");
 		
+			Kartya.kartyaHuzas();
 			Input licit = new Input();
 			licit.setVisible(true);
 			
@@ -193,7 +194,7 @@ public class Tabla extends JLabel{
 		}
 		if(KARTYAHUZAS)
 		{
-			KARTYAHUZAS = false;			
+			KARTYAHUZAS = false;
 			
 			System.out.println("TERVEZÉS");
 			TERVEZES = true;

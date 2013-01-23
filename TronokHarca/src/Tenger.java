@@ -127,6 +127,8 @@ public class Tenger extends JLabel{
 			tulajdonos.removeParancs(parancs);
 			this.parancsjelzo.lefordit(true);
 			parancsjelzo.tablanVan = true;
+			
+			Tabla.got.updateHaz();
 						
 		}
 		
@@ -169,7 +171,7 @@ public class Tenger extends JLabel{
 			this.parancsjelzo = null;
 			
 		}else{
-			System.out.println("nincs/nemtudod levenni a parancsjelzo");
+			System.out.println("nincs/nemtudod levenni a parancsjelzot");
 		}
 	}
 	

@@ -13,6 +13,8 @@ public class Parancsjelzo extends JLabel{
 	private Image kepLE;
 	private Image kepFEL;
 	
+	public double Y,X;
+	
 	private Parancsjelzo jomagam = this;
 	
 	public boolean katt;
@@ -21,7 +23,7 @@ public class Parancsjelzo extends JLabel{
 	
 	public boolean tablanVan = false;
 	
-	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kepLE, Image kepFEL)
+	public Parancsjelzo(String tipus,boolean csillag,int plussz,Image kepLE, Image kepFEL, double x,double y)
 	{
 		super(new ImageIcon(kepFEL));
 		
@@ -30,6 +32,8 @@ public class Parancsjelzo extends JLabel{
 		this.plussz = plussz;
 		this.kepLE = kepLE;
 		this.kepFEL = kepFEL;
+		this.Y = y;
+		this.X = x;
 		
 		this.addMouseListener(mL);
 		this.leforditott = false;

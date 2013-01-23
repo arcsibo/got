@@ -25,9 +25,11 @@ double teruletR1, teruletR2;
 final double egysegR = W/45;
 final double cuccosR = W/20;
 final double vhkR = W/45;
+final double iR = W/200;
+private int hjelzoPos;
 
-final double aktHazPanelR = hazR+hazR/2;
-final double jatekPanelR = W/4;
+final double aktHazPanelR = hazR+iR*2;
+final double jatekPanelR = W/8;
 
 final double terkepR = W - (aktHazPanelR + jatekPanelR);
 
@@ -148,6 +150,7 @@ public void initRes()
 		  Tabla.parancsjelzok.add(kep4);
 	  }
 	  loading();
+	  
 	  
 	  for (int i=0; i<15; i++)
 	  {
@@ -446,121 +449,23 @@ public void init()
 	
 	setSize(new Dimension(W,H));
 	setPreferredSize(new Dimension(W,H));
-	//setLayout(new BorderLayout());
 	setLayout(null);
-	
-	JButton kovGomb = new JButton(new ImageIcon(Tabla.aktHaz.getKep()));
-	kovGomb.addActionListener(kovGombAction);
-	kovGomb.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
 	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(null);
 	
-	aktHazPanel.add(kovGomb);
-	
-	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
-	aktHazKep.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
-	//aktHazPanel.add(aktHazKep);
-
-	
-	
-	int y = Tabla.aktHaz.getKep().getHeight(null);
-	int x = Tabla.aktHaz.getKep().getWidth(null)/2;
-	
-	Vector<Parancsjelzo> vectorPJelzok = Tabla.aktHaz.getPjelzok();
-	Iterator<Parancsjelzo> itPJelzo = vectorPJelzok.iterator();
-	
-	int fele = vectorPJelzok.size()/2;
-	int i = 0;
-	int hY = y;
-	while(itPJelzo.hasNext())
-	{
-		Parancsjelzo aktJelzo = itPJelzo.next();
-		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
-		aktHazPanel.add(aktJelzo);
-		
-		y += aktJelzo.getKep().getHeight(null);
-		i++;
-		
-		if (i == fele) y = hY;
-
-	}
-	
-	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
-	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
-	
-	i = 0;
-	y = 0;
-	x = Tabla.aktHaz.getKep().getWidth(null);
-	while(itHJelzo.hasNext())
-	{
-		Hazjelzo aktJelzo = itHJelzo.next();
-		aktJelzo.setBounds(x, y,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
-		aktHazPanel.add(aktJelzo);
-		y += aktJelzo.getHeight();
-
-	}
+	updateHaz();
 	
 	jatekPanel = new JPanel();
 	jatekPanel.setLayout(null);
 	
-	
-	
-	//Vastrón
-	JLabel vastron = new JLabel(new ImageIcon(vastronKep));
-	vastron.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
-	jatekPanel.add(vastron);
-	Iterator<Haz> itHaz = Tabla.vastron.iterator();
-	y =  Tabla.aktHaz.getKep().getHeight(null);	
-	while (itHaz.hasNext())
-	{	
-		Haz aktHaz = itHaz.next();
-		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
-		aktLabel.setBounds(0, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
-		y += aktHaz.getKep().getHeight(null);
-	    jatekPanel.add(aktLabel);
-	}
-	x = (Tabla.aktHaz.getKep().getWidth(null));
-	
-	//Kard
-	JLabel kard = new JLabel(new ImageIcon(kardKep));
-	kard.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
-	jatekPanel.add(kard);
-	itHaz = Tabla.kard.iterator();
-	y =  Tabla.aktHaz.getKep().getHeight(null);	
-	while (itHaz.hasNext())
-	{	
-		Haz aktHaz = itHaz.next();
-		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
-		aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
-		y += aktHaz.getKep().getHeight(null);
-		jatekPanel.add(aktLabel);
-		
-	}
-	x += Tabla.aktHaz.getKep().getWidth(null);	
-	
-	//Hollo
-		JLabel hollo = new JLabel(new ImageIcon(holloKep));
-		hollo.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
-		jatekPanel.add(hollo);
-		itHaz = Tabla.hollo.iterator();
-		y =  Tabla.aktHaz.getKep().getHeight(null);	
-		while (itHaz.hasNext())
-		{	
-			Haz aktHaz = itHaz.next();
-			JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
-			aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
-			y += aktHaz.getKep().getHeight(null);
-			jatekPanel.add(aktLabel);
-			
-		}
-
+	updateJatekPanel();
 	
 	aktHazPanel.setBounds(0,0,(int) Math.round(aktHazPanelR),H);
-	tabla.setBounds((int) Math.round(aktHazPanelR), 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
+	
 	jatekPanel.setBounds((int) Math.round(aktHazPanelR)+tabla.kep.getWidth(null),0,(int)Math.round(jatekPanelR), H);
 	
-	
+	tabla.setBounds((int) Math.round(aktHazPanelR), 0, tabla.kep.getWidth(null), tabla.kep.getHeight(null));
 	tabla.placeTeruletek();
 	
 
@@ -610,55 +515,100 @@ public void updateHaz()
 	
 	JButton kovGomb = new JButton(new ImageIcon(Tabla.aktHaz.getKep()));
 	kovGomb.addActionListener(kovGombAction);
-	kovGomb.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
+	kovGomb.setBounds((int)iR, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
 	
 	aktHazPanel.add(kovGomb);
 	
-	JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
-	aktHazKep.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
+	//JLabel aktHazKep = new JLabel(new ImageIcon(Tabla.aktHaz.getKep()));
+	//aktHazKep.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null),Tabla.aktHaz.getKep().getHeight(null));
 	//aktHazPanel.add(aktHazKep);
+	updatePJelzok();
+	updateHJelzok();
 
 	
-	
-	int y = Tabla.aktHaz.getKep().getHeight(null);
-	int x = Tabla.aktHaz.getKep().getWidth(null)/2;
-	
-	Vector<Parancsjelzo> vectorPJelzok = Tabla.aktHaz.getPjelzok();
-	Iterator<Parancsjelzo> itPJelzo = vectorPJelzok.iterator();
-	
-	int fele = vectorPJelzok.size()/2;
-	int i = 0;
-	int hY = y;
-	while(itPJelzo.hasNext())
-	{
-		Parancsjelzo aktJelzo = itPJelzo.next();
-		aktJelzo.setBounds((i < fele) ? 0 : x, y, aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
-		aktHazPanel.add(aktJelzo);
-		
-		y += aktJelzo.getKep().getHeight(null);
-		i++;
-		
-		if (i == fele) y = hY;
-
-	}
-	
-	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
-	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
-	
-	i = 0;
-	y = 0;
-	x = Tabla.aktHaz.getKep().getWidth(null);
-	while(itHJelzo.hasNext())
-	{
-		Hazjelzo aktJelzo = itHJelzo.next();
-		aktJelzo.setBounds(x, y,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
-		aktHazPanel.add(aktJelzo);
-		y += aktJelzo.getHeight();
-
-	}
 	
 }
 
+public void updatePJelzok()
+{
+	int y = Tabla.aktHaz.getKep().getHeight(null);
+	int x = (int) Math.round(iR);
+	
+	Iterator<Parancsjelzo> itPJelzo = Tabla.aktHaz.getPjelzok().iterator();
+	
+	int szamok[] = {0,0,0,0,0,0,0,0,0,0,0};
+	while(itPJelzo.hasNext())
+	{
+		Parancsjelzo aktJelzo = itPJelzo.next();
+		aktJelzo.setBounds((int)Math.round(aktJelzo.X*W)+x, (int)Math.round(aktJelzo.Y*H), aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktHazPanel.add(aktJelzo);
+		
+		y += aktJelzo.getKep().getHeight(null);
+		
+		if (aktJelzo.getKep() == Tabla.parancsjelzok.get(0)) szamok[0]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(5)) szamok[1]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(10)) szamok[2]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(1)) szamok[3]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(11)) szamok[4]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(2)) szamok[5]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(12)) szamok[6]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(3)) szamok[7]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(13)) szamok[8]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(4)) szamok[9]++;
+		else if (aktJelzo.getKep() == Tabla.parancsjelzok.get(14)) szamok[10]++;
+		
+
+	}
+	x = 0;
+	y=Tabla.aktHaz.getKep().getHeight(null);
+	
+	for (int i=0; i<6;i++)
+	{
+		
+		JLabel label= new JLabel(String.valueOf(szamok[i]));
+		label.setBounds(x, y+Tabla.parancsjelzok.firstElement().getHeight(null)/2, W/30, H/30);
+		if (szamok[i] != 0) aktHazPanel.add(label);
+		
+		y += Tabla.parancsjelzok.firstElement().getHeight(null);
+		
+	}
+	y=Tabla.aktHaz.getKep().getHeight(null);
+	x=(int) (Tabla.parancsjelzok.firstElement().getWidth(null)+iR);
+	for (int i=6; i<11;i++)
+	{
+		JLabel label= new JLabel(String.valueOf(szamok[i]));
+		label.setBounds(x, y+Tabla.parancsjelzok.firstElement().getHeight(null)/2, W/30, H/30);
+		if (szamok[i] != 0) aktHazPanel.add(label);
+		
+		y += Tabla.parancsjelzok.firstElement().getHeight(null);
+		
+	}
+	hjelzoPos = y;
+	
+	
+	
+	
+}
+
+public void updateHJelzok()
+{
+	Vector<Hazjelzo> vectorHJelzok = Tabla.aktHaz.getHjelzok();
+	Iterator<Hazjelzo> itHJelzo = vectorHJelzok.iterator();
+	
+	int x = (int) (Tabla.aktHaz.getKep().getWidth(null)/2 + iR);
+	JLabel label = new JLabel(String.valueOf(Tabla.aktHaz.getHjelzok().size()));
+	label.setBounds(x,hjelzoPos,W/30,W/30);
+	aktHazPanel.add(label);
+	
+	while(itHJelzo.hasNext())
+	{
+		Hazjelzo aktJelzo = itHJelzo.next();
+		aktJelzo.setBounds(x+(int)iR*2, hjelzoPos+(int)iR*2,aktJelzo.getKep().getWidth(null), aktJelzo.getKep().getHeight(null));
+		aktHazPanel.add(aktJelzo);
+		//y += aktJelzo.getHeight();
+
+	}
+}
 public void updateJatekPanel()
 {
 	jatekPanel.removeAll();
@@ -667,53 +617,75 @@ public void updateJatekPanel()
 	int y = Tabla.aktHaz.getKep().getHeight(null);
 	int x = Tabla.aktHaz.getKep().getWidth(null)/2;
 	
-	JLabel vastron = new JLabel(new ImageIcon(vastronKep));
-	vastron.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
+	JLabel vastron = new JLabel(new ImageIcon(scaledImage(vastronKep,cuccosR/2)));
+	vastron.setBounds(0, 0, Tabla.aktHaz.getKep().getWidth(null)/2, Tabla.aktHaz.getKep().getHeight(null)/2);
 	jatekPanel.add(vastron);
 	Iterator<Haz> itHaz = Tabla.vastron.iterator();
-	y =  Tabla.aktHaz.getKep().getHeight(null);	
+	y =  Tabla.aktHaz.getKep().getHeight(null)/2;	
 	while (itHaz.hasNext())
 	{	
 		Haz aktHaz = itHaz.next();
-		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
-		aktLabel.setBounds(0, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
-		y += aktHaz.getKep().getHeight(null);
+		JLabel aktLabel = new JLabel(new ImageIcon(scaledImage(aktHaz.getKep(),hazR/2)));
+		aktLabel.setBounds(0, y, aktHaz.getKep().getWidth(null)/2,aktHaz.getKep().getHeight(null)/2);
+		y += aktHaz.getKep().getHeight(null)/2;
 	    jatekPanel.add(aktLabel);
 	}
-	x = (Tabla.aktHaz.getKep().getWidth(null));
+	x = (Tabla.aktHaz.getKep().getWidth(null)/2);
 	
 	//Kard
-	JLabel kard = new JLabel(new ImageIcon(kardKep));
-	kard.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
+	JLabel kard = new JLabel(new ImageIcon(scaledImage(kardKep,cuccosR/2)));
+	kard.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null)/2, Tabla.aktHaz.getKep().getHeight(null)/2);
 	jatekPanel.add(kard);
 	itHaz = Tabla.kard.iterator();
-	y =  Tabla.aktHaz.getKep().getHeight(null);	
+	y =  Tabla.aktHaz.getKep().getHeight(null)/2;	
 	while (itHaz.hasNext())
 	{	
 		Haz aktHaz = itHaz.next();
-		JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
-		aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
-		y += aktHaz.getKep().getHeight(null);
+		JLabel aktLabel = new JLabel(new ImageIcon(scaledImage(aktHaz.getKep(),hazR/2)));
+		aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null)/2,aktHaz.getKep().getHeight(null)/2);
+		y += aktHaz.getKep().getHeight(null)/2;
 		jatekPanel.add(aktLabel);
 		
 	}
-	x += Tabla.aktHaz.getKep().getWidth(null);	
+	x += Tabla.aktHaz.getKep().getWidth(null)/2;	
 	
 	//Hollo
-		JLabel hollo = new JLabel(new ImageIcon(holloKep));
-		hollo.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null), Tabla.aktHaz.getKep().getHeight(null));
+		JLabel hollo = new JLabel(new ImageIcon(scaledImage(holloKep,cuccosR/2)));
+		hollo.setBounds(x, 0, Tabla.aktHaz.getKep().getWidth(null)/2, Tabla.aktHaz.getKep().getHeight(null)/2);
 		jatekPanel.add(hollo);
 		itHaz = Tabla.hollo.iterator();
-		y =  Tabla.aktHaz.getKep().getHeight(null);	
+		y =  Tabla.aktHaz.getKep().getHeight(null)/2;	
 		while (itHaz.hasNext())
 		{	
 			Haz aktHaz = itHaz.next();
-			JLabel aktLabel = new JLabel(new ImageIcon(aktHaz.getKep()));
-			aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null),aktHaz.getKep().getHeight(null));
-			y += aktHaz.getKep().getHeight(null);
+			JLabel aktLabel = new JLabel(new ImageIcon(scaledImage(aktHaz.getKep(),hazR/2)));
+			aktLabel.setBounds(x, y, aktHaz.getKep().getWidth(null)/2,aktHaz.getKep().getHeight(null)/2);
+			y += aktHaz.getKep().getHeight(null)/2;
 			jatekPanel.add(aktLabel);
 			
 		}
+		
+		
+		
+		
+		x = 0;
+		y += hazR;
+		itHaz = Tabla.vastron.iterator();
+		while (itHaz.hasNext())
+		{
+			Haz aktHaz = itHaz.next();
+			JLabel label = new JLabel(new ImageIcon(scaledImage(aktHaz.getKep(),hazR/2)));
+			label.setBounds(x,y,aktHaz.getKep().getWidth(null)/2,aktHaz.getKep().getHeight(null)/2);
+			jatekPanel.add(label);
+			
+			
+			JLabel label1 = new JLabel(String.valueOf(aktHaz.getHordo()));
+			label1.setBounds(x+(int)hazR/2+(int)iR,y,W/30,W/30);
+			jatekPanel.add(label1);
+			
+			y += aktHaz.getKep().getHeight(null)/2;
+		}
+		
 	
 }
 

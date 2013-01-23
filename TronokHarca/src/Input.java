@@ -34,6 +34,7 @@ public class Input extends JFrame {
     
     ActionListener buttonAL = new ActionListener() {
     	public void actionPerformed(ActionEvent arg0) {
+    		if (getNumber() == -1) return;
     		System.out.println(getNumber());
     		title(Tabla.aktHaz.getNev()+" licitál:");
     		Tabla.aktHaz.setLicit(getNumber());
@@ -75,7 +76,12 @@ public class Input extends JFrame {
     
     public static int getNumber()
     {
-    	return Integer.parseInt(tf.getText());
+    	try {return Integer.parseInt(tf.getText());}
+    	catch (NumberFormatException e)
+    	{
+    		//System.out.println("Hibás szám!");
+    		return -1;
+    	}
     }
     
     public void title(String s)
