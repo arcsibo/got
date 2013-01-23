@@ -15,7 +15,7 @@ public class Input extends JFrame {
 	public Input jomagam = this;
 	
     public Input() {
- 
+    	
     	setTitle(title);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Licit :");

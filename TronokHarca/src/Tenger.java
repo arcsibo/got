@@ -190,14 +190,17 @@ public class Tenger extends JLabel{
 						{
 							tamadero += aktTer1.getEro();
 							tamadero += aktTer1.parancsjelzo.getPlussz();
+							aktTer1.removeParancs();
 						}
 					}
 				}else{
 					if(aktTer1.parancsjelzo != null && aktTer1.tulajdonos != null){
 						if(aktTer1.parancsjelzo.getTipus().equals("tamogatas"))
 						{// sz�razf�ldi csata vizi egys�g t�mogathatja
+							
 							tamadero += aktTer1.getEro();
 							tamadero += aktTer1.parancsjelzo.getPlussz();
+							aktTer1.removeParancs();
 						}
 					}
 				}
@@ -220,6 +223,7 @@ public class Tenger extends JLabel{
 						{
 							vedero += aktTer2.getEro();
 							vedero += aktTer2.parancsjelzo.getPlussz();
+							aktTer2.removeParancs();
 						}
 					}
 				}else{
@@ -227,6 +231,7 @@ public class Tenger extends JLabel{
 						if(aktTer2.parancsjelzo.getTipus().equals("tamogatas")){// sz�razf�ldi csata vizi egys�g t�mogathatja
 							vedero += aktTer2.getEro();
 							vedero += aktTer2.parancsjelzo.getPlussz();
+							aktTer2.removeParancs();
 						}
 					//cpp/mx/3/5
 					}
