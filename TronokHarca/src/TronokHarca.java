@@ -583,10 +583,13 @@ ActionListener kovGombAction = new ActionListener() {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		if (Tabla.parancsjelzoLerakas || Tabla.hazjelzoLerakas) return;
+		if(Tabla.AKCIO && Tabla.portyazas)
+		{
+			Tabla.tamadoTerulet = null;
+			Tabla.segedEgy.removeAllElements();
+		}
 		if (Tabla.AKCIO && Tabla.tamadas)
 		{
-			Tabla.aktHaz.setvalasztMivel(true);
-			Tabla.aktHaz.setvalasztMit(false);
 			Tabla.tamadoTerulet = null;
 			Tabla.segedEgy.removeAllElements();
 		}

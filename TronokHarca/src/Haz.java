@@ -13,8 +13,6 @@ public class Haz {
 	private int hordo;
 	private int hjelzo; //ez mi a fasz 2 vel feletted ember, vektorral van megcsinálva odakell hozzáadni illettve elvonni
 	private int licit;
-	private boolean valasztMivel;
-	private boolean valasztMit;
 	
 	public Haz(String nev, Image kep, Image kepp, Image keph)
 	{
@@ -25,9 +23,6 @@ public class Haz {
 		this.keph = keph;
 		this.parancsjelzok = new Vector<Parancsjelzo>();
 		this.hazjelzok = new Vector<Hazjelzo>();
-		this.valasztMivel = false;
-		this.valasztMit = false;
-		
 		
 		if (nev.equals("Lannister"))
 		{
@@ -106,24 +101,6 @@ public class Haz {
 	public int getLicit() { return this.licit; }
 	public void setLicit(int l) { this.licit = l; }
 	public void zeroLicit(){ this.licit = 0; }
-	
-	public boolean getvalasztMit()
-	{
-		return this.valasztMit;
-	}
-	public void setvalasztMit(boolean b)
-	{
-		this.valasztMit = b;
-	}
-	
-	public boolean getvalasztMivel()
-	{
-		return this.valasztMivel;
-	}
-	public void setvalasztMivel(boolean b)
-	{
-		this.valasztMivel = b;
-	}
 	
 	public void removeParancs(Parancsjelzo parancs)
 	{

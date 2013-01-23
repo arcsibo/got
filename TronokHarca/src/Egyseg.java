@@ -130,7 +130,7 @@ public class Egyseg extends JLabel{
 	public void performClick()
 	{
 		System.out.println(this.tipus +" "+ this.valaszt);
-		if(Tabla.aktHaz.getvalasztMivel() && this.tulajdonos.equals(Tabla.aktHaz) )
+		if(Tabla.tamadoTerulet != null && this.tulajdonos.equals(Tabla.aktHaz) )
 		{	
 			if(this.valaszt)
 			{
