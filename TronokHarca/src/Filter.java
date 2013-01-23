@@ -91,7 +91,7 @@ public class Filter extends RGBImageFilter
 
 			Color color = jomagam.tulajdonos.getColor();
 			
-			if (jomagam instanceof Terulet)
+			//if (jomagam instanceof Terulet)
 			{
 				
 				Color teruletSzin = new Color((rgb));
@@ -101,11 +101,11 @@ public class Filter extends RGBImageFilter
 				rgb += color.getRGB();
 				
 			}
-			else
+			/*else
 			{
 				color = new Color(color.getRed()/4,color.getGreen()/4,color.getBlue()/4);
 				rgb +=color.getRGB();
-			}
+			}*/
 
 			return rgb;
 			
