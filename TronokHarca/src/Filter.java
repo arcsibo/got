@@ -95,9 +95,9 @@ public class Filter extends RGBImageFilter
 			{
 				
 				Color teruletSzin = new Color((rgb));
-				teruletSzin = new Color(teruletSzin.getRed()/2,teruletSzin.getGreen()/2,teruletSzin.getBlue()/2);
+				teruletSzin = new Color((int)Math.round(teruletSzin.getRed()/1.5),(int)Math.round(teruletSzin.getGreen()/1.5),(int)Math.round(teruletSzin.getBlue()/1.5));
 				rgb = teruletSzin.getRGB();
-				color = new Color(color.getRed()/2,color.getGreen()/2,color.getBlue()/2);
+				color = new Color(color.getRed()/3,color.getGreen()/3,color.getBlue()/3);
 				rgb += color.getRGB();
 				
 			}
@@ -143,11 +143,11 @@ public class Filter extends RGBImageFilter
 				Color color = e.tulajdonos.getColor();
 				Color sotetit = new Color(rgb);
 				
-				rgb = new Color(sotetit.getRed()/3,sotetit.getGreen()/3,sotetit.getBlue()/3).getRGB();
+				rgb = new Color(sotetit.getRed()/2,sotetit.getGreen()/2,sotetit.getBlue()/2).getRGB();
 				
 				
 				
-				color = new Color(color.getRed()/3,color.getGreen()/3,color.getBlue()/3);
+				color = new Color(color.getRed()/6,color.getGreen()/6,color.getBlue()/6);
 				
 				rgb +=color.getRGB();
 
