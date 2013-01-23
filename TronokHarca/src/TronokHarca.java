@@ -11,12 +11,12 @@ import javax.swing.*;
 
 public class TronokHarca extends Applet{
 		
-//Az alkalmazás méretei
+//Az alkalmazï¿½s mï¿½retei
 final int W = 1300;
 final int H = 600;
 final int korrigalas = 626;
 
-//Skálázható minden grafikai elem, mindent méretet az ablak méretébõl számolunk
+//Skï¿½lï¿½zhatï¿½ minden grafikai elem, mindent mï¿½retet az ablak mï¿½retï¿½bï¿½l szï¿½molunk
 final double hazR = W/12;
 final double parancsjR = W/25;
 final double hazjR = W/40;
@@ -34,12 +34,12 @@ final double jatekPanelR = W/8;
 final double terkepR = W - (aktHazPanelR + jatekPanelR);
 
 
-//3 panelre osztható a játék képernyõje
+//3 panelre oszthatï¿½ a jï¿½tï¿½k kï¿½pernyï¿½je
 JPanel aktHazPanel, jatekPanel;	
 	
 //Zene
 JButton zeneGomb;
-boolean szól = false;
+boolean szol = false;
 AudioClip zene;
 ImageIcon zeneBe,zeneKi;
 
@@ -47,11 +47,11 @@ Image kardKep, holloKep, vastronKep, var1Kep, var2Kep, hordoKep, koronaKep;
 
 Tabla tabla;
 
-//A képek betöltõdését figyelhetjük vele
+//A kï¿½pek betï¿½ltï¿½dï¿½sï¿½t figyelhetjï¿½k vele
 MediaTracker tracker;
 
 
-//res mappa behúzása, file.got feldolgozásam, etc // kezdeti feltöltés
+//res mappa behï¿½zï¿½sa, file.got feldolgozï¿½sam, etc // kezdeti feltï¿½ltï¿½s
 public void initRes()
 {
 	
@@ -198,8 +198,8 @@ public void initRes()
 				line = bf.readLine();
 				if (line.equals("</vastron>")) break;
 				
-				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");//ház icon
-				Image kepp = getImage(getCodeBase(), "res/"+line+"p.png");//parancsjelzõ lefele fordított
+				Image kep = getImage(getCodeBase(), "res/"+line+".jpg");//hï¿½z icon
+				Image kepp = getImage(getCodeBase(), "res/"+line+"p.png");//parancsjelzï¿½ lefele fordï¿½tott
 				Image keph = getImage(getCodeBase(),"res/"+line+"h.png");
 				
 			    tracker.addImage(kep, 0);
@@ -418,7 +418,7 @@ public void initRes()
 		e.printStackTrace();
 	}
 	
-	//Szomszédok legenerálása
+	//Szomszï¿½dok legenerï¿½lï¿½sa
 	Iterator<Tenger> teruletek = Tabla.teruletek.iterator();		
 	while (teruletek.hasNext())
 	{
@@ -434,9 +434,9 @@ public void initRes()
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	if (tracker.isErrorAny()) System.out.println("Hiba a képek betöltésekor!");
+	if (tracker.isErrorAny()) System.out.println("Hiba a kï¿½pek betï¿½ltï¿½sekor!");
 	
-	//Egy kis takarítás
+	//Egy kis takarï¿½tï¿½s
 	tracker = null;
 	fileGot = null;
 	in = null;
@@ -445,7 +445,7 @@ public void initRes()
 	
 }
 
-//beállítjuk az appletet, elhelyezzük a grafikai elemeket //kezdeti beállítások
+//beï¿½llï¿½tjuk az appletet, elhelyezzï¿½k a grafikai elemeket //kezdeti beï¿½llï¿½tï¿½sok
 public void init()
 {
 	
@@ -486,8 +486,8 @@ public void init()
 	
 	
     
-    System.out.println("INDUL A JÁTÉK");
-    System.out.println("TERVEZÉS");
+    System.out.println("INDUL A Jï¿½Tï¿½K");
+    System.out.println("TERVEZï¿½S");
 
 
 }
@@ -499,24 +499,24 @@ ActionListener zeneGombAction = new ActionListener() {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (szól)
+		if (szol)
 		{
 			zeneGomb.setIcon(zeneKi);
 			zene.stop();
-			szól = false;
+			szol = false;
 		}
 		
 		else
 		{
 			zeneGomb.setIcon(zeneBe);
 			zene.loop();
-			szól = true;
+			szol = true;
 		}
 	}
 	
 };
 
-//kovhaz gombnak az akciója
+//kovhaz gombnak az akciï¿½ja
 ActionListener kovGombAction = new ActionListener() {
 
 	@Override
@@ -755,7 +755,7 @@ public Image scaledImage2(Image img,double ratio1, double ratio2) {
 }
 
 
-//Megvárjuk, amíg betöltõdik a kép
+//Megvï¿½rjuk, amï¿½g betï¿½ltï¿½dik a kï¿½p
 public void loading() {
 	try {
 		tracker.waitForAll();
