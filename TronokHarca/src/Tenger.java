@@ -431,27 +431,26 @@ public class Tenger extends JLabel{
 		return false;
 	}
 	//lehet nem kell
-	public boolean tamadhate(Tenger t){
-		
-		boolean visszad = false;
+public void setTamad()
+{
+	Iterator<Tenger> Szomszedok = this.szomszedok.iterator();
+	while(Szomszedok.hasNext())
+	{
+		Tenger aktSz = Szomszedok.next();
+		Tabla.tamadTer.add(aktSz);
+		if(aktSz.tulajdonos != null){
+			if(aktSz.tulajdonos.equals(Tabla.aktHaz)&&aktSz.vizi == true )
+			{
+				aktSz.setTamad();
+			}
+		}
+	}
+}
+	
+	public boolean tamadhate(Tenger t,Vector<Tenger> v){
 		
 		Vector<Tenger> Lephet = new Vector<Tenger>();
-		Iterator<Tenger> itSzom = this.szomszedok.iterator();
-		while(itSzom.hasNext())
-		{
-			Tenger aktSzom = itSzom.next();
-			
-			Iterator<Tenger> lephetIt = Lephet.iterator();
-			Lephet.add(aktSzom);
-				System.out.print(aktSzom.getNev() +"; ");
-				if(aktSzom.vizi == true && aktSzom.tulajdonos != null)
-				{
-					if (this.tulajdonos == null) return false; 
-					if(this.tulajdonos.equals(Tabla.aktHaz) && this.vizi == false){
-						aktSzom.tamadhate(t);
-					}
-				}
-		}
+		Lephet = v;
 		//megkeresi a lephet vektorban azt a teruletet ahova lepni akarunk
 		Iterator<Tenger> itlep = Lephet.iterator();
 		while(itlep.hasNext())
@@ -459,10 +458,10 @@ public class Tenger extends JLabel{
 			Tenger aktLep = itlep.next();
 			if(aktLep.equals(t))
 			{
-				visszad = true;
+				return true;
 			}
 		}
-		return visszad;
+		return false;
 	}
 	
 	public Tenger getTerulet(String nev)
@@ -637,7 +636,6 @@ public class Tenger extends JLabel{
 		}
 		if(Tabla.AKCIO==true && Tabla.tamadas == true)
 		{
-				
 			// it választjuk ki mivel akarunk támadni
 			if(Tabla.aktHaz.equals(this.tulajdonos) && Tabla.tamadoTerulet == null)
 			{
@@ -648,6 +646,7 @@ public class Tenger extends JLabel{
 				while(itE.hasNext()){
 					itE.next().valaszt = true;
 				}
+				Tabla.tamadoTerulet.setTamad();
 					
 			}else if(Tabla.tamadoTerulet != null)
 			{		
@@ -656,13 +655,13 @@ public class Tenger extends JLabel{
 				{
 					if(!this.tulajdonos.equals(Tabla.aktHaz))//ha nem mi vagyunk a tulaj
 					{
-						if(Tabla.tamadoTerulet.tamadhate(this))
+						if(Tabla.tamadoTerulet.tamadhate(this,Tabla.tamadTer))
 						{
 							Tabla.tamadoTerulet.tamadas(this);
 							//System.out.println(this.getNev());
 						}
 					}else{//ha mi vagyunk a tulaj
-						if(Tabla.tamadoTerulet.tamadhate(this))
+						if(Tabla.tamadoTerulet.tamadhate(this,Tabla.tamadTer))
 						{
 							//meneteles
 							Tabla.tamadoTerulet.menetel(this, Tabla.segedEgy);
@@ -670,7 +669,7 @@ public class Tenger extends JLabel{
 						}
 					}
 				}else if(this.tulajdonos == null){ // nincs tulaj donosa
-					if(Tabla.tamadoTerulet.tamadhate(this))
+					if(Tabla.tamadoTerulet.tamadhate(this,Tabla.tamadTer))
 					{
 						//meneteles
 						Tabla.tamadoTerulet.menetel(this, Tabla.segedEgy);

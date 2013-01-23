@@ -586,12 +586,14 @@ ActionListener kovGombAction = new ActionListener() {
 		if(Tabla.AKCIO && Tabla.portyazas)
 		{
 			Tabla.tamadoTerulet = null;
+			Tabla.tamadTer.removeAllElements();
 			Tabla.segedEgy.removeAllElements();
 		}
 		if (Tabla.AKCIO && Tabla.tamadas)
 		{
 			Tabla.tamadoTerulet = null;
 			Tabla.segedEgy.removeAllElements();
+			Tabla.tamadTer.removeAllElements();
 		}
 		Tabla.vizsgalatKorok();
 		Tabla.kovHaz();
