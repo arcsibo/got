@@ -41,7 +41,7 @@ JPanel aktHazPanel, jatekPanel;
 //Zene
 AudioClip zene;
 
-Image kardKep, holloKep, vastronKep;
+Image kardKep, holloKep, vastronKep, var1Kep, var2Kep, hordoKep, koronaKep;
 
 Tabla tabla;
 
@@ -110,22 +110,22 @@ public void initRes()
 	  loading();
 	  vastronKep = scaledImage(vastronKep,tronR);
 	  
-	  Image var1Kep = getImage(getCodeBase(), "res/var1.png");
+	  var1Kep = getImage(getCodeBase(), "res/var1.png");
 	  tracker.addImage(var1Kep, 0);
 	  loading();
 	  var1Kep = scaledImage(var1Kep,vhkR);
 	  
-	  Image var2Kep = getImage(getCodeBase(), "res/var2.png");
+	  var2Kep = getImage(getCodeBase(), "res/var2.png");
 	  tracker.addImage(var2Kep, 0);
 	  loading();
 	  var2Kep = scaledImage(var2Kep,vhkR);
 	  
-	  Image hordoKep = getImage(getCodeBase(), "res/hordo.png");
+	  hordoKep = getImage(getCodeBase(), "res/hordo.png");
 	  tracker.addImage(hordoKep, 0);
 	  loading();
 	  hordoKep = scaledImage(hordoKep,vhkR);
 	  
-	  Image koronaKep = getImage(getCodeBase(), "res/korona.png");
+	  koronaKep = getImage(getCodeBase(), "res/korona.png");
 	  tracker.addImage(koronaKep, 0);
 	  loading();
 	  koronaKep = scaledImage(koronaKep,vhkR);
@@ -472,6 +472,8 @@ public void init()
 	add(aktHazPanel);
 	add(tabla);
 	add(jatekPanel);
+
+	
 	
     
     System.out.println("INDUL A JÁTÉK");
@@ -665,11 +667,15 @@ public void updateJatekPanel()
 			
 		}
 		
-		
-		
-		
 		x = 0;
+		
+		
+		JLabel hordo = new JLabel(new ImageIcon(hordoKep));
+		hordo.setBounds(x+(int)hazR/2, y+(int)hazR/2,hordoKep.getWidth(null), hordoKep.getHeight(null));
+		jatekPanel.add(hordo);
+		
 		y += hazR;
+		
 		itHaz = Tabla.vastron.iterator();
 		while (itHaz.hasNext())
 		{
