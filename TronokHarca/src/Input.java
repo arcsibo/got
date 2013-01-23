@@ -12,10 +12,11 @@ public class Input extends JFrame {
 	static JFormattedTextField tf;
 	static String title = Tabla.aktHaz.getNev()+ " licitál:";
 	static int count;
+	public Input jomagam = this;
 	
     public Input() {
-        
-        setTitle(title);
+ 
+    	setTitle(title);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Licit :");
         tf = new JFormattedTextField();
@@ -62,12 +63,12 @@ public class Input extends JFrame {
     		
     		if(count >= 3)
     		{
-    			Kartya.licitalas();//debug
     			Tabla.got.updateJatekPanel();
     			Tabla.licitalas = false;
     			count = 0;
     			Tabla.TERVEZES = true;
     			Tabla.portyazas = true;
+    			jomagam.dispose();
     		}
     	}
     };

@@ -181,6 +181,10 @@ public class Tabla extends JLabel{
 			AKCIO = false;
 			korona = false;
 			System.out.println("KÁRTYAHÚZÁS");
+		
+			Input licit = new Input();
+			licit.setVisible(true);
+			
 			KARTYAHUZAS = true;
 			
 			//Itt új nagykor jön
@@ -188,7 +192,7 @@ public class Tabla extends JLabel{
 		}
 		if(KARTYAHUZAS)
 		{
-			KARTYAHUZAS = false;
+			KARTYAHUZAS = false;			
 			
 			System.out.println("TERVEZÉS");
 			TERVEZES = true;

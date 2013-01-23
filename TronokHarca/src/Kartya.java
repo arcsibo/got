@@ -12,6 +12,7 @@ public class Kartya {
 	private static void hoki() { System.out.println("csitt-csatt"); };
 	private static void toborzas( ) 
 	{
+		
 		System.out.println("Toborzas");
 		
 	}
@@ -127,36 +128,6 @@ public class Kartya {
 				Tabla.zeroLicit();
 	}
 	
-	public static void licitalas() 
-	{
-		System.out.println("Licit vége");
-		
-		
-		System.out.println();
-		System.out.println("Licit után:");
-		System.out.println();
-		System.out.println("vastron:");
-		for(int i = 0; i < Tabla.vastron.size(); i++)
-		{
-			System.out.println(Tabla.vastron.get(i).getNev()+": "+Tabla.vastron.get(i).getLicit());
-		}
-		System.out.println();
-		System.out.println("kard:");
-		for(int i = 0; i < Tabla.kard.size(); i++)
-		{
-			System.out.println(Tabla.kard.get(i).getNev()+": "+Tabla.kard.get(i).getLicit());
-		}
-		System.out.println();
-		System.out.println("hollo:");
-		for(int i = 0; i < Tabla.hollo.size(); i++)
-		{
-			System.out.println(Tabla.hollo.get(i).getNev()+": "+Tabla.hollo.get(i).getLicit());
-		}
-		System.out.println();
-	}
-	
-
-	
 	private static void hazjelzok() 
 	{
 		Haz aktHaz;
@@ -206,7 +177,7 @@ public class Kartya {
 				break;
 			
 			case 3:
-				licitalas();
+				hoki();
 				break;
 				
 			case 4:
