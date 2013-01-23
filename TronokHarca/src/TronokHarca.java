@@ -37,9 +37,14 @@ final double terkepR = W - (aktHazPanelR + jatekPanelR);
 //3 panelre osztható a játék képernyõje
 JPanel aktHazPanel, jatekPanel;	
 	
-//Lógeci 
 //Zene
+JButton zeneGomb;
+boolean szól = false;
 AudioClip zene;
+ImageIcon zeneBe,zeneKi;
+
+
+
 
 Image kardKep, holloKep, vastronKep, var1Kep, var2Kep, hordoKep, koronaKep;
 
@@ -48,13 +53,18 @@ Tabla tabla;
 //A képek betöltõdését figyelhetjük vele
 MediaTracker tracker;
 
+
 //res mappa behúzása, file.got feldolgozásam, etc // kezdeti feltöltés
 public void initRes()
 {
 	
+	zeneBe = new ImageIcon(scaledImage(getImage(getCodeBase(),"res/zeneBe.png"),W/40));
+	zeneKi = new ImageIcon(scaledImage(getImage(getCodeBase(),"res/zeneKi.png"),W/40));
+	
+	
     int locX=0,locY=0;
 	tracker = new MediaTracker(this);
-    
+	
 	URL fileGot = null;
 	  
 	  try{ URL u1=new URL(getCodeBase(),"res/zene.au");
@@ -451,6 +461,13 @@ public void init()
 	setPreferredSize(new Dimension(W,H));
 	setLayout(null);
 	
+	
+	zeneGomb = new JButton(zeneKi);
+	zeneGomb.setBounds((int)iR, H-H/20, H/20, H/20);
+	zeneGomb.setBorderPainted(false);
+	zeneGomb.addActionListener(zeneGombAction);
+	add(zeneGomb);
+	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(null);
 	
@@ -481,6 +498,30 @@ public void init()
 
 
 }
+
+
+
+ActionListener zeneGombAction = new ActionListener() {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (szól)
+		{
+			zeneGomb.setIcon(zeneKi);
+			zene.stop();
+			szól = false;
+		}
+		
+		else
+		{
+			zeneGomb.setIcon(zeneBe);
+			zene.loop();
+			szól = true;
+		}
+	}
+	
+};
 
 //kovhaz gombnak az akciója
 ActionListener kovGombAction = new ActionListener() {
