@@ -462,11 +462,7 @@ public void init()
 	setLayout(null);
 	
 	
-	zeneGomb = new JButton(zeneKi);
-	zeneGomb.setBounds((int)iR, H-H/20, H/20, H/20);
-	zeneGomb.setBorderPainted(false);
-	zeneGomb.addActionListener(zeneGombAction);
-	add(zeneGomb);
+	
 	
 	aktHazPanel = new JPanel();
 	aktHazPanel.setLayout(null);
@@ -555,6 +551,13 @@ public void updateHaz()
 {
 	aktHazPanel.removeAll();
 	aktHazPanel.repaint();
+	
+	
+	zeneGomb = new JButton(zeneKi);
+	zeneGomb.setBounds((int)iR, H-H/20, H/20, H/20);
+	zeneGomb.setBorderPainted(false);
+	zeneGomb.addActionListener(zeneGombAction);
+	add(zeneGomb);
 	
 	JButton kovGomb = new JButton(new ImageIcon(Tabla.aktHaz.getKep()));
 	kovGomb.addActionListener(kovGombAction);
@@ -727,7 +730,7 @@ public void updateJatekPanel()
 			
 			
 			JLabel label1 = new JLabel(String.valueOf(aktHaz.getHordo()));
-			label1.setBounds(x+(int)hazR/2+(int)iR,y,W/30,W/30);
+			label1.setBounds(x+(int)hazR/2+(int)iR*2,y,W/30,W/30);
 			jatekPanel.add(label1);
 			
 			y += aktHaz.getKep().getHeight(null)/2;
