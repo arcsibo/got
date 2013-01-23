@@ -584,7 +584,7 @@ ActionListener kovGombAction = new ActionListener() {
 		// TODO Auto-generated method stub
 		if (Tabla.parancsjelzoLerakas || Tabla.hazjelzoLerakas) return;
 		if(Tabla.AKCIO && Tabla.portyazas)
-		{
+		{//
 			Tabla.tamadoTerulet = null;
 			Tabla.tamadTer.removeAllElements();
 			Tabla.segedEgy.removeAllElements();
