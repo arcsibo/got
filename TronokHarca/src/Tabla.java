@@ -149,7 +149,6 @@ public class Tabla extends JLabel{
 		}// tervezes szakasz vege
 		if(AKCIO && portyazas)
 		{
-			System.out.println(!vanEPortya());
 			if(!vanEPortya())
 			{
 				portyazas = false;
@@ -171,7 +170,6 @@ public class Tabla extends JLabel{
 		}
 		if(AKCIO && korona)
 		{
-			System.out.println("IDEADOD BAZDMEG!");
 			Iterator<Tenger> itT = teruletek.iterator();
 			while(itT.hasNext()){
 				Tenger aktT = itT.next();
