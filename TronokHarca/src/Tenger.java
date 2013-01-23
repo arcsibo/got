@@ -22,6 +22,8 @@ public class Tenger extends JLabel{
 	//Térképen való elhelyezkedés
 	public double X ;
 	public double Y ;
+	
+	private int mx,my;
 
 	protected Haz tulajdonos;
 	protected Parancsjelzo parancsjelzo;
@@ -86,14 +88,17 @@ public class Tenger extends JLabel{
 		szomszedNevek.add(szomszed);
 	}
 	
-	public void addEgyseg(Egyseg egyseg)
+	public void addEgyseg(Egyseg egyseg,boolean eredeti)
 	{
 		
 		egysegek.add(egyseg);
 		change.szinez(egyseg);
-		egyseg.setBounds((int)Math.round(egyseg.x*this.kep.getWidth(null))-egyseg.kep.getWidth(null)/2, (int)Math.round(egyseg.y*this.kep.getHeight(null))-egyseg.kep.getHeight(null)/2, egyseg.kep.getWidth(null), egyseg.kep.getHeight(null));
+		if (eredeti) egyseg.setBounds((int)Math.round(egyseg.x*this.kep.getWidth(null))-egyseg.kep.getWidth(null)/2, (int)Math.round(egyseg.y*this.kep.getHeight(null))-egyseg.kep.getHeight(null)/2, egyseg.kep.getWidth(null), egyseg.kep.getHeight(null));
+		else egyseg.setBounds(mx, my, egyseg.kep.getWidth(null), egyseg.kep.getHeight(null));
 		this.add(egyseg);
 	}
+	
+	
 	
 	
 	public void felforditParancsjelzo()
@@ -244,7 +249,7 @@ public class Tenger extends JLabel{
 				{
 					Egyseg aktE = itTE.next();
 					aktE.valaszt = false;
-					tamad.addEgyseg(aktE);
+					tamad.addEgyseg(aktE,false);
 				}
 				this.tulajdonos.addParancs(this.parancsjelzo);
 				if(tamad.parancsjelzo != null)
@@ -287,7 +292,7 @@ public class Tenger extends JLabel{
 					{
 						Egyseg aktE = itE.next();
 						aktE.valaszt = false;
-						tamad.addEgyseg(aktE);
+						tamad.addEgyseg(aktE,false);
 					}
 					this.tulajdonos.addParancs(this.parancsjelzo);
 					if(tamad.parancsjelzo != null)
@@ -335,7 +340,7 @@ public class Tenger extends JLabel{
 					{
 						Egyseg aktE = itE.next();
 						aktE.valaszt = false;
-						megy.addEgyseg(aktE);
+						megy.addEgyseg(aktE,false);
 					}
 					this.egysegek.removeAll(egyseg);
 					this.setTulaj();
@@ -349,7 +354,7 @@ public class Tenger extends JLabel{
 					{
 						Egyseg aktE = itE.next();
 						aktE.valaszt = false;
-						megy.addEgyseg(aktE);
+						megy.addEgyseg(aktE,false);
 					}
 					this.egysegek.removeAll(egyseg);
 				
@@ -574,6 +579,8 @@ public void setTamad()
 	public void performClick(int x, int y)
 	{
 		
+		mx = x;
+		my = y;
 		boolean talalat = false;
 		
 		if (parancsjelzo != null) talalat = change.szomszedClick(x, y, parancsjelzo);

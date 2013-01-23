@@ -316,7 +316,7 @@ public void initRes()
 			    	double gyalogosX = Double.parseDouble(bf.readLine());
 			    	double gyalogosY = Double.parseDouble(bf.readLine());
 			    	Egyseg gyalogosE = new Egyseg("Gyalogos",tulajdonos,gyalogosKep,gyalogosX,gyalogosY);
-			    	terulet.addEgyseg(gyalogosE);
+			    	terulet.addEgyseg(gyalogosE,true);
 			    }
 			    
 			    line = bf.readLine();
@@ -326,7 +326,7 @@ public void initRes()
 			    	double lovagX = Double.parseDouble(bf.readLine());
 			    	double lovagY = Double.parseDouble(bf.readLine());
 			    	Egyseg lovagE = new Egyseg("Lovag",tulajdonos,lovagKep,lovagX,lovagY);
-			    	terulet.addEgyseg(lovagE);
+			    	terulet.addEgyseg(lovagE,true);
 			    }
 			    
 			    line = bf.readLine();
@@ -384,7 +384,7 @@ public void initRes()
 			    	double hajoX = Double.parseDouble(bf.readLine());
 			    	double hajoY = Double.parseDouble(bf.readLine());
 			    	Egyseg hajoE = new Egyseg("Hajo",tulajdonos,hajoKep,hajoX,hajoY);
-			    	tenger.addEgyseg(hajoE);
+			    	tenger.addEgyseg(hajoE,true);
 			    }
 			    
 			    
