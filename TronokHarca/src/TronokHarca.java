@@ -571,6 +571,9 @@ public void init()
 	
 	Input licit = new Input();
     licit.dispose();
+    
+    System.out.println("INDUL A JÁTÉK");
+    System.out.println("TERVEZÉS");
     //licit.dispose(); //eltüntet
     //licit.setVisible(true); //elõhoz
 

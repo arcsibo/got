@@ -51,6 +51,7 @@ public class Tabla extends JLabel{
 		
 		
 	public static int countKiskor = 0;
+	public static int countNagykor =1;
 	
 		
 	
@@ -130,12 +131,13 @@ public class Tabla extends JLabel{
 	
 	public static void vizsgalatKorok()
 	{
-		
+		System.out.println("Kör: " + countNagykor + ":" + countKiskor);
 		//Megyünk tovább a portyázásra
 		if(countKiskor >= vastron.size() && TERVEZES)
 		{
-			System.out.println("portyazas");
+			System.out.println("Portyazás");
 			TERVEZES = false;
+			
 			AKCIO = true;
 			portyazas = true;
 			Iterator<Tenger> itTer =  Tabla.teruletek.iterator();
@@ -151,9 +153,9 @@ public class Tabla extends JLabel{
 			if(!vanEPortya())
 			{
 				portyazas = false;
+				System.out.println("Támadás");
 				tamadas = true;
 				aktHaz = vastron.get(0);
-				System.out.println("tamadas");
 			}
 		}
 		if(AKCIO && tamadas)
@@ -162,9 +164,9 @@ public class Tabla extends JLabel{
 			if(!vanETamadas())
 			{
 				tamadas = false;
+				System.out.println("Korona osztás");
 				korona = true;
 				aktHaz = vastron.get(0);
-				System.out.println("korona");
 			}
 		}
 		if(AKCIO && korona)
@@ -180,11 +182,18 @@ public class Tabla extends JLabel{
 			}
 			AKCIO = false;
 			korona = false;
+			System.out.println("KÁRTYAHÚZÁS");
 			KARTYAHUZAS = true;
+			
+			//Itt új nagykor jön
+			countNagykor++;
 		}
 		if(KARTYAHUZAS)
 		{
-			System.out.println("kártyát húzunk");
+			KARTYAHUZAS = false;
+			
+			System.out.println("TERVEZÉS");
+			TERVEZES = true;
 		}
 	}
 	
